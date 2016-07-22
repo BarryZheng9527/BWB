@@ -33,6 +33,11 @@
     public const int INITPROTECT = 1; //初始保护
     public const int HPMULTIPLE = 5; //等级HP倍数
     public const int MPMULTIPLE = 2; //等级MP倍数
+    public const int ATTACKMULTIPLE = 2; //最大攻是最小攻的倍数
+    public const int LUCYOVERFLOW = 300; //幸运防溢出值
+    public const int AGILITYWEAKEN = 50; //敏捷削弱值
+    public const int AGILITYOVERFLOW = 200; //敏捷防溢出值
+    public const int PROTECTOVERFLOW = 150; //保护防溢出值
     public const int REMOULDNUM = 5; //改造上限次数
     public const int ARMNUM = 4; //武器类型总数
     public const int BOW = 1; //弓
@@ -59,4 +64,5 @@
     public const int EQUIPPOS7 = 7; //鞋子
     public const int EQUIPPOS8 = 8; //戒指
     public const int EQUIPPOS9 = 9; //项链
+    public const double EQUIPPOS2RATE = 0.2; //副手单手武器属性比率
 }

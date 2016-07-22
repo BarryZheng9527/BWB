@@ -5,13 +5,18 @@ using System.Collections.Generic;
 public struct EquipStruct
 {
     public int ID;
+    public int EquipType;
+    public int EquipPos;
     public string Name;
     public string TypeDesc;
     public string Desc;
     public string Icon;
     public int Quality;
-    public int EquipType;
-    public int EquipPos;
+    public double MinAttack;
+    public double MaxAttack;
+    public double Matk;
+    public double Firerate;
+    public double Balance;
     public List<double> AttrList;
     public List<int> RemouldList;
 
@@ -64,13 +69,18 @@ public class EquipConfig
                     XmlElement CurItem = (XmlElement)item;
                     EquipStruct equip = new EquipStruct();
                     equip.ID = Convert.ToInt32(CurItem.GetAttribute("ID"));
+                    equip.EquipType = Convert.ToInt32(CurItem.GetAttribute("EquipType"));
+                    equip.EquipPos = Convert.ToInt32(CurItem.GetAttribute("EquipPos"));
                     equip.Name = CurItem.GetAttribute("Name");
                     equip.TypeDesc = CurItem.GetAttribute("TypeDesc");
                     equip.Desc = CurItem.GetAttribute("Desc");
                     equip.Icon = CurItem.GetAttribute("Icon");
                     equip.Quality = Convert.ToInt32(CurItem.GetAttribute("Quality"));
-                    equip.EquipType = Convert.ToInt32(CurItem.GetAttribute("EquipType"));
-                    equip.EquipPos = Convert.ToInt32(CurItem.GetAttribute("EquipPos"));
+                    equip.MinAttack = Convert.ToDouble(CurItem.GetAttribute("MinAttack"));
+                    equip.MaxAttack = Convert.ToDouble(CurItem.GetAttribute("MaxAttack"));
+                    equip.Matk = Convert.ToDouble(CurItem.GetAttribute("Matk"));
+                    equip.Firerate = Convert.ToDouble(CurItem.GetAttribute("Firerate"));
+                    equip.Balance = Convert.ToDouble(CurItem.GetAttribute("Balance"));
                     equip.AttrList = new List<double>();
                     equip.AttrList.Add(Convert.ToDouble(CurItem.GetAttribute("Attr1")));
                     equip.AttrList.Add(Convert.ToDouble(CurItem.GetAttribute("Attr2")));

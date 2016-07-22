@@ -9,12 +9,15 @@ public static class AttrHandler
         Dictionary<int, double> DictBaseAttr = new Dictionary<int, double>();
         Dictionary<int, string> DictBaseAttrShow = new Dictionary<int, string>();
         Dictionary<int, double> DictTotalAttr = new Dictionary<int, double>();
-
+        //初始化
         for (int iIndex = 0; iIndex < Constant.ATTRNUM; ++iIndex)
         {
             DictBaseAttr.Add(iIndex + 1, 0);
             DictBaseAttrShow.Add(iIndex + 1, "");
         }
+        ItemClass lordEquip = null; //主手武器
+        ItemClass assistantEquip = null; //副手单手武器
+        //计算附加属性并找出主副手武器
         for (int iIndex0 = 0; iIndex0 < DataManager.Instance.ItemData.ItemList.Count; ++iIndex0)
         {
             ItemClass item = DataManager.Instance.ItemData.ItemList[iIndex0];
@@ -41,8 +44,17 @@ public static class AttrHandler
                         }
                     }
                 }
+                if (item.EquipPos == Constant.EQUIPPOS1)
+                {
+                    lordEquip = item;
+                }
+                if (item.EquipPos == Constant.EQUIPPOS2 && equipStruct.EquipType == Constant.ONEHANDED)
+                {
+                    assistantEquip = item;
+                }
             }
         }
+        //展示属性
         for (int iIndex4 = 1; iIndex4 <= Constant.ATTRNUM; ++iIndex4)
         {
             if (iIndex4 > 11)
@@ -54,7 +66,43 @@ public static class AttrHandler
                 DictBaseAttrShow[iIndex4] = DictBaseAttr[iIndex4] + "";
             }
         }
-
+        //装备武器带来的基础属性
+        double minArmAttack = 0;
+        double maxArmAttack = 0;
+        double armMatk = 0;
+        double armFirerate = 1;
+        double armBalance = 0;
+        if (lordEquip != null)
+        {
+            EquipStruct equipStruct0 = EquipConfig.Instance.GetEquipFromID(lordEquip.EquipID);
+            minArmAttack += equipStruct0.MinAttack;
+            maxArmAttack += equipStruct0.MaxAttack;
+            armMatk += equipStruct0.Matk;
+            armFirerate = equipStruct0.Firerate;
+            armBalance += equipStruct0.Balance;
+            if (assistantEquip != null)
+            {
+                EquipStruct equipStruct1 = EquipConfig.Instance.GetEquipFromID(assistantEquip.EquipID);
+                minArmAttack += Constant.EQUIPPOS2RATE * equipStruct1.MinAttack;
+                maxArmAttack += Constant.EQUIPPOS2RATE * equipStruct1.MaxAttack;
+                armMatk += Constant.EQUIPPOS2RATE * equipStruct1.Matk;
+                armFirerate += Constant.EQUIPPOS2RATE * equipStruct1.Firerate;
+                armBalance += Constant.EQUIPPOS2RATE * equipStruct1.Balance;
+            }
+        }
+        else
+        {
+            if (assistantEquip != null)
+            {
+                EquipStruct equipStruct2 = EquipConfig.Instance.GetEquipFromID(assistantEquip.EquipID);
+                minArmAttack += equipStruct2.MinAttack;
+                maxArmAttack += equipStruct2.MaxAttack;
+                armMatk += equipStruct2.Matk;
+                armFirerate = equipStruct2.Firerate;
+                armBalance += equipStruct2.Balance;
+            }
+        }
+        //最终战斗属性
         int iMyLevel = DataManager.Instance.CurrentRole.Level;
         DictTotalAttr[Constant.STRENGTH] = DictBaseAttr[Constant.STRENGTH];
         DictTotalAttr[Constant.AGILITY] = DictBaseAttr[Constant.AGILITY];
@@ -64,6 +112,34 @@ public static class AttrHandler
         DictTotalAttr[Constant.PROTECT] = Constant.INITPROTECT + DictBaseAttr[Constant.PROTECT];
         DictTotalAttr[Constant.HP] = iMyLevel * Constant.HPMULTIPLE + DictBaseAttr[Constant.HP];
         DictTotalAttr[Constant.MP] = iMyLevel * Constant.MPMULTIPLE + DictBaseAttr[Constant.MP];
+        DictTotalAttr[Constant.MINATTACK] = minArmAttack + DictTotalAttr[Constant.STRENGTH] + DictBaseAttr[Constant.MINATTACK];
+        DictTotalAttr[Constant.MAXATTACK] = maxArmAttack + Constant.ATTACKMULTIPLE * DictTotalAttr[Constant.STRENGTH] + DictBaseAttr[Constant.MAXATTACK];
+        //主手为弓
+        if (lordEquip != null)
+        {
+            EquipStruct equipStruct2 = EquipConfig.Instance.GetEquipFromID(lordEquip.EquipID);
+            if (equipStruct2.EquipType == Constant.BOW)
+            {
+                DictTotalAttr[Constant.MINATTACK] = minArmAttack + DictTotalAttr[Constant.AGILITY] + DictBaseAttr[Constant.MINATTACK];
+                DictTotalAttr[Constant.MAXATTACK] = maxArmAttack + Constant.ATTACKMULTIPLE * DictTotalAttr[Constant.AGILITY] + DictBaseAttr[Constant.MAXATTACK];
+            }
+        }
+        DictTotalAttr[Constant.MATK] = armMatk + Constant.ATTACKMULTIPLE * DictTotalAttr[Constant.WIT] + DictBaseAttr[Constant.MATK];
+        DictTotalAttr[Constant.CRIT] = DictTotalAttr[Constant.LUCY] / (DictTotalAttr[Constant.LUCY] + Constant.LUCYOVERFLOW) + DictBaseAttr[Constant.CRIT];
+        DictTotalAttr[Constant.CRITDAMAGE] = DictBaseAttr[Constant.CRITDAMAGE];
+        double balanceTemp = armBalance + (DictBaseAttr[Constant.AGILITY] - Constant.AGILITYWEAKEN) / (DictBaseAttr[Constant.AGILITY] + Constant.AGILITYOVERFLOW);
+        if (balanceTemp < 0)
+        {
+            balanceTemp = 0;
+        }
+        else if (balanceTemp > 0.8)
+        {
+            balanceTemp = 0.8;
+        }
+        DictTotalAttr[Constant.BALANCE] = balanceTemp;
+        DictTotalAttr[Constant.FIRERATE] = armFirerate * (DictBaseAttr[Constant.FIRERATE] + 1);
+        DictTotalAttr[Constant.SINGRATE] = DictBaseAttr[Constant.SINGRATE] + 1;
+        DictTotalAttr[Constant.REDUCEDAMAGE] = DictTotalAttr[Constant.PROTECT] / (DictTotalAttr[Constant.PROTECT] + Constant.PROTECTOVERFLOW) + DictBaseAttr[Constant.REDUCEDAMAGE];
 
         DataManager.Instance.DictBaseAttr = DictBaseAttr;
         DataManager.Instance.DictBaseAttrShow = DictBaseAttrShow;
