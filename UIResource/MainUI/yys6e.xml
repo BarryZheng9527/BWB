@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="720,1030">
+  <controller name="tab" pages="0,,1,,2," selected="0"/>
+  <displayList>
+    <image id="n0" name="_Container" src="oyu0ti" pkg="dx5htgsv" xy="0,0"/>
+    <image id="n1" name="n1" src="oyu0ti" pkg="dx5htgsv" xy="0,624"/>
+    <component id="n5" name="n5" src="yys6tj" pkg="dx5htgsv" xy="4,560">
+      <Button checked="true" title="聊天" controller="tab" page="0"/>
+    </component>
+    <component id="n8" name="n8" src="yys6tj" pkg="dx5htgsv" xy="188,560">
+      <Button title="战斗讯息" controller="tab" page="1"/>
+    </component>
+    <component id="n9" name="n9" src="yys6tj" pkg="dx5htgsv" xy="372,560">
+      <Button title="挂机设置" controller="tab" page="2"/>
+    </component>
+    <text id="n11" name="title" xy="20,720" size="680,64" font="宋体" fontSize="60" align="center" vAlign="middle" autoSize="height" bold="true" text="聊天没做">
+      <gearDisplay controller="tab" pages="0"/>
+    </text>
+    <text id="n10" name="title" xy="20,720" size="680,64" font="宋体" fontSize="60" align="center" vAlign="middle" autoSize="height" bold="true" text="战斗讯息也没做">
+      <gearDisplay controller="tab" pages="1"/>
+    </text>
+    <text id="n12" name="title" xy="20,720" size="680,64" font="宋体" fontSize="60" align="center" vAlign="middle" autoSize="height" bold="true" text="挂机设置也没做">
+      <gearDisplay controller="tab" pages="2"/>
+    </text>
+    <component id="n18" name="n18" src="oyu0th" pkg="dx5htgsv" xy="22,430"/>
+    <text id="n19" name="n19" xy="20,438" size="44,24" fontSize="20" align="center" vAlign="middle" leading="2" autoSize="none" bold="true" text="HP"/>
+    <component id="n20" name="n20" src="oyu0th" pkg="dx5htgsv" xy="22,490"/>
+    <text id="n21" name="n21" xy="20,498" size="44,24" fontSize="20" align="center" vAlign="middle" leading="2" autoSize="none" bold="true" text="MP"/>
+    <component id="n22" name="n22" src="oyu0th" pkg="dx5htgsv" xy="658,430"/>
+    <text id="n23" name="n23" xy="656,438" size="44,24" fontSize="20" align="center" vAlign="middle" leading="2" autoSize="none" bold="true" text="HP"/>
+    <component id="n24" name="n24" src="oyu0th" pkg="dx5htgsv" xy="658,490"/>
+    <text id="n25" name="n25" xy="656,498" size="44,24" fontSize="20" align="center" vAlign="middle" leading="2" autoSize="none" bold="true" text="MP"/>
+    <component id="n30" name="_MyHP" src="oyu0tf" pkg="dx5htgsv" xy="70,440" size="280,19">
+      <ProgressBar value="70" max="100"/>
+    </component>
+    <component id="n31" name="_MyMP" src="oyu0tf" pkg="dx5htgsv" xy="69,500" size="280,19">
+      <ProgressBar value="60" max="100"/>
+    </component>
+    <component id="n32" name="_EnemyHP" src="yys6tk" pkg="dx5htgsv" xy="370,440" size="280,19">
+      <ProgressBar value="40" max="100"/>
+    </component>
+    <component id="n33" name="_EnemyMP" src="yys6tk" pkg="dx5htgsv" xy="370,500" size="280,19">
+      <ProgressBar value="30" max="100"/>
+    </component>
+  </displayList>
+</component>

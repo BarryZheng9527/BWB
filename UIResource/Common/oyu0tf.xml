@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="306,19" overflow="hidden" extention="ProgressBar">
+  <displayList>
+    <image id="n1" name="n1" src="gt1it2" xy="0,0" size="306,19">
+      <relation target="" sidePair="width-width,height-height"/>
+    </image>
+    <image id="n2" name="bar" src="gt1it3" xy="3,2" size="300,15"/>
+    <text id="n3" name="title" xy="0,1" size="306,19" fontSize="12" align="center" vAlign="middle" autoSize="none" text="">
+      <relation target="" sidePair="width-width,height-height"/>
+    </text>
+  </displayList>
+  <ProgressBar titleType="valueAndmax"/>
+</component>

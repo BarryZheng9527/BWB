@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="680,127">
+  <displayList>
+    <text id="n0" name="title" xy="0,0" size="680,127" font="宋体" fontSize="60" align="center" vAlign="middle" autoSize="height" bold="true" text="技能系统&#xA;是否再设计一发"/>
+  </displayList>
+</component>

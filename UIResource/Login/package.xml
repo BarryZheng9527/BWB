@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<packageDescription id="42t4qtqv" jpegQuality="80" compressPNG="true">
+  <resources>
+    <component id="umn52" name="Login" folder="" file="umn52.xml" exported="true"/>
+    <folder id="umn53" name="Image" folder=""/>
+    <component id="dov6j" name="chose" folder="" file="dov6j.xml" exported="true"/>
+    <image id="dov6m" name="Option1" folder="umn53" qualityOption="source" file="dov6m.png" size="22,21"/>
+    <image id="dov6n" name="Option2" folder="umn53" qualityOption="source" file="dov6n.png" size="21,21"/>
+  </resources>
+  <publish name="Login" extractAlpha="true"/>
+</packageDescription>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<packageDescription id="mybs8ey8" jpegQuality="80" compressPNG="true">
+  <resources>
+    <image id="rsma0" name="Equip_100001" folder="" qualityOption="source" file="rsma0.png" size="80,80" exported="true"/>
+  </resources>
+  <publish name="IconEquip" extractAlpha="true"/>
+</packageDescription>

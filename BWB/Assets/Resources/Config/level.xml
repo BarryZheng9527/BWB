@@ -1,0 +1,15 @@
+<!-- 被2012 () 使用XMLSpy v编辑的 (http://www.altova.com) by -->
+<Root>
+	<Levels>
+		<item Level="1" Exp="100"/>
+		<item Level="2" Exp="200"/>
+		<item Level="3" Exp="300"/>
+		<item Level="4" Exp="400"/>
+		<item Level="5" Exp="500"/>
+		<item Level="6" Exp="600"/>
+		<item Level="7" Exp="700"/>
+		<item Level="8" Exp="800"/>
+		<item Level="9" Exp="900"/>
+		<item Level="10" Exp="1000"/>
+	</Levels>
+</Root>

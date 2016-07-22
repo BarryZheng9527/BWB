@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="680,960">
+  <displayList>
+    <component id="n13" name="_EquipList" src="pk4oh" xy="0,0"/>
+    <list id="n12" name="_AttrList" xy="50,500" size="580,460" layout="flow_hz" selectionMode="none" margin="0,0,0,0" lineGap="20" colGap="200" lineItemCount="2" defaultItem="ui://azj7nssjyys66">
+      <item/>
+      <item/>
+      <item/>
+      <item/>
+      <item/>
+      <item/>
+      <item/>
+      <item/>
+      <item/>
+      <item/>
+      <item/>
+      <item/>
+      <item/>
+      <item/>
+      <item/>
+      <item/>
+      <item/>
+    </list>
+  </displayList>
+</component>

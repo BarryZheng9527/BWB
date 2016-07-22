@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<packageDescription id="m6y29aea" jpegQuality="80" compressPNG="true">
+  <resources>
+    <image id="jap30" name="money" folder="" qualityOption="source" file="jap30.png" size="40,40" exported="true"/>
+    <image id="jap31" name="head2" folder="" qualityOption="source" file="jap31.png" size="80,80" exported="true"/>
+    <image id="jap32" name="head1" folder="" qualityOption="source" file="jap32.png" size="80,80" exported="true"/>
+    <image id="jap33" name="gold" folder="" qualityOption="source" file="jap33.png" size="40,40" exported="true"/>
+  </resources>
+  <publish name="IconCommon" extractAlpha="true"/>
+</packageDescription>

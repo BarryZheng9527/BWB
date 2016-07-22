@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<packageDescription id="mdtli323" jpegQuality="80" compressPNG="true">
+  <resources>
+    <component id="rsma0" name="EquipTips" folder="" file="rsma0.xml" exported="true"/>
+  </resources>
+  <publish name="Tips" extractAlpha="true"/>
+</packageDescription>

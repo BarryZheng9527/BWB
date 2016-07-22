@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<packageDescription id="dx5htgsv" jpegQuality="80" compressPNG="true">
+  <resources>
+    <folder id="10fet0" name="Image" folder=""/>
+    <image id="gt1it2" name="ProgressBottom" folder="10fet0" qualityOption="source" file="gt1it2.png" size="306,19"/>
+    <image id="gt1it3" name="ProgressBar" folder="10fet0" qualityOption="source" file="gt1it3.png" size="300,15"/>
+    <image id="gt1it4" name="Icon2" folder="10fet0" qualityOption="source" file="gt1it4.png" size="40,40"/>
+    <image id="gt1it5" name="MiniBtn" folder="10fet0" qualityOption="source" file="gt1it5.png" size="120,40"/>
+    <image id="gt1it6" name="MiddleBtn" folder="10fet0" qualityOption="source" file="gt1it6.png" size="180,60"/>
+    <image id="gt1it7" name="Icon1" folder="10fet0" qualityOption="source" file="gt1it7.png" size="81,80" exported="true"/>
+    <image id="gt1it9" name="BigBtn" folder="10fet0" qualityOption="source" file="gt1it9.png" size="240,80"/>
+    <image id="gt1ita" name="Bg" folder="10fet0" qualityOption="source" file="gt1ita.jpg" size="720,1281" exported="true"/>
+    <component id="oyu0tb" name="BigButton" folder="" file="oyu0tb.xml" exported="true"/>
+    <component id="oyu0tc" name="MiddleButton" folder="" file="oyu0tc.xml" exported="true"/>
+    <component id="oyu0te" name="MiniButton" folder="" file="oyu0te.xml" exported="true"/>
+    <component id="oyu0tf" name="Progress" folder="" file="oyu0tf.xml" exported="true"/>
+    <component id="oyu0tg" name="MiddleIcon" folder="" file="oyu0tg.xml" exported="true"/>
+    <component id="oyu0th" name="MiniIcon" folder="" file="oyu0th.xml" exported="true"/>
+    <image id="oyu0ti" name="Container" folder="10fet0" qualityOption="source" file="oyu0ti.png" size="720,406" exported="true"/>
+    <component id="yys6tj" name="MiddleTab" folder="" file="yys6tj.xml" exported="true"/>
+    <component id="yys6tk" name="Progress2" folder="" file="yys6tk.xml" exported="true"/>
+    <component id="yys6tm" name="BigTab" folder="" file="yys6tm.xml" exported="true"/>
+    <component id="yys6tn" name="MiniTab" folder="" file="yys6tn.xml" exported="true"/>
+    <component id="rsmato" name="ItemCard" folder="" file="rsmato.xml" exported="true"/>
+    <component id="pk4otp" name="PopMessage" folder="" file="pk4otp.xml" exported="true"/>
+  </resources>
+  <publish name="Common" extractAlpha="true"/>
+</packageDescription>

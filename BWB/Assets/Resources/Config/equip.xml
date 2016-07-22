@@ -1,0 +1,64 @@
+<!-- 被2012 () 使用XMLSpy v编辑的 (http://www.altova.com) by -->
+<Root>
+<!--
+	ID装备ID
+	Name装备名称索引
+	TypeDesc装备类型描述
+	Desc装备描述
+	Icon装备ICON编号
+	Quality装备品质
+	EquipPos装备位置
+	EquipType装备类型
+	1，弓
+	2，法杖
+	3，双手武器
+	4，其他单手武器
+	5，箭袋
+	6，魔法书
+	7，盾
+	8，头盔
+	9，衣服
+	10，披风
+	11，手套
+	12，鞋子
+	13，戒指
+	14，项链
+	EquipPos装备位置
+	1，主手
+	2，副手
+	3，头盔
+	4，衣服
+	5，披风
+	6，手套
+	7，鞋子
+	8，戒指
+	9，项链
+	属性类型
+	Attr1力量
+	Attr2敏捷
+	Attr3智力
+	Attr4幸运
+	Attr5防御
+	Attr6保护
+	Attr7HP
+	Attr8MP
+	Attr9最小攻击
+	Attr10最大攻击
+	Attr11魔法攻击
+	Attr12暴击率
+	Attr13暴击伤害
+	Attr14平衡
+	Attr15攻速
+	Attr16吟唱速度
+	Attr17减伤
+	改造类型
+	Remould1
+	Remould2
+	Remould3
+	Remould4
+	Remould5
+-->
+	<Equips>
+		<item ID="100001" Name="EquipName_100001" TypeDesc="EquipType1" Desc="EquipDesc_100001" Icon="Equip_100001" Quality="1" EquipType="1" EquipPos="1" Attr1="0" Attr2="0" Attr3="0" Attr4="0" Attr5="0" Attr6="0" Attr7="0" Attr8="0" Attr9="0" Attr10="0" Attr11="0" Attr12="0" Attr13="0" Attr14="0" Attr15="0" Attr16="0" Attr17="0" Remould1="1" Remould2="2" Remould3="3" Remould4="4" Remould5="5"/>
+	</Equips>
+</Root>

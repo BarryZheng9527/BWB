@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="680,800">
+  <displayList>
+    <list id="n0" name="_ItemList" xy="0,0" size="680,800" layout="flow_hz" selectionMode="none" overflow="scroll" margin="0,0,0,0" lineGap="20" colGap="20" lineItemCount="7" defaultItem="ui://dx5htgsvrsmato"/>
+  </displayList>
+</component>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="360,100" extention="Button">
+  <displayList>
+    <component id="n0" name="_CurItemCard" src="rsmato" pkg="dx5htgsv" xy="10,10"/>
+    <text id="n1" name="_Name" xy="110,12" size="240,34" font="宋体" fontSize="30" vAlign="middle" ubb="true" autoSize="none" bold="true" text="名称"/>
+    <text id="n2" name="_Type" xy="110,56" size="240,34" font="宋体" fontSize="30" vAlign="middle" autoSize="none" bold="true" text="类型"/>
+  </displayList>
+  <Button mode="Radio"/>
+</component>

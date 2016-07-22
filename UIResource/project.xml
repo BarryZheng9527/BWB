@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<projectDescription name="UIResource" type="Unity" id="1b860e882bf909c99717938607213932">
+  <packages>
+    <package id="42t4qtqv" name="Login"/>
+    <package id="azj7nssj" name="MainUI"/>
+    <package id="dx5htgsv" name="Common"/>
+    <package id="2nxqt47j" name="CreatRole"/>
+    <package id="m6y29aea" name="IconCommon"/>
+    <package id="mybs8ey8" name="IconEquip"/>
+    <package id="mdtli323" name="Tips"/>
+  </packages>
+  <textSetting font="宋体" size="12"/>
+  <scrollBars/>
+</projectDescription>

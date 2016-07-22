@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="190,24">
+  <displayList>
+    <text id="n0" name="_AttrName" xy="0,0" size="90,24" font="宋体" fontSize="20" align="right" vAlign="middle" autoSize="none" bold="true" text="战斗力"/>
+    <text id="n1" name="_AttrValue" xy="100,0" size="90,24" font="宋体" fontSize="20" align="right" vAlign="middle" autoSize="none" bold="true" text="5"/>
+  </displayList>
+</component>

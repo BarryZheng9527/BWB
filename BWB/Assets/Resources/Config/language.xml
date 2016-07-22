@@ -1,0 +1,37 @@
+<Root>
+	<Errors>
+		<item ErrorID="100001" Text="金币不足"/>
+	</Errors>
+	<Texts>
+		<item TextID="Name_1001" Text="黑"/>
+		<item TextID="Name_1002" Text="白"/>
+		<item TextID="Name_2001" Text="魔王子"/>
+		<item TextID="Name_2002" Text="剑之初"/>
+		<item TextID="Name_3001" Text="寒烟翠"/>
+		<item TextID="Name_3002" Text="玉倾欢"/>
+		<item TextID="EquipType1" Text="弓"/>
+		<item TextID="EquipName_100001" Text="快雪时晴"/>
+		<item TextID="EquipDesc_100001" Text="满夕霜雪人独影，红尘今古几月明，笑寒饮，惯新晴，千山已过风云行"/>
+		<item TextID="Text_100001" Text="创建角色"/>
+		<item TextID="Text_100002" Text="进入游戏"/>
+		<item TextID="Text_100003" Text="战力"/>
+		<item TextID="Text_100004" Text="金币消耗"/>
+		<item TextID="AttrName_1" Text="力量"/>
+		<item TextID="AttrName_2" Text="敏捷"/>
+		<item TextID="AttrName_3" Text="智力"/>
+		<item TextID="AttrName_4" Text="幸运"/>
+		<item TextID="AttrName_5" Text="防御"/>
+		<item TextID="AttrName_6" Text="保护"/>
+		<item TextID="AttrName_7" Text="HP"/>
+		<item TextID="AttrName_8" Text="MP"/>
+		<item TextID="AttrName_9" Text="最小攻击"/>
+		<item TextID="AttrName_10" Text="最大攻击"/>
+		<item TextID="AttrName_11" Text="魔法攻击"/>
+		<item TextID="AttrName_12" Text="暴击率"/>
+		<item TextID="AttrName_13" Text="暴击伤害"/>
+		<item TextID="AttrName_14" Text="平衡"/>
+		<item TextID="AttrName_15" Text="攻速"/>
+		<item TextID="AttrName_16" Text="吟唱速度"/>
+		<item TextID="AttrName_17" Text="减伤"/>
+	</Texts>
+</Root>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="720,1280" designImage="ui://42t4qtqvumn55">
+  <controller name="role" pages="0,,1," selected="0"/>
+  <displayList>
+    <image id="n25" name="n25" src="gt1ita" pkg="dx5htgsv" xy="0,0"/>
+    <component id="n32" name="_RandomBtn" src="oyu0tc" pkg="dx5htgsv" xy="490,645">
+      <Button title="随机"/>
+    </component>
+    <component id="n37" name="n37" src="zenu2" xy="30,150">
+      <Button checked="true" title="弈剑听雨阁" controller="role" page="0"/>
+    </component>
+    <component id="n38" name="n38" src="zenu2" xy="30,280">
+      <Button title="翎羽山庄" controller="role" page="1"/>
+    </component>
+    <text id="n39" name="title" xy="350,150" size="320,218" font="宋体" fontSize="40" align="center" vAlign="middle" autoSize="none" bold="true" text="锁妖宝塔锁深怨&#xA;封印神剑封前缘&#xA;御剑把酒听秋雨&#xA;怎堪江湖梦已远">
+      <gearDisplay controller="role" pages="0"/>
+    </text>
+    <text id="n41" name="title" xy="350,150" size="320,218" font="宋体" fontSize="40" align="center" vAlign="middle" autoSize="none" bold="true" text="落日神箭今何在&#xA;东海远泽波大荒&#xA;十面埋伏骋林野&#xA;百步穿杨技无双">
+      <gearDisplay controller="role" pages="1"/>
+    </text>
+    <text id="n42" name="_RoleName" xy="20,654" size="460,44" input="true" prompt="请输入您的账号" font="宋体" fontSize="40" align="right" vAlign="middle" autoSize="height" bold="true" text=""/>
+    <component id="n44" name="_SureBtn" src="oyu0tb" pkg="dx5htgsv" xy="240,800"/>
+  </displayList>
+</component>

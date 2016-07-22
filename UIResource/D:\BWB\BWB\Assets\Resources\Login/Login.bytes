@@ -1,0 +1,56 @@
+dov6j.xml|407|<component size="22,21" extention="Button">
+  <controller name="button" pages="0,up,1,down" selected="1"/>
+  <displayList>
+    <image id="n0" name="n0" src="dov6m" xy="0,0">
+      <gearDisplay controller="button" pages="0"/>
+    </image>
+    <image id="n1" name="n1" src="dov6n" xy="0,0">
+      <gearDisplay controller="button" pages="1"/>
+    </image>
+  </displayList>
+  <Button mode="Check"/>
+</component>package.xml|401|<packageDescription id="42t4qtqv" name="Login">
+  <resources>
+    <atlas id="atlas0" size="64,32" file="atlas0.png"/>
+    <component id="dov6j" name="chose" exported="true" size="22,21"/>
+    <component id="umn52" name="Login" exported="true" size="720,1280"/>
+    <image id="dov6m" name="Option1" size="22,21"/>
+    <image id="dov6n" name="Option2" size="21,21"/>
+  </resources>
+</packageDescription>umn52.xml|2601|<component size="720,1280">
+  <controller name="change" pages="0,,1," selected="1"/>
+  <displayList>
+    <image id="n25" name="n25" src="gt1ita" pkg="dx5htgsv" xy="0,0"/>
+    <text id="n19" name="n19" xy="220,600" size="67,34" font="宋体" fontSize="30" align="center" vAlign="middle" bold="true" text="账号">
+      <gearXY controller="change" pages="0,1" values="330,600|220,600" default="240,600" tween="true"/>
+      <gearLook controller="change" pages="0,1" values="0,0,0|-" default="1,0,0" tween="true"/>
+    </text>
+    <text id="n20" name="n20" xy="220,650" size="67,34" font="宋体" fontSize="30" align="center" vAlign="middle" bold="true" text="密码">
+      <gearXY controller="change" pages="0,1" values="330,650|220,650" default="240,650" tween="true"/>
+      <gearLook controller="change" pages="0,1" values="0,0,0|-" default="1,0,0" tween="true"/>
+    </text>
+    <text id="n21" name="_Account" xy="300,600" size="300,34" input="true" prompt="请输入您的账号" font="宋体" fontSize="30" align="center" vAlign="middle" autoSize="height" bold="true" text="">
+      <gearXY controller="change" pages="0,1" values="410,600|-" default="300,600" tween="true"/>
+      <gearLook controller="change" pages="0,1" values="0,0,0|-" default="1,0,0" tween="true"/>
+    </text>
+    <text id="n22" name="_PassWord" xy="300,650" size="300,34" input="true" prompt="请输入您的密码" font="宋体" fontSize="30" align="center" vAlign="middle" autoSize="none" password="true" bold="true" text="">
+      <gearXY controller="change" pages="0,1" values="410,650|-" default="300,650" tween="true"/>
+      <gearLook controller="change" pages="0,1" values="0,0,0|-" default="1,0,0" tween="true"/>
+    </text>
+    <text id="n23" name="n23" xy="300,700" size="191,34" font="宋体" fontSize="30" align="center" vAlign="middle" bold="true" text="记住登陆状态">
+      <gearXY controller="change" pages="0,1" values="410,700|-" default="300,700" tween="true"/>
+      <gearLook controller="change" pages="0,1" values="-|1,0,0" default="0,0,0"/>
+    </text>
+    <component id="n24" name="_RememberBtn" src="dov6j" xy="263,707">
+      <gearXY controller="change" pages="0,1" values="373,707|263,707" default="263,852" tween="true"/>
+      <gearLook controller="change" pages="0,1" values="-|1,0,0" default="0,0,0" tween="true"/>
+      <Button checked="true"/>
+    </component>
+    <component id="n26" name="_ChangeBtn" src="oyu0tb" pkg="dx5htgsv" xy="247,880">
+      <Button title="切换账号"/>
+    </component>
+    <component id="n27" name="_LoginBtn" src="oyu0tb" pkg="dx5htgsv" xy="248,1000">
+      <Button title="进入游戏"/>
+    </component>
+  </displayList>
+</component>

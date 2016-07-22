@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="40,40">
+  <displayList>
+    <image id="n0" name="n0" src="gt1it4" xy="0,0"/>
+    <loader id="n1" name="n1" xy="0,0" size="40,40"/>
+  </displayList>
+</component>

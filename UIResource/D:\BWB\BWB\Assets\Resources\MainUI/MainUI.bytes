@@ -1,0 +1,181 @@
+em852.xml|2800|<component size="720,1280">
+  <controller name="tab" pages="0,,1,,2,,3,,4," selected="4"/>
+  <displayList>
+    <image id="n0" name="n0" src="gt1ita" pkg="dx5htgsv" xy="0,0"/>
+    <text id="n4" name="_Name" xy="120,12" size="200,32" fontSize="28" align="center" vAlign="middle" leading="2" autoSize="none" bold="true" text="英雄饶命"/>
+    <text id="n5" name="_TotalAttr" xy="120,52" size="200,32" fontSize="28" align="center" vAlign="middle" leading="2" autoSize="none" bold="true" text="战力：5"/>
+    <text id="n6" name="_Level" xy="120,92" size="200,32" fontSize="28" align="center" vAlign="middle" leading="2" autoSize="none" bold="true" text="Lv.12"/>
+    <component id="n8" name="_Exp" src="oyu0tf" pkg="dx5htgsv" xy="340,98">
+      <ProgressBar value="400" max="500"/>
+    </component>
+    <text id="n10" name="_Gold" xy="400,17" size="200,32" fontSize="28" vAlign="middle" leading="2" autoSize="none" bold="true" text="188"/>
+    <component id="n19" name="n19" src="yys6tn" pkg="dx5htgsv" xy="10,1200">
+      <Button title="角色" controller="tab" page="1"/>
+    </component>
+    <component id="n20" name="n20" src="yys6tn" pkg="dx5htgsv" xy="140,1200">
+      <Button title="背包" controller="tab" page="2"/>
+    </component>
+    <component id="n21" name="n21" src="yys6tj" pkg="dx5htgsv" xy="270,1190">
+      <Button title="战斗" controller="tab" page="0"/>
+    </component>
+    <component id="n22" name="n22" src="yys6tn" pkg="dx5htgsv" xy="460,1200">
+      <Button title="技能" controller="tab" page="3"/>
+    </component>
+    <component id="n23" name="n23" src="yys6tn" pkg="dx5htgsv" xy="590,1200">
+      <Button checked="true" title="铁匠铺" controller="tab" page="4"/>
+    </component>
+    <component id="n24" name="n24" src="yys65" xy="20,200">
+      <gearDisplay controller="tab" pages="1"/>
+    </component>
+    <component id="n25" name="n25" src="yys6c" xy="20,200">
+      <gearDisplay controller="tab" pages="2"/>
+    </component>
+    <component id="n26" name="n26" src="yys69" xy="20,400">
+      <gearDisplay controller="tab" pages="3"/>
+    </component>
+    <component id="n27" name="n27" src="yys6d" xy="0,200">
+      <gearDisplay controller="tab" pages="4"/>
+    </component>
+    <component id="n28" name="n28" src="yys6e" xy="0,130">
+      <gearDisplay controller="tab" pages="0"/>
+    </component>
+    <text id="n31" name="_Money" xy="400,59" size="200,32" fontSize="28" vAlign="middle" leading="2" autoSize="none" bold="true" text="188"/>
+    <image id="n32" name="_Head1" src="jap32" pkg="m6y29aea" xy="25,25" visible="false"/>
+    <image id="n33" name="_Head2" src="jap31" pkg="m6y29aea" xy="25,25" visible="false"/>
+    <image id="n34" name="n34" src="jap33" pkg="m6y29aea" xy="340,12"/>
+    <image id="n35" name="n35" src="jap30" pkg="m6y29aea" xy="340,54"/>
+  </displayList>
+</component>package.xml|698|<packageDescription id="azj7nssj" name="MainUI">
+  <resources>
+    <component id="em852" name="MainUI" exported="true" size="720,1280"/>
+    <component id="pk4oh" name="EquipList" size="680,440"/>
+    <component id="t7etf" name="Option" size="360,120"/>
+    <component id="tkoig" name="RemouldListItem" size="360,100"/>
+    <component id="yys65" name="Role" size="680,960"/>
+    <component id="yys66" name="Attr" size="190,24"/>
+    <component id="yys69" name="Skill" size="680,127"/>
+    <component id="yys6c" name="BagPackage" size="680,800"/>
+    <component id="yys6d" name="Remould" size="720,960"/>
+    <component id="yys6e" name="Battle" size="720,1030"/>
+  </resources>
+</packageDescription>pk4oh.xml|816|<component size="680,440">
+  <displayList>
+    <component id="n0" name="_EquipPos1" src="rsmato" pkg="dx5htgsv" xy="0,180"/>
+    <component id="n1" name="_EquipPos2" src="rsmato" pkg="dx5htgsv" xy="600,180"/>
+    <component id="n2" name="_EquipPos3" src="rsmato" pkg="dx5htgsv" xy="300,0"/>
+    <component id="n3" name="_EquipPos4" src="rsmato" pkg="dx5htgsv" xy="300,180"/>
+    <component id="n4" name="_EquipPos5" src="rsmato" pkg="dx5htgsv" xy="0,0"/>
+    <component id="n5" name="_EquipPos6" src="rsmato" pkg="dx5htgsv" xy="600,0"/>
+    <component id="n6" name="_EquipPos7" src="rsmato" pkg="dx5htgsv" xy="300,360"/>
+    <component id="n7" name="_EquipPos8" src="rsmato" pkg="dx5htgsv" xy="0,360"/>
+    <component id="n8" name="_EquipPos9" src="rsmato" pkg="dx5htgsv" xy="600,360"/>
+  </displayList>
+</component>t7etf.xml|349|<component size="360,120">
+  <displayList>
+    <text id="n0" name="_AttrDesc" xy="10,10" size="340,100" font="宋体" fontSize="22" vAlign="middle" ubb="true" autoSize="none" bold="true" text=""/>
+    <component id="n2" name="_RemouldBtn" src="oyu0te" pkg="dx5htgsv" xy="240,40">
+      <Button title="改造"/>
+    </component>
+  </displayList>
+</component>tkoig.xml|485|<component size="360,100" extention="Button">
+  <displayList>
+    <component id="n0" name="_CurItemCard" src="rsmato" pkg="dx5htgsv" xy="10,10"/>
+    <text id="n1" name="_Name" xy="110,12" size="240,34" font="宋体" fontSize="30" vAlign="middle" ubb="true" autoSize="none" bold="true" text="名称"/>
+    <text id="n2" name="_Type" xy="110,56" size="240,34" font="宋体" fontSize="30" vAlign="middle" autoSize="none" bold="true" text="类型"/>
+  </displayList>
+  <Button mode="Radio"/>
+</component>yys65.xml|583|<component size="680,960">
+  <displayList>
+    <component id="n13" name="_EquipList" src="pk4oh" xy="0,0"/>
+    <list id="n12" name="_AttrList" xy="50,500" size="580,460" layout="flow_hz" selectionMode="none" margin="0,0,0,0" lineGap="20" colGap="200" lineItemCount="2" defaultItem="ui://azj7nssjyys66">
+      <item/>
+      <item/>
+      <item/>
+      <item/>
+      <item/>
+      <item/>
+      <item/>
+      <item/>
+      <item/>
+      <item/>
+      <item/>
+      <item/>
+      <item/>
+      <item/>
+      <item/>
+      <item/>
+      <item/>
+    </list>
+  </displayList>
+</component>yys66.xml|376|<component size="190,24">
+  <displayList>
+    <text id="n0" name="_AttrName" xy="0,0" size="90,24" font="宋体" fontSize="20" align="right" vAlign="middle" autoSize="none" bold="true" text="战斗力"/>
+    <text id="n1" name="_AttrValue" xy="100,0" size="90,24" font="宋体" fontSize="20" align="right" vAlign="middle" autoSize="none" bold="true" text="5"/>
+  </displayList>
+</component>yys69.xml|238|<component size="680,127">
+  <displayList>
+    <text id="n0" name="title" xy="0,0" size="680,127" font="宋体" fontSize="60" align="center" vAlign="middle" autoSize="height" bold="true" text="技能系统&#xA;是否再设计一发"/>
+  </displayList>
+</component>yys6c.xml|283|<component size="680,800">
+  <displayList>
+    <list id="n0" name="_ItemList" xy="0,0" size="680,800" layout="flow_hz" selectionMode="none" overflow="scroll" margin="0,0,0,0" lineGap="20" colGap="20" lineItemCount="7" defaultItem="ui://dx5htgsvrsmato"/>
+  </displayList>
+</component>yys6d.xml|946|<component size="720,960">
+  <controller name="c1" pages="0,,1," selected="0"/>
+  <displayList>
+    <list id="n1" name="_OptionList" xy="0,300" size="360,600" overflow="scroll" margin="0,0,0,0" defaultItem="ui://azj7nssjt7etf"/>
+    <list id="n2" name="_EquipList" xy="360,200" size="360,700" overflow="scroll" margin="0,0,0,0" defaultItem="ui://azj7nssjtkoig"/>
+    <text id="n3" name="_Name" xy="2,260" size="240,34" font="宋体" fontSize="30" vAlign="middle" ubb="true" autoSize="none" bold="true" text="可改造项目"/>
+    <component id="n4" name="_CurEquip" src="rsmato" pkg="dx5htgsv" xy="140,140"/>
+    <component id="n5" name="_EquipTab" src="yys6tj" pkg="dx5htgsv" xy="360,140">
+      <Button checked="true" title="已装备" controller="c1" page="0"/>
+    </component>
+    <component id="n6" name="_UnEquipTab" src="yys6tj" pkg="dx5htgsv" xy="540,140">
+      <Button title="未装备" controller="c1" page="1"/>
+    </component>
+  </displayList>
+</component>yys6e.xml|2914|<component size="720,1030">
+  <controller name="tab" pages="0,,1,,2," selected="0"/>
+  <displayList>
+    <image id="n0" name="_Container" src="oyu0ti" pkg="dx5htgsv" xy="0,0"/>
+    <image id="n1" name="n1" src="oyu0ti" pkg="dx5htgsv" xy="0,624"/>
+    <component id="n5" name="n5" src="yys6tj" pkg="dx5htgsv" xy="4,560">
+      <Button checked="true" title="聊天" controller="tab" page="0"/>
+    </component>
+    <component id="n8" name="n8" src="yys6tj" pkg="dx5htgsv" xy="188,560">
+      <Button title="战斗讯息" controller="tab" page="1"/>
+    </component>
+    <component id="n9" name="n9" src="yys6tj" pkg="dx5htgsv" xy="372,560">
+      <Button title="挂机设置" controller="tab" page="2"/>
+    </component>
+    <text id="n11" name="title" xy="20,720" size="680,64" font="宋体" fontSize="60" align="center" vAlign="middle" autoSize="height" bold="true" text="聊天没做">
+      <gearDisplay controller="tab" pages="0"/>
+    </text>
+    <text id="n10" name="title" xy="20,720" size="680,64" font="宋体" fontSize="60" align="center" vAlign="middle" autoSize="height" bold="true" text="战斗讯息也没做">
+      <gearDisplay controller="tab" pages="1"/>
+    </text>
+    <text id="n12" name="title" xy="20,720" size="680,64" font="宋体" fontSize="60" align="center" vAlign="middle" autoSize="height" bold="true" text="挂机设置也没做">
+      <gearDisplay controller="tab" pages="2"/>
+    </text>
+    <component id="n18" name="n18" src="oyu0th" pkg="dx5htgsv" xy="22,430"/>
+    <text id="n19" name="n19" xy="20,438" size="44,24" fontSize="20" align="center" vAlign="middle" leading="2" autoSize="none" bold="true" text="HP"/>
+    <component id="n20" name="n20" src="oyu0th" pkg="dx5htgsv" xy="22,490"/>
+    <text id="n21" name="n21" xy="20,498" size="44,24" fontSize="20" align="center" vAlign="middle" leading="2" autoSize="none" bold="true" text="MP"/>
+    <component id="n22" name="n22" src="oyu0th" pkg="dx5htgsv" xy="658,430"/>
+    <text id="n23" name="n23" xy="656,438" size="44,24" fontSize="20" align="center" vAlign="middle" leading="2" autoSize="none" bold="true" text="HP"/>
+    <component id="n24" name="n24" src="oyu0th" pkg="dx5htgsv" xy="658,490"/>
+    <text id="n25" name="n25" xy="656,498" size="44,24" fontSize="20" align="center" vAlign="middle" leading="2" autoSize="none" bold="true" text="MP"/>
+    <component id="n30" name="_MyHP" src="oyu0tf" pkg="dx5htgsv" xy="70,440" size="280,19">
+      <ProgressBar value="70" max="100"/>
+    </component>
+    <component id="n31" name="_MyMP" src="oyu0tf" pkg="dx5htgsv" xy="69,500" size="280,19">
+      <ProgressBar value="60" max="100"/>
+    </component>
+    <component id="n32" name="_EnemyHP" src="yys6tk" pkg="dx5htgsv" xy="370,440" size="280,19">
+      <ProgressBar value="40" max="100"/>
+    </component>
+    <component id="n33" name="_EnemyMP" src="yys6tk" pkg="dx5htgsv" xy="370,500" size="280,19">
+      <ProgressBar value="30" max="100"/>
+    </component>
+  </displayList>
+</component>

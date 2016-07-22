@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<packageDescription id="2nxqt47j" jpegQuality="80" compressPNG="true">
+  <resources>
+    <component id="zenu0" name="CreatRole" folder="" file="zenu0.xml" exported="true"/>
+    <component id="zenu2" name="RoleTab" folder="" file="zenu2.xml" exported="true"/>
+    <image id="zenu3" name="BigBtn" folder="zenu4" qualityOption="source" file="zenu3.png" size="240,80"/>
+    <folder id="zenu4" name="Image" folder=""/>
+  </resources>
+  <publish name="CreatRole" extractAlpha="true"/>
+</packageDescription>

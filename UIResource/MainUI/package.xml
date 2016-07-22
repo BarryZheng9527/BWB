@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<packageDescription id="azj7nssj" jpegQuality="80" compressPNG="true">
+  <resources>
+    <folder id="em850" name="Image" folder=""/>
+    <component id="em852" name="MainUI" folder="" file="em852.xml" exported="true"/>
+    <component id="yys65" name="Role" folder="" file="yys65.xml"/>
+    <component id="yys66" name="Attr" folder="" file="yys66.xml"/>
+    <image id="yys68" name="Icon1" folder="em850" qualityOption="source" file="yys68.png" size="81,80"/>
+    <component id="yys69" name="Skill" folder="" file="yys69.xml"/>
+    <component id="yys6c" name="BagPackage" folder="" file="yys6c.xml"/>
+    <component id="yys6d" name="Remould" folder="" file="yys6d.xml"/>
+    <component id="yys6e" name="Battle" folder="" file="yys6e.xml"/>
+    <component id="t7etf" name="Option" folder="" file="t7etf.xml"/>
+    <component id="tkoig" name="RemouldListItem" folder="" file="tkoig.xml"/>
+    <component id="pk4oh" name="EquipList" folder="" file="pk4oh.xml"/>
+  </resources>
+  <publish name="MainUI" extractAlpha="true"/>
+</packageDescription>

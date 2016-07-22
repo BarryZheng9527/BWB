@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="720,1280">
+  <controller name="tab" pages="0,,1,,2,,3,,4," selected="4"/>
+  <displayList>
+    <image id="n0" name="n0" src="gt1ita" pkg="dx5htgsv" xy="0,0"/>
+    <text id="n4" name="_Name" xy="120,12" size="200,32" fontSize="28" align="center" vAlign="middle" leading="2" autoSize="none" bold="true" text="英雄饶命"/>
+    <text id="n5" name="_TotalAttr" xy="120,52" size="200,32" fontSize="28" align="center" vAlign="middle" leading="2" autoSize="none" bold="true" text="战力：5"/>
+    <text id="n6" name="_Level" xy="120,92" size="200,32" fontSize="28" align="center" vAlign="middle" leading="2" autoSize="none" bold="true" text="Lv.12"/>
+    <component id="n8" name="_Exp" src="oyu0tf" pkg="dx5htgsv" xy="340,98">
+      <ProgressBar value="400" max="500"/>
+    </component>
+    <text id="n10" name="_Gold" xy="400,17" size="200,32" fontSize="28" vAlign="middle" leading="2" autoSize="none" bold="true" text="188"/>
+    <component id="n19" name="n19" src="yys6tn" pkg="dx5htgsv" xy="10,1200">
+      <Button title="角色" controller="tab" page="1"/>
+    </component>
+    <component id="n20" name="n20" src="yys6tn" pkg="dx5htgsv" xy="140,1200">
+      <Button title="背包" controller="tab" page="2"/>
+    </component>
+    <component id="n21" name="n21" src="yys6tj" pkg="dx5htgsv" xy="270,1190">
+      <Button title="战斗" controller="tab" page="0"/>
+    </component>
+    <component id="n22" name="n22" src="yys6tn" pkg="dx5htgsv" xy="460,1200">
+      <Button title="技能" controller="tab" page="3"/>
+    </component>
+    <component id="n23" name="n23" src="yys6tn" pkg="dx5htgsv" xy="590,1200">
+      <Button checked="true" title="铁匠铺" controller="tab" page="4"/>
+    </component>
+    <component id="n24" name="n24" src="yys65" xy="20,200">
+      <gearDisplay controller="tab" pages="1"/>
+    </component>
+    <component id="n25" name="n25" src="yys6c" xy="20,200">
+      <gearDisplay controller="tab" pages="2"/>
+    </component>
+    <component id="n26" name="n26" src="yys69" xy="20,400">
+      <gearDisplay controller="tab" pages="3"/>
+    </component>
+    <component id="n27" name="n27" src="yys6d" xy="0,200">
+      <gearDisplay controller="tab" pages="4"/>
+    </component>
+    <component id="n28" name="n28" src="yys6e" xy="0,130">
+      <gearDisplay controller="tab" pages="0"/>
+    </component>
+    <text id="n31" name="_Money" xy="400,59" size="200,32" fontSize="28" vAlign="middle" leading="2" autoSize="none" bold="true" text="188"/>
+    <image id="n32" name="_Head1" src="jap32" pkg="m6y29aea" xy="25,25" visible="false"/>
+    <image id="n33" name="_Head2" src="jap31" pkg="m6y29aea" xy="25,25" visible="false"/>
+    <image id="n34" name="n34" src="jap33" pkg="m6y29aea" xy="340,12"/>
+    <image id="n35" name="n35" src="jap30" pkg="m6y29aea" xy="340,54"/>
+  </displayList>
+</component>

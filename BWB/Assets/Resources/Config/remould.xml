@@ -1,0 +1,55 @@
+<Root>
+<!--
+	属性
+	Type属性类型
+	1力量
+	2敏捷
+	3智力
+	4幸运
+	5防御
+	6保护
+	7HP
+	8MP
+	9最小攻击
+	10最大攻击
+	11魔法攻击
+	12暴击率
+	13暴击伤害
+	14平衡
+	15攻速
+	16吟唱速度
+	17减伤
+-->
+	<Attrs>
+		<item Index="1" Type="1" Value="1"/>
+		<item Index="2" Type="2" Value="2"/>
+		<item Index="3" Type="3" Value="3"/>
+		<item Index="4" Type="4" Value="4"/>
+	</Attrs>
+<!--
+	选项
+	Attr
+	属性编号
+	cost
+	金币消耗
+-->
+	<Options>
+		<item Index="1" Attr1="1" Attr2="0" Attr3="0" Cost="100"/>
+		<item Index="2" Attr1="1" Attr2="2" Attr3="0" Cost="200"/>
+		<item Index="3" Attr1="1" Attr2="2" Attr3="3" Cost="300"/>
+		<item Index="4" Attr1="1" Attr2="2" Attr3="4" Cost="400"/>
+		<item Index="5" Attr1="2" Attr2="3" Attr3="4" Cost="500"/>
+	</Options>
+<!--
+	改造
+	Option
+	选项编号
+-->
+	<Remoulds>
+		<item Index="1" Option1="1" Option2="0" Option3="0" Option4="0" Option5="0"/>
+		<item Index="2" Option1="1" Option2="2" Option3="0" Option4="0" Option5="0"/>
+		<item Index="3" Option1="1" Option2="2" Option3="3" Option4="0" Option5="0"/>
+		<item Index="4" Option1="1" Option2="2" Option3="3" Option4="4" Option5="0"/>
+		<item Index="5" Option1="1" Option2="2" Option3="3" Option4="4" Option5="5"/>
+	</Remoulds>
+</Root>
