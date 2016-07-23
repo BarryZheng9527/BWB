@@ -43,13 +43,13 @@ public class GUIManager
 
     void AddPackage()
     {
-        UIPackage.AddPackage("Common/Common");
-        UIPackage.AddPackage("IconCommon/IconCommon");
-        UIPackage.AddPackage("IconEquip/IconEquip");
-        UIPackage.AddPackage("Login/Login");
-        UIPackage.AddPackage("MainUI/MainUI");
-        UIPackage.AddPackage("CreatRole/CreatRole");
-        UIPackage.AddPackage("Tips/Tips");
+        UIPackage.AddPackage("FGUI/Common/Common");
+        UIPackage.AddPackage("FGUI/IconCommon/IconCommon");
+        UIPackage.AddPackage("FGUI/IconEquip/IconEquip");
+        UIPackage.AddPackage("FGUI/Login/Login");
+        UIPackage.AddPackage("FGUI/MainUI/MainUI");
+        UIPackage.AddPackage("FGUI/CreatRole/CreatRole");
+        UIPackage.AddPackage("FGUI/Tips/Tips");
     }
 
     void SetPackageExtension()
