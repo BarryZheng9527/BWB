@@ -29,6 +29,7 @@ public class ConfigManager
         LoadConfig("level");
         LoadConfig("equip");
         LoadConfig("remould");
+        LoadConfig("skill");
     }
 
     private void LoadConfig(string szConfigName)
@@ -55,6 +56,10 @@ public class ConfigManager
         else if (szConfigName == "remould")
         {
             RemouldConfig.Instance.ReadXml(root);
+        }
+        else if (szConfigName == "skill")
+        {
+            SkillConfig.Instance.ReadXml(root);
         }
     }
 }

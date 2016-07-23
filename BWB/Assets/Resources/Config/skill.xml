@@ -1,0 +1,67 @@
+<Root>
+<!--
+	ID技能ID
+	Name技能名
+	Desc技能描述
+	Icon技能Icon
+	Gold开启需求金币
+	CustomID开启需要通过的关卡
+	SkillType前置技能类型（1战斗，2被动）
+	SkillID前置技能ID
+	SkillLevel前置技能等级
+	AttrType1增加属性类型
+	AttrType2
+	AttrType3
+	BuffAttrType1增加Buff类型
+	BuffAttrType2
+	BuffAttrType3
+
+	Level等级
+	SkillType需求技能类型
+	SkillID需求技能ID
+	Exp需求技能使用次数
+	CD当前等级技能CD
+	Sing当前等级吟唱时间
+	MPCost当前等级消耗的MP
+	HoldBuffTime定身时间
+	Attack当前等级增加攻击百分比
+	AttrValue1当前等级增加属性值
+	AttrValue2
+	AttrValue3
+	BuffAttrValue1增加相应Buff属性的值
+	BuffAttrValue2
+	BuffAttrValue3
+-->
+	<BattleSkill>
+		<item ID="100001" Name="" Desc="" Icon="" Gold="0" CustomID="0" SkillType="0" SkillID="0" SkillLevel="0" AttrType1="0" AttrType2="0" AttrType3="0" BuffAttrType1="0" BuffAttrType2="0" BuffAttrType3="0">
+			<level Level="0" SkillType="0" SkillID="0" Exp="0" CD="0" Sing="0" MPCost="0" Attack="0" HoldBuffTime = "0" AttrValue1="0" AttrValue2="0" AttrValue3="0" BuffAttrValue1="0" BuffAttrValue2="0" BuffAttrValue3="0"/>
+		</item>
+	</BattleSkill>
+<!--
+	ID技能ID
+	Name技能名
+	Desc技能描述
+	Icon技能Icon
+	Gold开启需求金币
+	CustomID开启需要通过的关卡
+	SkillType前置技能类型（1战斗，2被动）
+	SkillID前置技能ID
+	SkillLevel前置技能等级
+	AttrType1增加属性类型
+	AttrType2
+	AttrType3
+
+	Level等级
+	SkillType需求技能类型
+	SkillID需求技能ID
+	Exp需求技能使用次数
+	AttrValue1增加属性值
+	AttrValue2
+	AttrValue3
+-->
+	<PassiveSkill>
+		<item ID="100001" Name="" Desc="" Icon="" Gold="0" CustomID="0" SkillType="0" SkillID="0" SkillLevel="0" AttrType1="0" AttrType2="0" AttrType3="0">
+			<level Level="0" SkillType="0" SkillID="0" Exp="0" AttrValue1="0" AttrValue2="0" AttrValue3="0"/>
+		</item>
+	</PassiveSkill>
+</Root>
