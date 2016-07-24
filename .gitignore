@@ -3,3 +3,5 @@ BWB/ProjectSettings/
 BWB/Temp/
 *.suo
 BWB/Assets/Resources/FGUI/
+*.csproj
+*.sln

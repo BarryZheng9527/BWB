@@ -17,7 +17,7 @@ public static class AttrHandler
         }
         ItemClass lordEquip = null; //主手武器
         ItemClass assistantEquip = null; //副手单手武器
-        //计算附加属性并找出主副手武器
+        //计算装备附加属性并找出主副手武器
         for (int iIndex0 = 0; iIndex0 < DataManager.Instance.ItemData.ItemList.Count; ++iIndex0)
         {
             ItemClass item = DataManager.Instance.ItemData.ItemList[iIndex0];
@@ -52,6 +52,43 @@ public static class AttrHandler
                 {
                     assistantEquip = item;
                 }
+            }
+        }
+        //计算技能附加属性
+        for (int iIndex5 = 0; iIndex5 < DataManager.Instance.SkillData.BattleSkillDataList.Count; ++iIndex5)
+        {
+            SkillClass skill = DataManager.Instance.SkillData.BattleSkillDataList[iIndex5];
+            BattleSkillStruct battleSkillStruct = SkillConfig.Instance.GetBattleSkill(skill.SkillID);
+            BattleSkillLevelStruct battleSkillLevelStruct = battleSkillStruct.GetBattleSkillLevel(skill.Level);
+            if (battleSkillLevelStruct.AttrValue1 > 0)
+            {
+                DictBaseAttr[battleSkillStruct.AttrType1] += battleSkillLevelStruct.AttrValue1;
+            }
+            if (battleSkillLevelStruct.AttrValue2 > 0)
+            {
+                DictBaseAttr[battleSkillStruct.AttrType2] += battleSkillLevelStruct.AttrValue2;
+            }
+            if (battleSkillLevelStruct.AttrValue3 > 0)
+            {
+                DictBaseAttr[battleSkillStruct.AttrType3] += battleSkillLevelStruct.AttrValue3;
+            }
+        }
+        for (int iIndex6 = 0; iIndex6 < DataManager.Instance.SkillData.PassiveSkillDataList.Count; ++iIndex6)
+        {
+            SkillClass skill = DataManager.Instance.SkillData.PassiveSkillDataList[iIndex6];
+            PassiveSkillStruct passiveSkillStruct = SkillConfig.Instance.GetPassiveSkill(skill.SkillID);
+            PassiveSkillLevelStruct passiveSkillLevelStruct = passiveSkillStruct.GetPassiveSkillLevel(skill.Level);
+            if (passiveSkillLevelStruct.AttrValue1 > 0)
+            {
+                DictBaseAttr[passiveSkillStruct.AttrType1] += passiveSkillLevelStruct.AttrValue1;
+            }
+            if (passiveSkillLevelStruct.AttrValue2 > 0)
+            {
+                DictBaseAttr[passiveSkillStruct.AttrType2] += passiveSkillLevelStruct.AttrValue2;
+            }
+            if (passiveSkillLevelStruct.AttrValue3 > 0)
+            {
+                DictBaseAttr[passiveSkillStruct.AttrType3] += passiveSkillLevelStruct.AttrValue3;
             }
         }
         //展示属性

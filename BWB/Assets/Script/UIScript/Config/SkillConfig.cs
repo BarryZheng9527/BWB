@@ -52,6 +52,11 @@ public struct BattleSkillStruct
     {
         return LanguageConfig.Instance.GetText(Desc);
     }
+
+    public BattleSkillLevelStruct GetBattleSkillLevel(int iLevel)
+    {
+        return DictBattleSkillLevel[iLevel];
+    }
 }
 
 public struct PassiveSkillLevelStruct
@@ -89,6 +94,11 @@ public struct PassiveSkillStruct
     public string GetDesc()
     {
         return LanguageConfig.Instance.GetText(Desc);
+    }
+
+    public PassiveSkillLevelStruct GetPassiveSkillLevel(int iLevel)
+    {
+        return DictPassiveSkillLevel[iLevel];
     }
 }
 
