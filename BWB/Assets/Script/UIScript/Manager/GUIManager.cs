@@ -46,6 +46,7 @@ public class GUIManager
         UIPackage.AddPackage("FGUI/Common/Common");
         UIPackage.AddPackage("FGUI/IconCommon/IconCommon");
         UIPackage.AddPackage("FGUI/IconEquip/IconEquip");
+        UIPackage.AddPackage("FGUI/IconSkill/IconSkill");
         UIPackage.AddPackage("FGUI/Login/Login");
         UIPackage.AddPackage("FGUI/MainUI/MainUI");
         UIPackage.AddPackage("FGUI/CreatRole/CreatRole");

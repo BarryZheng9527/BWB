@@ -60,15 +60,15 @@ public static class AttrHandler
             SkillClass skill = DataManager.Instance.SkillData.BattleSkillDataList[iIndex5];
             BattleSkillStruct battleSkillStruct = SkillConfig.Instance.GetBattleSkill(skill.SkillID);
             BattleSkillLevelStruct battleSkillLevelStruct = battleSkillStruct.GetBattleSkillLevel(skill.Level);
-            if (battleSkillLevelStruct.AttrValue1 > 0)
+            if (battleSkillStruct.AttrType1 > 0 && battleSkillLevelStruct.AttrValue1 > 0)
             {
                 DictBaseAttr[battleSkillStruct.AttrType1] += battleSkillLevelStruct.AttrValue1;
             }
-            if (battleSkillLevelStruct.AttrValue2 > 0)
+            if (battleSkillStruct.AttrType2 > 0 && battleSkillLevelStruct.AttrValue2 > 0)
             {
                 DictBaseAttr[battleSkillStruct.AttrType2] += battleSkillLevelStruct.AttrValue2;
             }
-            if (battleSkillLevelStruct.AttrValue3 > 0)
+            if (battleSkillStruct.AttrType3 > 0 && battleSkillLevelStruct.AttrValue3 > 0)
             {
                 DictBaseAttr[battleSkillStruct.AttrType3] += battleSkillLevelStruct.AttrValue3;
             }
@@ -78,15 +78,15 @@ public static class AttrHandler
             SkillClass skill = DataManager.Instance.SkillData.PassiveSkillDataList[iIndex6];
             PassiveSkillStruct passiveSkillStruct = SkillConfig.Instance.GetPassiveSkill(skill.SkillID);
             PassiveSkillLevelStruct passiveSkillLevelStruct = passiveSkillStruct.GetPassiveSkillLevel(skill.Level);
-            if (passiveSkillLevelStruct.AttrValue1 > 0)
+            if (passiveSkillStruct.AttrType1 > 0 && passiveSkillLevelStruct.AttrValue1 > 0)
             {
                 DictBaseAttr[passiveSkillStruct.AttrType1] += passiveSkillLevelStruct.AttrValue1;
             }
-            if (passiveSkillLevelStruct.AttrValue2 > 0)
+            if (passiveSkillStruct.AttrType2 > 0 && passiveSkillLevelStruct.AttrValue2 > 0)
             {
                 DictBaseAttr[passiveSkillStruct.AttrType2] += passiveSkillLevelStruct.AttrValue2;
             }
-            if (passiveSkillLevelStruct.AttrValue3 > 0)
+            if (passiveSkillStruct.AttrType3 > 0 && passiveSkillLevelStruct.AttrValue3 > 0)
             {
                 DictBaseAttr[passiveSkillStruct.AttrType3] += passiveSkillLevelStruct.AttrValue3;
             }
@@ -163,7 +163,7 @@ public static class AttrHandler
         }
         DictTotalAttr[Constant.MATK] = armMatk + Constant.ATTACKMULTIPLE * DictTotalAttr[Constant.WIT] + DictBaseAttr[Constant.MATK];
         DictTotalAttr[Constant.CRIT] = DictTotalAttr[Constant.LUCY] / (DictTotalAttr[Constant.LUCY] + Constant.LUCYOVERFLOW) + DictBaseAttr[Constant.CRIT];
-        DictTotalAttr[Constant.CRITDAMAGE] = DictBaseAttr[Constant.CRITDAMAGE];
+        DictTotalAttr[Constant.CRITDAMAGE] = DictBaseAttr[Constant.CRITDAMAGE] + 1;
         double balanceTemp = armBalance + (DictBaseAttr[Constant.AGILITY] - Constant.AGILITYWEAKEN) / (DictBaseAttr[Constant.AGILITY] + Constant.AGILITYOVERFLOW);
         if (balanceTemp < 0)
         {

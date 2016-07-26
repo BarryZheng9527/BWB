@@ -16,12 +16,12 @@ public struct BattleSkillLevelStruct
     public double MPCost;
     public double Attack;
     public double HoldBuffTime;
-    public int AttrValue1;
-    public int AttrValue2;
-    public int AttrValue3;
-    public int BuffAttrValue1;
-    public int BuffAttrValue2;
-    public int BuffAttrValue3;
+    public double AttrValue1;
+    public double AttrValue2;
+    public double AttrValue3;
+    public double BuffAttrValue1;
+    public double BuffAttrValue2;
+    public double BuffAttrValue3;
 }
 
 public struct BattleSkillStruct
@@ -65,9 +65,9 @@ public struct PassiveSkillLevelStruct
     public int SkillType;
     public int SkillID;
     public int Exp;
-    public int AttrValue1;
-    public int AttrValue2;
-    public int AttrValue3;
+    public double AttrValue1;
+    public double AttrValue2;
+    public double AttrValue3;
 }
 
 public struct PassiveSkillStruct
@@ -164,12 +164,12 @@ public class SkillConfig
                         battleSkillLevel.MPCost = Convert.ToDouble(CurLevel.GetAttribute("MPCost"));
                         battleSkillLevel.Attack = Convert.ToDouble(CurLevel.GetAttribute("Attack"));
                         battleSkillLevel.HoldBuffTime = Convert.ToDouble(CurLevel.GetAttribute("HoldBuffTime"));
-                        battleSkillLevel.AttrValue1 = Convert.ToInt32(CurLevel.GetAttribute("AttrValue1"));
-                        battleSkillLevel.AttrValue2 = Convert.ToInt32(CurLevel.GetAttribute("AttrValue2"));
-                        battleSkillLevel.AttrValue3 = Convert.ToInt32(CurLevel.GetAttribute("AttrValue3"));
-                        battleSkillLevel.BuffAttrValue1 = Convert.ToInt32(CurLevel.GetAttribute("BuffAttrValue1"));
-                        battleSkillLevel.BuffAttrValue2 = Convert.ToInt32(CurLevel.GetAttribute("BuffAttrValue2"));
-                        battleSkillLevel.BuffAttrValue3 = Convert.ToInt32(CurLevel.GetAttribute("BuffAttrValue3"));
+                        battleSkillLevel.AttrValue1 = Convert.ToDouble(CurLevel.GetAttribute("AttrValue1"));
+                        battleSkillLevel.AttrValue2 = Convert.ToDouble(CurLevel.GetAttribute("AttrValue2"));
+                        battleSkillLevel.AttrValue3 = Convert.ToDouble(CurLevel.GetAttribute("AttrValue3"));
+                        battleSkillLevel.BuffAttrValue1 = Convert.ToDouble(CurLevel.GetAttribute("BuffAttrValue1"));
+                        battleSkillLevel.BuffAttrValue2 = Convert.ToDouble(CurLevel.GetAttribute("BuffAttrValue2"));
+                        battleSkillLevel.BuffAttrValue3 = Convert.ToDouble(CurLevel.GetAttribute("BuffAttrValue3"));
                         battleSkill.DictBattleSkillLevel.Add(battleSkillLevel.Level, battleSkillLevel);
                     }
                     DictBattleSkill.Add(battleSkill.ID, battleSkill);
@@ -204,9 +204,9 @@ public class SkillConfig
                         passiveSkillLevel.SkillType = Convert.ToInt32(CurLevel1.GetAttribute("SkillType"));
                         passiveSkillLevel.SkillID = Convert.ToInt32(CurLevel1.GetAttribute("SkillID"));
                         passiveSkillLevel.Exp = Convert.ToInt32(CurLevel1.GetAttribute("Exp"));
-                        passiveSkillLevel.AttrValue1 = Convert.ToInt32(CurLevel1.GetAttribute("AttrValue1"));
-                        passiveSkillLevel.AttrValue2 = Convert.ToInt32(CurLevel1.GetAttribute("AttrValue2"));
-                        passiveSkillLevel.AttrValue3 = Convert.ToInt32(CurLevel1.GetAttribute("AttrValue3"));
+                        passiveSkillLevel.AttrValue1 = Convert.ToDouble(CurLevel1.GetAttribute("AttrValue1"));
+                        passiveSkillLevel.AttrValue2 = Convert.ToDouble(CurLevel1.GetAttribute("AttrValue2"));
+                        passiveSkillLevel.AttrValue3 = Convert.ToDouble(CurLevel1.GetAttribute("AttrValue3"));
                         passiveSkill.DictPassiveSkillLevel.Add(passiveSkillLevel.Level, passiveSkillLevel);
                     }
                     DictPassiveSkill.Add(passiveSkill.ID, passiveSkill);

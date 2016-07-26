@@ -66,9 +66,13 @@ public class NetManager
         itemclass.RemouldOptionList.Add(1);
         itemlist.Add(itemclass);
         itemdata.ItemList = itemlist;
+        SkillData skillData = new SkillData();
+        skillData.BattleSkillDataList = new List<SkillClass>();
+        skillData.PassiveSkillDataList = new List<SkillClass>();
 
         DataManager.Instance.CurrentRole = roleclass;
         DataManager.Instance.ItemData = itemdata;
+        DataManager.Instance.SkillData = skillData;
         AttrHandler.CalculateTotalAttr();
         EnterGameResponse();
     }

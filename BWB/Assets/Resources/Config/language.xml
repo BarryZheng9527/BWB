@@ -33,5 +33,11 @@
 		<item TextID="AttrName_15" Text="攻速"/>
 		<item TextID="AttrName_16" Text="吟唱速度"/>
 		<item TextID="AttrName_17" Text="减伤"/>
+		<item TextID="SkillName_1001" Text="鬼道基式"/>
+		<item TextID="SkillDesc_1001" Text="鬼道第一式，增加敏捷，其实就一普通攻击"/>
+		<item TextID="SkillName_1002" Text="百鬼夜行"/>
+		<item TextID="SkillDesc_1002" Text="鬼道第二式，增加敏捷，大攻，暴伤，每次使用有暴击buff，持续时间问+1，等级高了还带定身效果"/>
+		<item TextID="SkillName_2001" Text="疾风"/>
+		<item TextID="SkillDesc_2001" Text="每使用五次鬼道基式就能升级加两点敏捷，是不是很划算？初次习得，需要给我一百块"/>
 	</Texts>
 </Root>
