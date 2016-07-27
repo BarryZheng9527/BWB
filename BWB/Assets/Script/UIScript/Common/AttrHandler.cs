@@ -55,40 +55,22 @@ public static class AttrHandler
             }
         }
         //计算技能附加属性
-        for (int iIndex5 = 0; iIndex5 < DataManager.Instance.SkillData.BattleSkillDataList.Count; ++iIndex5)
+        for (int iIndex5 = 0; iIndex5 < DataManager.Instance.SkillData.SkillDataList.Count; ++iIndex5)
         {
-            SkillClass skill = DataManager.Instance.SkillData.BattleSkillDataList[iIndex5];
-            BattleSkillStruct battleSkillStruct = SkillConfig.Instance.GetBattleSkill(skill.SkillID);
-            BattleSkillLevelStruct battleSkillLevelStruct = battleSkillStruct.GetBattleSkillLevel(skill.Level);
-            if (battleSkillStruct.AttrType1 > 0 && battleSkillLevelStruct.AttrValue1 > 0)
+            SkillClass skill = DataManager.Instance.SkillData.SkillDataList[iIndex5];
+            SkillStruct skillStruct = SkillConfig.Instance.GetSkill(skill.SkillID);
+            SkillLevelStruct skillLevelStruct = skillStruct.GetSkillLevel(skill.Level);
+            if (skillStruct.AttrType1 > 0 && skillLevelStruct.AttrValue1 > 0)
             {
-                DictBaseAttr[battleSkillStruct.AttrType1] += battleSkillLevelStruct.AttrValue1;
+                DictBaseAttr[skillStruct.AttrType1] += skillLevelStruct.AttrValue1;
             }
-            if (battleSkillStruct.AttrType2 > 0 && battleSkillLevelStruct.AttrValue2 > 0)
+            if (skillStruct.AttrType2 > 0 && skillLevelStruct.AttrValue2 > 0)
             {
-                DictBaseAttr[battleSkillStruct.AttrType2] += battleSkillLevelStruct.AttrValue2;
+                DictBaseAttr[skillStruct.AttrType2] += skillLevelStruct.AttrValue2;
             }
-            if (battleSkillStruct.AttrType3 > 0 && battleSkillLevelStruct.AttrValue3 > 0)
+            if (skillStruct.AttrType3 > 0 && skillLevelStruct.AttrValue3 > 0)
             {
-                DictBaseAttr[battleSkillStruct.AttrType3] += battleSkillLevelStruct.AttrValue3;
-            }
-        }
-        for (int iIndex6 = 0; iIndex6 < DataManager.Instance.SkillData.PassiveSkillDataList.Count; ++iIndex6)
-        {
-            SkillClass skill = DataManager.Instance.SkillData.PassiveSkillDataList[iIndex6];
-            PassiveSkillStruct passiveSkillStruct = SkillConfig.Instance.GetPassiveSkill(skill.SkillID);
-            PassiveSkillLevelStruct passiveSkillLevelStruct = passiveSkillStruct.GetPassiveSkillLevel(skill.Level);
-            if (passiveSkillStruct.AttrType1 > 0 && passiveSkillLevelStruct.AttrValue1 > 0)
-            {
-                DictBaseAttr[passiveSkillStruct.AttrType1] += passiveSkillLevelStruct.AttrValue1;
-            }
-            if (passiveSkillStruct.AttrType2 > 0 && passiveSkillLevelStruct.AttrValue2 > 0)
-            {
-                DictBaseAttr[passiveSkillStruct.AttrType2] += passiveSkillLevelStruct.AttrValue2;
-            }
-            if (passiveSkillStruct.AttrType3 > 0 && passiveSkillLevelStruct.AttrValue3 > 0)
-            {
-                DictBaseAttr[passiveSkillStruct.AttrType3] += passiveSkillLevelStruct.AttrValue3;
+                DictBaseAttr[skillStruct.AttrType3] += skillLevelStruct.AttrValue3;
             }
         }
         //展示属性

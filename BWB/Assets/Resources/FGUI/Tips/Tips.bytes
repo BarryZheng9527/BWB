@@ -1,8 +1,4 @@
-package.xml|173|<packageDescription id="mdtli323" name="Tips">
-  <resources>
-    <component id="rsma0" name="EquipTips" exported="true" size="360,640"/>
-  </resources>
-</packageDescription>rsma0.xml|1055|<component size="360,640">
+rsma0.xml|1055|<component size="360,640">
   <displayList>
     <image id="n2" name="n2" src="gt1ita" pkg="dx5htgsv" xy="0,0" size="360,640"/>
     <component id="n1" name="_CurItemCard" src="rsmato" pkg="dx5htgsv" xy="40,40"/>
@@ -17,4 +13,8 @@ package.xml|173|<packageDescription id="mdtli323" name="Tips">
       <Button title="装备"/>
     </component>
   </displayList>
-</component>
+</component>package.xml|173|<packageDescription id="mdtli323" name="Tips">
+  <resources>
+    <component id="rsma0" name="EquipTips" exported="true" size="360,640"/>
+  </resources>
+</packageDescription>

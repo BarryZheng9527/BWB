@@ -13,6 +13,7 @@
     <component id="t7etf" name="Option" folder="" file="t7etf.xml"/>
     <component id="tkoig" name="RemouldListItem" folder="" file="tkoig.xml"/>
     <component id="pk4oh" name="EquipList" folder="" file="pk4oh.xml"/>
+    <component id="pz9wi" name="SkillListItem" folder="" file="pz9wi.xml" exported="true"/>
   </resources>
   <publish name="MainUI" extractAlpha="true"/>
 </packageDescription>

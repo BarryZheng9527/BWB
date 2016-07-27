@@ -6,6 +6,8 @@
     public const float HEIGHT = 1280; //高度
     public const int EQUIP = 1; //装备类型
     public const int ITEM = 2; //道具类型
+    public const int BATTLESKILL = 1; //战斗技能
+    public const int PASSIVESKILL = 2; //被动技能
     public const int WHITE = 1; //白
     public const int GREEN = 2; //绿
     public const int BLUE = 3; //蓝

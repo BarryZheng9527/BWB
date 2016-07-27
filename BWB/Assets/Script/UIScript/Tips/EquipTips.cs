@@ -62,7 +62,7 @@ public class EquipTips : Window
         if (_CurItemData != null)
         {
             EquipStruct equipStruct = EquipConfig.Instance.GetEquipFromID(_CurItemData.EquipID);
-            _CurItemCard.SetData(_CurItemData, ITEM_TIPS_TYPE.NOTIPS);
+            _CurItemCard.SetEquipData(_CurItemData, ITEM_TIPS_TYPE.NOTIPS);
             _Name.text = equipStruct.GetColorName();
             _Type.text = equipStruct.GetTypeDesc();
             SetBasePropStr();

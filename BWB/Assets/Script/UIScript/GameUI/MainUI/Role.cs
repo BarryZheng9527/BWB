@@ -37,7 +37,7 @@ public class Role : GComponent
         for (int index = 1; index <= Constant.EQUIPPOSNUM; ++index)
         {
             ItemCard itemCard0 = _EquipList.GetChild("_EquipPos" + index) as ItemCard;
-            itemCard0.SetData(null, ITEM_TIPS_TYPE.NOTIPS);
+            itemCard0.SetEquipData(null, ITEM_TIPS_TYPE.NOTIPS);
         }
         for (int iIndex = 0; iIndex < DataManager.Instance.ItemData.ItemList.Count; ++iIndex)
         {
@@ -45,7 +45,7 @@ public class Role : GComponent
             if (item.ItemType == Constant.EQUIP && item.EquipPos > 0)
             {
                 ItemCard itemCard = _EquipList.GetChild("_EquipPos" + item.EquipPos) as ItemCard;
-                itemCard.SetData(item, ITEM_TIPS_TYPE.DEFAULT);
+                itemCard.SetEquipData(item, ITEM_TIPS_TYPE.DEFAULT);
             }
         }
     }

@@ -5,7 +5,7 @@ using System.Xml;
 using System;
 using System.Collections.Generic;
 
-public struct BattleSkillLevelStruct
+public struct SkillLevelStruct
 {
     public int Level;
     public int SkillType;
@@ -24,9 +24,10 @@ public struct BattleSkillLevelStruct
     public double BuffAttrValue3;
 }
 
-public struct BattleSkillStruct
+public struct SkillStruct
 {
     public int ID;
+    public int Type;
     public string Name;
     public string Desc;
     public string Icon;
@@ -41,7 +42,7 @@ public struct BattleSkillStruct
     public int BuffAttrType1;
     public int BuffAttrType2;
     public int BuffAttrType3;
-    public Dictionary<int, BattleSkillLevelStruct> DictBattleSkillLevel;
+    public Dictionary<int, SkillLevelStruct> DictSkillLevel;
 
     public string GetName()
     {
@@ -53,60 +54,16 @@ public struct BattleSkillStruct
         return LanguageConfig.Instance.GetText(Desc);
     }
 
-    public BattleSkillLevelStruct GetBattleSkillLevel(int iLevel)
+    public SkillLevelStruct GetSkillLevel(int iLevel)
     {
-        return DictBattleSkillLevel[iLevel];
-    }
-}
-
-public struct PassiveSkillLevelStruct
-{
-    public int Level;
-    public int SkillType;
-    public int SkillID;
-    public int Exp;
-    public double AttrValue1;
-    public double AttrValue2;
-    public double AttrValue3;
-}
-
-public struct PassiveSkillStruct
-{
-    public int ID;
-    public string Name;
-    public string Desc;
-    public string Icon;
-    public int Gold;
-    public int CustomID;
-    public int SkillType;
-    public int SkillID;
-    public int SkillLevel;
-    public int AttrType1;
-    public int AttrType2;
-    public int AttrType3;
-    public Dictionary<int, PassiveSkillLevelStruct> DictPassiveSkillLevel;
-
-    public string GetName()
-    {
-        return LanguageConfig.Instance.GetText(Name);
-    }
-
-    public string GetDesc()
-    {
-        return LanguageConfig.Instance.GetText(Desc);
-    }
-
-    public PassiveSkillLevelStruct GetPassiveSkillLevel(int iLevel)
-    {
-        return DictPassiveSkillLevel[iLevel];
+        return DictSkillLevel[iLevel];
     }
 }
 
 public class SkillConfig
 {
     static private SkillConfig instance = null;
-    Dictionary<int, BattleSkillStruct> DictBattleSkill;
-    Dictionary<int, PassiveSkillStruct> DictPassiveSkill;
+    Dictionary<int, SkillStruct> DictSkill;
 
     public static SkillConfig Instance
     {
@@ -122,114 +79,73 @@ public class SkillConfig
 
     public void ReadXml(XmlNode root)
     {
-        DictBattleSkill = new Dictionary<int, BattleSkillStruct>();
-        DictPassiveSkill = new Dictionary<int, PassiveSkillStruct>();
+        DictSkill = new Dictionary<int, SkillStruct>();
         XmlNodeList NodeList = root.ChildNodes;
         foreach (XmlNode node in NodeList)
         {
-            if (node.Name == "BattleSkill")
+            if (node.Name == "Skill")
             {
                 XmlNodeList ItemList = node.ChildNodes;
                 foreach (XmlNode item in ItemList)
                 {
                     XmlElement CurItem = (XmlElement)item;
-                    BattleSkillStruct battleSkill = new BattleSkillStruct();
-                    battleSkill.ID = Convert.ToInt32(CurItem.GetAttribute("ID"));
-                    battleSkill.Name = CurItem.GetAttribute("Name");
-                    battleSkill.Desc = CurItem.GetAttribute("Desc");
-                    battleSkill.Icon = CurItem.GetAttribute("Icon");
-                    battleSkill.Gold = Convert.ToInt32(CurItem.GetAttribute("Gold"));
-                    battleSkill.CustomID = Convert.ToInt32(CurItem.GetAttribute("CustomID"));
-                    battleSkill.SkillType = Convert.ToInt32(CurItem.GetAttribute("SkillType"));
-                    battleSkill.SkillID = Convert.ToInt32(CurItem.GetAttribute("SkillID"));
-                    battleSkill.SkillLevel = Convert.ToInt32(CurItem.GetAttribute("SkillLevel"));
-                    battleSkill.AttrType1 = Convert.ToInt32(CurItem.GetAttribute("AttrType1"));
-                    battleSkill.AttrType2 = Convert.ToInt32(CurItem.GetAttribute("AttrType2"));
-                    battleSkill.AttrType3 = Convert.ToInt32(CurItem.GetAttribute("AttrType3"));
-                    battleSkill.BuffAttrType1 = Convert.ToInt32(CurItem.GetAttribute("BuffAttrType1"));
-                    battleSkill.BuffAttrType2 = Convert.ToInt32(CurItem.GetAttribute("BuffAttrType2"));
-                    battleSkill.BuffAttrType3 = Convert.ToInt32(CurItem.GetAttribute("BuffAttrType3"));
-                    battleSkill.DictBattleSkillLevel = new Dictionary<int, BattleSkillLevelStruct>();
+                    SkillStruct skill = new SkillStruct();
+                    skill.ID = Convert.ToInt32(CurItem.GetAttribute("ID"));
+                    skill.Type = Convert.ToInt32(CurItem.GetAttribute("Type"));
+                    skill.Name = CurItem.GetAttribute("Name");
+                    skill.Desc = CurItem.GetAttribute("Desc");
+                    skill.Icon = CurItem.GetAttribute("Icon");
+                    skill.Gold = Convert.ToInt32(CurItem.GetAttribute("Gold"));
+                    skill.CustomID = Convert.ToInt32(CurItem.GetAttribute("CustomID"));
+                    skill.SkillType = Convert.ToInt32(CurItem.GetAttribute("SkillType"));
+                    skill.SkillID = Convert.ToInt32(CurItem.GetAttribute("SkillID"));
+                    skill.SkillLevel = Convert.ToInt32(CurItem.GetAttribute("SkillLevel"));
+                    skill.AttrType1 = Convert.ToInt32(CurItem.GetAttribute("AttrType1"));
+                    skill.AttrType2 = Convert.ToInt32(CurItem.GetAttribute("AttrType2"));
+                    skill.AttrType3 = Convert.ToInt32(CurItem.GetAttribute("AttrType3"));
+                    skill.BuffAttrType1 = Convert.ToInt32(CurItem.GetAttribute("BuffAttrType1"));
+                    skill.BuffAttrType2 = Convert.ToInt32(CurItem.GetAttribute("BuffAttrType2"));
+                    skill.BuffAttrType3 = Convert.ToInt32(CurItem.GetAttribute("BuffAttrType3"));
+                    skill.DictSkillLevel = new Dictionary<int, SkillLevelStruct>();
                     XmlNodeList LevelList = item.ChildNodes;
                     foreach (XmlNode level in LevelList)
                     {
                         XmlElement CurLevel = (XmlElement)level;
-                        BattleSkillLevelStruct battleSkillLevel = new BattleSkillLevelStruct();
-                        battleSkillLevel.Level = Convert.ToInt32(CurLevel.GetAttribute("Level"));
-                        battleSkillLevel.SkillType = Convert.ToInt32(CurLevel.GetAttribute("SkillType"));
-                        battleSkillLevel.SkillID = Convert.ToInt32(CurLevel.GetAttribute("SkillID"));
-                        battleSkillLevel.Exp = Convert.ToInt32(CurLevel.GetAttribute("Exp"));
-                        battleSkillLevel.CD = Convert.ToDouble(CurLevel.GetAttribute("CD"));
-                        battleSkillLevel.Sing = Convert.ToDouble(CurLevel.GetAttribute("Sing"));
-                        battleSkillLevel.MPCost = Convert.ToDouble(CurLevel.GetAttribute("MPCost"));
-                        battleSkillLevel.Attack = Convert.ToDouble(CurLevel.GetAttribute("Attack"));
-                        battleSkillLevel.HoldBuffTime = Convert.ToDouble(CurLevel.GetAttribute("HoldBuffTime"));
-                        battleSkillLevel.AttrValue1 = Convert.ToDouble(CurLevel.GetAttribute("AttrValue1"));
-                        battleSkillLevel.AttrValue2 = Convert.ToDouble(CurLevel.GetAttribute("AttrValue2"));
-                        battleSkillLevel.AttrValue3 = Convert.ToDouble(CurLevel.GetAttribute("AttrValue3"));
-                        battleSkillLevel.BuffAttrValue1 = Convert.ToDouble(CurLevel.GetAttribute("BuffAttrValue1"));
-                        battleSkillLevel.BuffAttrValue2 = Convert.ToDouble(CurLevel.GetAttribute("BuffAttrValue2"));
-                        battleSkillLevel.BuffAttrValue3 = Convert.ToDouble(CurLevel.GetAttribute("BuffAttrValue3"));
-                        battleSkill.DictBattleSkillLevel.Add(battleSkillLevel.Level, battleSkillLevel);
+                        SkillLevelStruct skillLevel = new SkillLevelStruct();
+                        skillLevel.Level = Convert.ToInt32(CurLevel.GetAttribute("Level"));
+                        skillLevel.SkillType = Convert.ToInt32(CurLevel.GetAttribute("SkillType"));
+                        skillLevel.SkillID = Convert.ToInt32(CurLevel.GetAttribute("SkillID"));
+                        skillLevel.Exp = Convert.ToInt32(CurLevel.GetAttribute("Exp"));
+                        skillLevel.CD = Convert.ToDouble(CurLevel.GetAttribute("CD"));
+                        skillLevel.Sing = Convert.ToDouble(CurLevel.GetAttribute("Sing"));
+                        skillLevel.MPCost = Convert.ToDouble(CurLevel.GetAttribute("MPCost"));
+                        skillLevel.Attack = Convert.ToDouble(CurLevel.GetAttribute("Attack"));
+                        skillLevel.HoldBuffTime = Convert.ToDouble(CurLevel.GetAttribute("HoldBuffTime"));
+                        skillLevel.AttrValue1 = Convert.ToDouble(CurLevel.GetAttribute("AttrValue1"));
+                        skillLevel.AttrValue2 = Convert.ToDouble(CurLevel.GetAttribute("AttrValue2"));
+                        skillLevel.AttrValue3 = Convert.ToDouble(CurLevel.GetAttribute("AttrValue3"));
+                        skillLevel.BuffAttrValue1 = Convert.ToDouble(CurLevel.GetAttribute("BuffAttrValue1"));
+                        skillLevel.BuffAttrValue2 = Convert.ToDouble(CurLevel.GetAttribute("BuffAttrValue2"));
+                        skillLevel.BuffAttrValue3 = Convert.ToDouble(CurLevel.GetAttribute("BuffAttrValue3"));
+                        skill.DictSkillLevel.Add(skillLevel.Level, skillLevel);
                     }
-                    DictBattleSkill.Add(battleSkill.ID, battleSkill);
-                }
-            }
-            else if (node.Name == "PassiveSkill")
-            {
-                XmlNodeList ItemList1 = node.ChildNodes;
-                foreach (XmlNode item1 in ItemList1)
-                {
-                    XmlElement CurItem1 = (XmlElement)item1;
-                    PassiveSkillStruct passiveSkill = new PassiveSkillStruct();
-                    passiveSkill.ID = Convert.ToInt32(CurItem1.GetAttribute("ID"));
-                    passiveSkill.Name = CurItem1.GetAttribute("Name");
-                    passiveSkill.Desc = CurItem1.GetAttribute("Desc");
-                    passiveSkill.Icon = CurItem1.GetAttribute("Icon");
-                    passiveSkill.Gold = Convert.ToInt32(CurItem1.GetAttribute("Gold"));
-                    passiveSkill.CustomID = Convert.ToInt32(CurItem1.GetAttribute("CustomID"));
-                    passiveSkill.SkillType = Convert.ToInt32(CurItem1.GetAttribute("SkillType"));
-                    passiveSkill.SkillID = Convert.ToInt32(CurItem1.GetAttribute("SkillID"));
-                    passiveSkill.SkillLevel = Convert.ToInt32(CurItem1.GetAttribute("SkillLevel"));
-                    passiveSkill.AttrType1 = Convert.ToInt32(CurItem1.GetAttribute("AttrType1"));
-                    passiveSkill.AttrType2 = Convert.ToInt32(CurItem1.GetAttribute("AttrType2"));
-                    passiveSkill.AttrType3 = Convert.ToInt32(CurItem1.GetAttribute("AttrType3"));
-                    passiveSkill.DictPassiveSkillLevel = new Dictionary<int, PassiveSkillLevelStruct>();
-                    XmlNodeList LevelList1 = item1.ChildNodes;
-                    foreach (XmlNode level1 in LevelList1)
-                    {
-                        XmlElement CurLevel1 = (XmlElement)level1;
-                        PassiveSkillLevelStruct passiveSkillLevel = new PassiveSkillLevelStruct();
-                        passiveSkillLevel.Level = Convert.ToInt32(CurLevel1.GetAttribute("Level"));
-                        passiveSkillLevel.SkillType = Convert.ToInt32(CurLevel1.GetAttribute("SkillType"));
-                        passiveSkillLevel.SkillID = Convert.ToInt32(CurLevel1.GetAttribute("SkillID"));
-                        passiveSkillLevel.Exp = Convert.ToInt32(CurLevel1.GetAttribute("Exp"));
-                        passiveSkillLevel.AttrValue1 = Convert.ToDouble(CurLevel1.GetAttribute("AttrValue1"));
-                        passiveSkillLevel.AttrValue2 = Convert.ToDouble(CurLevel1.GetAttribute("AttrValue2"));
-                        passiveSkillLevel.AttrValue3 = Convert.ToDouble(CurLevel1.GetAttribute("AttrValue3"));
-                        passiveSkill.DictPassiveSkillLevel.Add(passiveSkillLevel.Level, passiveSkillLevel);
-                    }
-                    DictPassiveSkill.Add(passiveSkill.ID, passiveSkill);
+                    DictSkill.Add(skill.ID, skill);
                 }
             }
         }
     }
 
-    public BattleSkillStruct GetBattleSkill(int battleSkillID)
+    public Dictionary<int, SkillStruct> GetDictSkill()
     {
-        if (DictBattleSkill.ContainsKey(battleSkillID))
-        {
-            return DictBattleSkill[battleSkillID];
-        }
-        return new BattleSkillStruct();
+        return DictSkill;
     }
 
-    public PassiveSkillStruct GetPassiveSkill(int passiveSkillID)
+    public SkillStruct GetSkill(int skillID)
     {
-        if (DictPassiveSkill.ContainsKey(passiveSkillID))
+        if (DictSkill.ContainsKey(skillID))
         {
-            return DictPassiveSkill[passiveSkillID];
+            return DictSkill[skillID];
         }
-        return new PassiveSkillStruct();
+        return new SkillStruct();
     }
 }

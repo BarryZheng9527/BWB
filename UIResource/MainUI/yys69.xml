@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<component size="680,127">
+<component size="680,960">
+  <controller name="c1" pages="0,,1," selected="0"/>
   <displayList>
-    <text id="n0" name="title" xy="0,0" size="680,127" font="宋体" fontSize="60" align="center" vAlign="middle" autoSize="height" bold="true" text="技能系统&#xA;是否再设计一发"/>
+    <component id="n0" name="_BattleBtn" src="yys6tm" pkg="dx5htgsv" xy="10,50">
+      <Button checked="true" title="战斗技能" controller="c1" page="0"/>
+    </component>
+    <component id="n1" name="_PassiveBtn" src="yys6tm" pkg="dx5htgsv" xy="260,50">
+      <Button title="被动技能" controller="c1" page="1"/>
+    </component>
+    <list id="n2" name="_SkillList" xy="0,150" size="680,760" overflow="scroll" margin="0,0,0,0"/>
   </displayList>
 </component>

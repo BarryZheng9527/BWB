@@ -2,12 +2,12 @@
 
 public class SkillData
 {
-    public List<SkillClass> BattleSkillDataList;
-    public List<SkillClass> PassiveSkillDataList;
+    public List<SkillClass> SkillDataList;
 }
 
 public class SkillClass
 {
+    public int SkillType;
     public int SkillID;
     public int Level;
     public int NextExp;

@@ -35,7 +35,7 @@ public class BagPackage : GComponent
             if ((item.ItemType == Constant.EQUIP && item.EquipPos == 0) || item.ItemType == Constant.ITEM)
             {
                 ItemCard itemCard = _ItemList.AddItemFromPool() as ItemCard;
-                itemCard.SetData(item, ITEM_TIPS_TYPE.DEFAULT);
+                itemCard.SetEquipData(item, ITEM_TIPS_TYPE.DEFAULT);
             }
         }
     }

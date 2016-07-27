@@ -31,7 +31,7 @@ public class Remould : GComponent
         GameEventHandler.Messenger.AddEventListener(EventConstant.Remould, OnRemould);
         UpdateEquipList(GetController("c1").selectedIndex == 0);
         _CurItemData = null;
-        _CurEquip.SetData(_CurItemData, ITEM_TIPS_TYPE.NOTIPS);
+        _CurEquip.SetEquipData(_CurItemData, ITEM_TIPS_TYPE.NOTIPS);
     }
 
     private void RemovedFromStage()
@@ -51,7 +51,7 @@ public class Remould : GComponent
             {
                 EquipStruct equipStruct = EquipConfig.Instance.GetEquipFromID(item.EquipID);
                 GButton remouldListItem = _EquipList.AddItemFromPool() as GButton;
-                (remouldListItem.GetChild("_CurItemCard") as ItemCard).SetData(item, ITEM_TIPS_TYPE.NOTIPS);
+                (remouldListItem.GetChild("_CurItemCard") as ItemCard).SetEquipData(item, ITEM_TIPS_TYPE.NOTIPS);
                 remouldListItem.GetChild("_Name").asTextField.text = equipStruct.GetColorName();
                 remouldListItem.GetChild("_Type").asTextField.text = equipStruct.GetTypeDesc();
             }
@@ -60,7 +60,7 @@ public class Remould : GComponent
 
     private void UpdateOptionInfo()
     {
-        _CurEquip.SetData(_CurItemData, ITEM_TIPS_TYPE.NOTIPS);
+        _CurEquip.SetEquipData(_CurItemData, ITEM_TIPS_TYPE.NOTIPS);
         _OptionList.RemoveChildrenToPool();
         EquipStruct equipStruct = EquipConfig.Instance.GetEquipFromID(_CurItemData.EquipID);
         if (_CurItemData.Level < Constant.REMOULDNUM)

@@ -1,8 +1,8 @@
 package.xml|424|<packageDescription id="m6y29aea" name="IconCommon">
   <resources>
-    <image id="jap33" name="gold" size="40,40" exported="true"/>
     <image id="jap30" name="money" size="40,40" exported="true"/>
     <atlas id="atlas0" size="256,128" file="atlas0.png"/>
+    <image id="jap33" name="gold" size="40,40" exported="true"/>
     <image id="jap32" name="head1" size="80,80" exported="true"/>
     <image id="jap31" name="head2" size="80,80" exported="true"/>
   </resources>
