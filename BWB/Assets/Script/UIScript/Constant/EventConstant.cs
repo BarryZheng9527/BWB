@@ -8,4 +8,6 @@
     public const string UnEquip = "UnEquip";
     public const string TotalAttr = "TotalAttr";
     public const string Remould = "Remould";
+    public const string SkillUpdate = "SkillUpdate";
+    public const string GoldUpdate = "GoldUpdate";
 }

@@ -3,14 +3,14 @@
   <displayList>
     <component id="n0" name="_CurSkill" src="rsmato" pkg="dx5htgsv" xy="5,5"/>
     <text id="n1" name="_Name" xy="90,10" size="310,34" font="宋体" fontSize="30" vAlign="middle" ubb="true" autoSize="none" bold="true" text=""/>
-    <text id="n2" name="_Condition" xy="415,20" size="260,80" font="宋体" fontSize="22" align="right" vAlign="middle" ubb="true" autoSize="none" bold="true" text=""/>
+    <text id="n2" name="_Condition" xy="415,5" size="260,80" font="宋体" fontSize="22" align="right" vAlign="middle" ubb="true" autoSize="none" bold="true" text=""/>
     <component id="n3" name="_Exp" src="oyu0tf" pkg="dx5htgsv" xy="90,61">
       <ProgressBar value="50" max="100"/>
     </component>
-    <text id="n4" name="_Attr1" xy="5,90" size="130,28" font="宋体" fontSize="24" vAlign="middle" ubb="true" autoSize="none" bold="true" text=""/>
-    <text id="n5" name="_Attr2" xy="140,90" size="130,28" font="宋体" fontSize="24" vAlign="middle" ubb="true" autoSize="none" bold="true" text=""/>
-    <text id="n6" name="_Attr3" xy="275,90" size="130,28" font="宋体" fontSize="24" vAlign="middle" ubb="true" autoSize="none" bold="true" text=""/>
+    <text id="n4" name="_Attr1" xy="5,90" size="170,28" font="宋体" fontSize="24" vAlign="middle" ubb="true" autoSize="none" bold="true" text=""/>
+    <text id="n5" name="_Attr2" xy="185,90" size="170,28" font="宋体" fontSize="24" vAlign="middle" ubb="true" autoSize="none" bold="true" text=""/>
+    <text id="n6" name="_Attr3" xy="365,90" size="170,28" font="宋体" fontSize="24" vAlign="middle" ubb="true" autoSize="none" bold="true" text=""/>
     <text id="n7" name="_Desc" xy="5,123" size="670,62" font="宋体" fontSize="24" vAlign="middle" ubb="true" autoSize="none" bold="true" text=""/>
-    <component id="n9" name="_LevelUpBtn" src="oyu0tb" pkg="dx5htgsv" xy="435,20"/>
+    <component id="n9" name="_LevelUpBtn" src="oyu0tb" pkg="dx5htgsv" xy="435,5"/>
   </displayList>
 </component>

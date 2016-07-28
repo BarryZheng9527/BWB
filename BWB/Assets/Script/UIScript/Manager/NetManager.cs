@@ -20,15 +20,21 @@ public class NetManager
         }
     }
 
+    public void GoldNotify(double dGold)
+    {
+        DataManager.Instance.CurrentRole.Gold = dGold;
+        GameEventHandler.Messenger.DispatchEvent(EventConstant.GoldUpdate, dGold);
+    }
+
     public void LoginRequest(string name, string password)
     {
         if (name == "bwb" && password == "bwb")
         {
-            LoginResponse();
+            LoginResponse(name, password);
         }
     }
 
-    public void LoginResponse()
+    public void LoginResponse(string name, string password)
     {
         RoleData roledata = new RoleData();
         List<RoleClass> rolelist = new List<RoleClass>();
@@ -37,6 +43,7 @@ public class NetManager
         roleclass.Level = 1;
         roleclass.Job = 1;
         roleclass.Exp = 120;
+        roleclass.Gold = 120;
         rolelist.Add(roleclass);
         roledata.RoleList = rolelist;
 
@@ -45,6 +52,11 @@ public class NetManager
     }
 
     public void EnterGameRequest(string name)
+    {
+        EnterGameResponse(name);
+    }
+
+    public void EnterGameResponse(string name)
     {
         RoleClass roleclass = new RoleClass();
         for (int iIndex = 0; iIndex < DataManager.Instance.RoleData.RoleList.Count; ++iIndex)
@@ -73,15 +85,15 @@ public class NetManager
         DataManager.Instance.ItemData = itemdata;
         DataManager.Instance.SkillData = skillData;
         AttrHandler.CalculateTotalAttr();
-        EnterGameResponse();
-    }
-
-    public void EnterGameResponse()
-    {
         GameEventHandler.Messenger.DispatchEvent(EventConstant.CreatRole);
     }
 
     public void EquipRequest(double uniqueID, int equipPos)
+    {
+        EquipResponse(uniqueID, equipPos);
+    }
+
+    public void EquipResponse(double uniqueID, int equipPos)
     {
         for (int iIndex = 0; iIndex < DataManager.Instance.ItemData.ItemList.Count; ++iIndex)
         {
@@ -93,15 +105,15 @@ public class NetManager
             }
         }
         AttrHandler.CalculateTotalAttr();
-        EquipResponse(uniqueID, equipPos);
-    }
-
-    public void EquipResponse(double uniqueID, int equipPos)
-    {
         GameEventHandler.Messenger.DispatchEvent(EventConstant.Equip);
     }
 
     public void UnEquipRequest(double uniqueID)
+    {
+        UnEquipResponse(uniqueID);
+    }
+
+    public void UnEquipResponse(double uniqueID)
     {
         for (int iIndex = 0; iIndex < DataManager.Instance.ItemData.ItemList.Count; ++iIndex)
         {
@@ -113,15 +125,15 @@ public class NetManager
             }
         }
         AttrHandler.CalculateTotalAttr();
-        UnEquipResponse(uniqueID);
-    }
-
-    public void UnEquipResponse(double uniqueID)
-    {
         GameEventHandler.Messenger.DispatchEvent(EventConstant.UnEquip);
     }
 
     public void RemouldRequest(double uniqueID, int optionIndex)
+    {
+        RemouldResponse(uniqueID, optionIndex);
+    }
+
+    public void RemouldResponse(double uniqueID, int optionIndex)
     {
         for (int iIndex = 0; iIndex < DataManager.Instance.ItemData.ItemList.Count; ++iIndex)
         {
@@ -134,11 +146,46 @@ public class NetManager
             }
         }
         AttrHandler.CalculateTotalAttr();
-        RemouldResponse(uniqueID, optionIndex);
+        GameEventHandler.Messenger.DispatchEvent(EventConstant.Remould, uniqueID);
     }
 
-    public void RemouldResponse(double uniqueID, int optionIndex)
+    public void SkillGetRequest(int iSkillID, int iType)
     {
-        GameEventHandler.Messenger.DispatchEvent(EventConstant.Remould, uniqueID);
+        SkillGetResponse(iSkillID, iType);
+    }
+
+    public void SkillGetResponse(int iSkillID, int iType)
+    {
+        SkillClass skillClass = new SkillClass();
+        skillClass.SkillType = iType;
+        skillClass.SkillID = iSkillID;
+        skillClass.Level = 0;
+        skillClass.NextExp = 0;
+        DataManager.Instance.SkillData.SkillDataList.Add(skillClass);
+        SkillStruct skillStruct = SkillConfig.Instance.GetSkill(iSkillID);
+        double nowGold = DataManager.Instance.CurrentRole.Gold - skillStruct.Gold;
+        GoldNotify(nowGold);
+
+        AttrHandler.CalculateTotalAttr();
+        GameEventHandler.Messenger.DispatchEvent(EventConstant.SkillUpdate);
+    }
+
+    public void SkillLevelUpRequest(int iSkillID)
+    {
+        SkillLevelUpResponse(iSkillID);
+    }
+
+    public void SkillLevelUpResponse(int iSkillID)
+    {
+        foreach (SkillClass skillClassData in DataManager.Instance.SkillData.SkillDataList)
+        {
+            if (iSkillID == skillClassData.SkillID)
+            {
+                skillClassData.Level++;
+            }
+        }
+
+        AttrHandler.CalculateTotalAttr();
+        GameEventHandler.Messenger.DispatchEvent(EventConstant.SkillUpdate);
     }
 }

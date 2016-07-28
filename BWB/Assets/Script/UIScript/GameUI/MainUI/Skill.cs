@@ -20,21 +20,23 @@ public class Skill : GComponent
 
     private void AddedToStage()
     {
-        _BattleBtn.onClick.Add(OnUpdateShowInfo);
-        _PassiveBtn.onClick.Add(OnUpdateShowInfo);
-        OnUpdateShowInfo();
+        _BattleBtn.onClick.Add(OnUpdateShowList);
+        _PassiveBtn.onClick.Add(OnUpdateShowList);
+        GameEventHandler.Messenger.AddEventListener(EventConstant.SkillUpdate, OnSkillUpdate);
+        OnUpdateShowList();
     }
 
     private void RemovedFromStage()
     {
-        _BattleBtn.onClick.Remove(OnUpdateShowInfo);
-        _PassiveBtn.onClick.Remove(OnUpdateShowInfo);
+        _BattleBtn.onClick.Remove(OnUpdateShowList);
+        _PassiveBtn.onClick.Remove(OnUpdateShowList);
+        GameEventHandler.Messenger.RemoveEventListener(EventConstant.SkillUpdate, OnSkillUpdate);
     }
 
-    private void OnUpdateShowInfo()
+    private void OnUpdateShowList()
     {
         _SkillList.RemoveChildrenToPool();
-        int iType = GetController("c1").selectedIndex;
+        int iType = GetController("c1").selectedIndex + 1;
         foreach (KeyValuePair<int, SkillStruct> skillPair in SkillConfig.Instance.GetDictSkill())
         {
             if (iType == skillPair.Value.Type)
@@ -43,5 +45,10 @@ public class Skill : GComponent
                 skillListItem.SetData(skillPair.Value);
             }
         }
+    }
+
+    private void OnSkillUpdate()
+    {
+        OnUpdateShowList();
     }
 }

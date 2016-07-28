@@ -31,6 +31,7 @@ public class MainUI : Window {
     {
         base.OnShown();
         GameEventHandler.Messenger.AddEventListener(EventConstant.TotalAttr, OnTotalAttr);
+        GameEventHandler.Messenger.AddEventListener(EventConstant.GoldUpdate, OnGoldUpdate);
         InitShowInfo();
     }
 
@@ -38,6 +39,7 @@ public class MainUI : Window {
     {
         base.OnHide();
         GameEventHandler.Messenger.RemoveEventListener(EventConstant.TotalAttr, OnTotalAttr);
+        GameEventHandler.Messenger.RemoveEventListener(EventConstant.GoldUpdate, OnGoldUpdate);
     }
 
     private void InitShowInfo()
@@ -64,5 +66,11 @@ public class MainUI : Window {
     private void OnTotalAttr()
     {
         _TotalAttr.text = LanguageConfig.Instance.GetText("Text_100003") + "????";
+    }
+
+    private void OnGoldUpdate(EventContext context)
+    {
+        double nowGold = (double)context.data;
+        _Gold.text = nowGold.ToString();
     }
 }

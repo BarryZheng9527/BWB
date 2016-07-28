@@ -12,10 +12,6 @@
 		<item TextID="EquipType1" Text="弓"/>
 		<item TextID="EquipName_100001" Text="快雪时晴"/>
 		<item TextID="EquipDesc_100001" Text="满夕霜雪人独影，红尘今古几月明，笑寒饮，惯新晴，千山已过风云行"/>
-		<item TextID="Text_100001" Text="创建角色"/>
-		<item TextID="Text_100002" Text="进入游戏"/>
-		<item TextID="Text_100003" Text="战力"/>
-		<item TextID="Text_100004" Text="金币消耗"/>
 		<item TextID="AttrName_1" Text="力量"/>
 		<item TextID="AttrName_2" Text="敏捷"/>
 		<item TextID="AttrName_3" Text="智力"/>
@@ -39,5 +35,15 @@
 		<item TextID="SkillDesc_1002" Text="鬼道第二式，增加敏捷，大攻，暴伤，每次使用有暴击buff，持续时间问+1，等级高了还带定身效果"/>
 		<item TextID="SkillName_2001" Text="疾风"/>
 		<item TextID="SkillDesc_2001" Text="每使用五次鬼道基式就能升级加两点敏捷，是不是很划算？初次习得，需要给我一百块"/>
+		<item TextID="Text_100001" Text="创建角色"/>
+		<item TextID="Text_100002" Text="进入游戏"/>
+		<item TextID="Text_100003" Text="战力"/>
+		<item TextID="Text_100004" Text="金币消耗"/>
+		<item TextID="Text_100005" Text="使用@param1@param2次"/>
+		<item TextID="Text_100006" Text="@param1达到@param2级"/>
+		<item TextID="Text_100007" Text="解锁@param1"/>
+		<item TextID="Text_100008" Text="解锁"/>
+		<item TextID="Text_100009" Text="升级"/>
+		<item TextID="Text_100010" Text="已满级"/>
 	</Texts>
 </Root>

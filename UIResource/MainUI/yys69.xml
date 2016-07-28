@@ -8,6 +8,6 @@
     <component id="n1" name="_PassiveBtn" src="yys6tm" pkg="dx5htgsv" xy="260,50">
       <Button title="被动技能" controller="c1" page="1"/>
     </component>
-    <list id="n2" name="_SkillList" xy="0,150" size="680,760" overflow="scroll" margin="0,0,0,0"/>
+    <list id="n2" name="_SkillList" xy="0,150" size="680,760" overflow="scroll" margin="0,0,0,0" defaultItem="ui://azj7nssjpz9wi"/>
   </displayList>
 </component>

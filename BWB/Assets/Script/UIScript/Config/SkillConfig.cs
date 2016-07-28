@@ -8,7 +8,6 @@ using System.Collections.Generic;
 public struct SkillLevelStruct
 {
     public int Level;
-    public int SkillType;
     public int SkillID;
     public int Exp;
     public double CD;
@@ -31,9 +30,8 @@ public struct SkillStruct
     public string Name;
     public string Desc;
     public string Icon;
-    public int Gold;
+    public double Gold;
     public int CustomID;
-    public int SkillType;
     public int SkillID;
     public int SkillLevel;
     public int AttrType1;
@@ -95,9 +93,8 @@ public class SkillConfig
                     skill.Name = CurItem.GetAttribute("Name");
                     skill.Desc = CurItem.GetAttribute("Desc");
                     skill.Icon = CurItem.GetAttribute("Icon");
-                    skill.Gold = Convert.ToInt32(CurItem.GetAttribute("Gold"));
+                    skill.Gold = Convert.ToDouble(CurItem.GetAttribute("Gold"));
                     skill.CustomID = Convert.ToInt32(CurItem.GetAttribute("CustomID"));
-                    skill.SkillType = Convert.ToInt32(CurItem.GetAttribute("SkillType"));
                     skill.SkillID = Convert.ToInt32(CurItem.GetAttribute("SkillID"));
                     skill.SkillLevel = Convert.ToInt32(CurItem.GetAttribute("SkillLevel"));
                     skill.AttrType1 = Convert.ToInt32(CurItem.GetAttribute("AttrType1"));
@@ -113,7 +110,6 @@ public class SkillConfig
                         XmlElement CurLevel = (XmlElement)level;
                         SkillLevelStruct skillLevel = new SkillLevelStruct();
                         skillLevel.Level = Convert.ToInt32(CurLevel.GetAttribute("Level"));
-                        skillLevel.SkillType = Convert.ToInt32(CurLevel.GetAttribute("SkillType"));
                         skillLevel.SkillID = Convert.ToInt32(CurLevel.GetAttribute("SkillID"));
                         skillLevel.Exp = Convert.ToInt32(CurLevel.GetAttribute("Exp"));
                         skillLevel.CD = Convert.ToDouble(CurLevel.GetAttribute("CD"));

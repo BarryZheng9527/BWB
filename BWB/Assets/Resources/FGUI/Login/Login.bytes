@@ -1,10 +1,10 @@
 package.xml|401|<packageDescription id="42t4qtqv" name="Login">
   <resources>
+    <image id="dov6n" name="Option2" size="21,21"/>
     <image id="dov6m" name="Option1" size="22,21"/>
     <atlas id="atlas0" size="64,32" file="atlas0.png"/>
-    <component id="umn52" name="Login" exported="true" size="720,1280"/>
     <component id="dov6j" name="chose" exported="true" size="22,21"/>
-    <image id="dov6n" name="Option2" size="21,21"/>
+    <component id="umn52" name="Login" exported="true" size="720,1280"/>
   </resources>
 </packageDescription>umn52.xml|2601|<component size="720,1280">
   <controller name="change" pages="0,,1," selected="1"/>
