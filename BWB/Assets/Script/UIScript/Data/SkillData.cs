@@ -9,6 +9,7 @@ public class SkillClass
 {
     public int SkillType;
     public int SkillID;
+    public int Pos;
     public int Level;
     public int NextExp;
 }

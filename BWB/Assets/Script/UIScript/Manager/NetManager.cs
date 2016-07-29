@@ -159,6 +159,7 @@ public class NetManager
         SkillClass skillClass = new SkillClass();
         skillClass.SkillType = iType;
         skillClass.SkillID = iSkillID;
+        skillClass.Pos = 0;
         skillClass.Level = 0;
         skillClass.NextExp = 0;
         DataManager.Instance.SkillData.SkillDataList.Add(skillClass);
@@ -187,5 +188,27 @@ public class NetManager
 
         AttrHandler.CalculateTotalAttr();
         GameEventHandler.Messenger.DispatchEvent(EventConstant.SkillUpdate);
+    }
+
+    public void SkillEquipRequest(int iSkillID, int iPos)
+    {
+        SkillEquipResponse(iSkillID, iPos);
+    }
+
+    public void SkillEquipResponse(int iSkillID, int iPos)
+    {
+        foreach (SkillClass skillClass in DataManager.Instance.SkillData.SkillDataList)
+        {
+            if (iSkillID == skillClass.SkillID)
+            {
+                skillClass.Pos = iPos;
+            }
+            else if (iPos == skillClass.Pos)
+            {
+                skillClass.Pos = 0;
+            }
+        }
+
+        GameEventHandler.Messenger.DispatchEvent(EventConstant.SkillEquipUpdate);
     }
 }

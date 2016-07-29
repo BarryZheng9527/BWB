@@ -2,12 +2,16 @@
 <component size="680,960">
   <controller name="c1" pages="0,,1," selected="0"/>
   <displayList>
-    <component id="n0" name="_BattleBtn" src="yys6tm" pkg="dx5htgsv" xy="10,50">
+    <component id="n0" name="_BattleBtn" src="yys6tm" pkg="dx5htgsv" xy="10,100">
       <Button checked="true" title="战斗技能" controller="c1" page="0"/>
     </component>
-    <component id="n1" name="_PassiveBtn" src="yys6tm" pkg="dx5htgsv" xy="260,50">
+    <component id="n1" name="_PassiveBtn" src="yys6tm" pkg="dx5htgsv" xy="260,100">
       <Button title="被动技能" controller="c1" page="1"/>
     </component>
-    <list id="n2" name="_SkillList" xy="0,150" size="680,760" overflow="scroll" margin="0,0,0,0" defaultItem="ui://azj7nssjpz9wi"/>
+    <list id="n2" name="_SkillList" xy="0,180" size="680,760" overflow="scroll" margin="0,0,0,0" defaultItem="ui://azj7nssjpz9wi"/>
+    <component id="n7" name="_MySkill1" src="rsmato" pkg="dx5htgsv" xy="20,10"/>
+    <component id="n8" name="_MySkill2" src="rsmato" pkg="dx5htgsv" xy="140,10"/>
+    <component id="n9" name="_MySkill3" src="rsmato" pkg="dx5htgsv" xy="260,10"/>
+    <component id="n10" name="_MySkill4" src="rsmato" pkg="dx5htgsv" xy="380,10"/>
   </displayList>
 </component>

@@ -60,6 +60,7 @@ public class SkillListItem : GComponent
             }
         }
         _CurSkill.SetSkillData(_SkillStruct, ITEM_TIPS_TYPE.NOTIPS);
+        _CurSkill.draggable = false;
         _Name.text = _SkillStruct.GetName();
         string szCondition = "";
         if (_SkillClass != null)
@@ -105,6 +106,12 @@ public class SkillListItem : GComponent
                 _Condition.text = LanguageConfig.Instance.GetText("Text_100010");
                 _LevelUpBtn.visible = false;
             }
+            _CurSkill.draggable = true;
+            _CurSkill.onDragStart.Add((EventContext context) =>
+            {
+                context.PreventDefault();
+                DragDropManager.inst.StartDrag(_CurSkill, _CurSkill._IconLoader.url, _CurSkill._IconLoader.texture, _SkillClass.SkillID);
+            });
         }
         else
         {

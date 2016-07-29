@@ -21,7 +21,7 @@ public enum ITEM_TYPE
 public class ItemCard : GComponent
 {
     private GImage _Bg;
-    private GLoader _IconLoader;
+    public GLoader _IconLoader;
     private GTextField _Level;
     private GTextField _Num;
 
@@ -74,7 +74,7 @@ public class ItemCard : GComponent
         _IconLoader.url = UIPackage.GetItemURL("IconSkill", _CurSkillData.Icon);
     }
 
-    private void ClearShow()
+    public void ClearShow()
     {
         _IconLoader.url = "";
         _Level.text = "";
