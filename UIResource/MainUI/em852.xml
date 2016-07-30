@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <component size="720,1280">
-  <controller name="tab" pages="0,,1,,2,,3,,4," selected="4"/>
+  <controller name="tab" pages="0,,1,,2,,3,,4," selected="3"/>
   <displayList>
     <image id="n0" name="n0" src="gt1ita" pkg="dx5htgsv" xy="0,0"/>
     <text id="n4" name="_Name" xy="120,12" size="200,32" fontSize="28" align="center" vAlign="middle" leading="2" autoSize="none" bold="true" text="英雄饶命"/>
@@ -20,10 +20,10 @@
       <Button title="战斗" controller="tab" page="0"/>
     </component>
     <component id="n22" name="n22" src="yys6tn" pkg="dx5htgsv" xy="460,1200">
-      <Button title="技能" controller="tab" page="3"/>
+      <Button checked="true" title="技能" controller="tab" page="3"/>
     </component>
     <component id="n23" name="n23" src="yys6tn" pkg="dx5htgsv" xy="590,1200">
-      <Button checked="true" title="铁匠铺" controller="tab" page="4"/>
+      <Button title="铁匠铺" controller="tab" page="4"/>
     </component>
     <component id="n24" name="n24" src="yys65" xy="20,200">
       <gearDisplay controller="tab" pages="1"/>
@@ -31,7 +31,7 @@
     <component id="n25" name="n25" src="yys6c" xy="20,200">
       <gearDisplay controller="tab" pages="2"/>
     </component>
-    <component id="n26" name="n26" src="yys69" xy="20,400">
+    <component id="n26" name="n26" src="yys69" xy="20,200">
       <gearDisplay controller="tab" pages="3"/>
     </component>
     <component id="n27" name="n27" src="yys6d" xy="0,200">

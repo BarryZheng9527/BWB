@@ -1,7 +1,7 @@
 BWB/Library/
 BWB/ProjectSettings/
 BWB/Temp/
-*.suo
 BWB/Assets/Resources/FGUI/
+*.suo
 *.csproj
 *.sln
