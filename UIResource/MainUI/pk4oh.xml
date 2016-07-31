@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<component size="680,440">
+<component size="680,340">
   <displayList>
-    <component id="n0" name="_EquipPos1" src="rsmato" pkg="dx5htgsv" xy="0,180"/>
-    <component id="n1" name="_EquipPos2" src="rsmato" pkg="dx5htgsv" xy="600,180"/>
+    <component id="n0" name="_EquipPos1" src="rsmato" pkg="dx5htgsv" xy="0,130"/>
+    <component id="n1" name="_EquipPos2" src="rsmato" pkg="dx5htgsv" xy="600,130"/>
     <component id="n2" name="_EquipPos3" src="rsmato" pkg="dx5htgsv" xy="300,0"/>
-    <component id="n3" name="_EquipPos4" src="rsmato" pkg="dx5htgsv" xy="300,180"/>
+    <component id="n3" name="_EquipPos4" src="rsmato" pkg="dx5htgsv" xy="300,130"/>
     <component id="n4" name="_EquipPos5" src="rsmato" pkg="dx5htgsv" xy="0,0"/>
     <component id="n5" name="_EquipPos6" src="rsmato" pkg="dx5htgsv" xy="600,0"/>
-    <component id="n6" name="_EquipPos7" src="rsmato" pkg="dx5htgsv" xy="300,360"/>
-    <component id="n7" name="_EquipPos8" src="rsmato" pkg="dx5htgsv" xy="0,360"/>
-    <component id="n8" name="_EquipPos9" src="rsmato" pkg="dx5htgsv" xy="600,360"/>
+    <component id="n6" name="_EquipPos7" src="rsmato" pkg="dx5htgsv" xy="300,260"/>
+    <component id="n7" name="_EquipPos8" src="rsmato" pkg="dx5htgsv" xy="0,260"/>
+    <component id="n8" name="_EquipPos9" src="rsmato" pkg="dx5htgsv" xy="600,260"/>
   </displayList>
 </component>

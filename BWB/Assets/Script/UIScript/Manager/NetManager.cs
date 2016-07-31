@@ -43,7 +43,7 @@ public class NetManager
         roleclass.Level = 1;
         roleclass.Job = 1;
         roleclass.Exp = 120;
-        roleclass.Gold = 120;
+        roleclass.Gold = 220;
         rolelist.Add(roleclass);
         roledata.RoleList = rolelist;
 

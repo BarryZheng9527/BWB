@@ -21,7 +21,7 @@ public enum ITEM_TYPE
 public class ItemCard : GComponent
 {
     private GImage _Bg;
-    public GLoader _IconLoader;
+	private GLoader _IconLoader;
     private GTextField _Level;
     private GTextField _Num;
 

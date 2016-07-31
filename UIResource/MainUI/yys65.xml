@@ -21,5 +21,10 @@
       <item/>
       <item/>
     </list>
+    <component id="n14" name="_MySkill1" src="rsmato" pkg="dx5htgsv" xy="120,380"/>
+    <component id="n15" name="_MySkill2" src="rsmato" pkg="dx5htgsv" xy="240,380"/>
+    <component id="n16" name="_MySkill3" src="rsmato" pkg="dx5htgsv" xy="360,380"/>
+    <component id="n17" name="_MySkill4" src="rsmato" pkg="dx5htgsv" xy="480,380"/>
+    <list id="n18" name="_MySkillList" xy="122,460" size="80,350" overflow="scroll" margin="0,0,0,0" lineGap="10" defaultItem="ui://dx5htgsvrsmato"/>
   </displayList>
 </component>

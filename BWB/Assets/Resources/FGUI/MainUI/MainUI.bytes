@@ -48,7 +48,7 @@ em852.xml|2800|<component size="720,1280">
 </component>package.xml|762|<packageDescription id="azj7nssj" name="MainUI">
   <resources>
     <component id="em852" name="MainUI" exported="true" size="720,1280"/>
-    <component id="pk4oh" name="EquipList" size="680,440"/>
+    <component id="pk4oh" name="EquipList" size="680,340"/>
     <component id="pz9wi" name="SkillListItem" size="680,190"/>
     <component id="t7etf" name="Option" size="360,120"/>
     <component id="tkoig" name="RemouldListItem" size="360,100"/>
@@ -59,17 +59,17 @@ em852.xml|2800|<component size="720,1280">
     <component id="yys6d" name="Remould" size="720,960"/>
     <component id="yys6e" name="Battle" size="720,1030"/>
   </resources>
-</packageDescription>pk4oh.xml|816|<component size="680,440">
+</packageDescription>pk4oh.xml|816|<component size="680,340">
   <displayList>
-    <component id="n0" name="_EquipPos1" src="rsmato" pkg="dx5htgsv" xy="0,180"/>
-    <component id="n1" name="_EquipPos2" src="rsmato" pkg="dx5htgsv" xy="600,180"/>
+    <component id="n0" name="_EquipPos1" src="rsmato" pkg="dx5htgsv" xy="0,130"/>
+    <component id="n1" name="_EquipPos2" src="rsmato" pkg="dx5htgsv" xy="600,130"/>
     <component id="n2" name="_EquipPos3" src="rsmato" pkg="dx5htgsv" xy="300,0"/>
-    <component id="n3" name="_EquipPos4" src="rsmato" pkg="dx5htgsv" xy="300,180"/>
+    <component id="n3" name="_EquipPos4" src="rsmato" pkg="dx5htgsv" xy="300,130"/>
     <component id="n4" name="_EquipPos5" src="rsmato" pkg="dx5htgsv" xy="0,0"/>
     <component id="n5" name="_EquipPos6" src="rsmato" pkg="dx5htgsv" xy="600,0"/>
-    <component id="n6" name="_EquipPos7" src="rsmato" pkg="dx5htgsv" xy="300,360"/>
-    <component id="n7" name="_EquipPos8" src="rsmato" pkg="dx5htgsv" xy="0,360"/>
-    <component id="n8" name="_EquipPos9" src="rsmato" pkg="dx5htgsv" xy="600,360"/>
+    <component id="n6" name="_EquipPos7" src="rsmato" pkg="dx5htgsv" xy="300,260"/>
+    <component id="n7" name="_EquipPos8" src="rsmato" pkg="dx5htgsv" xy="0,260"/>
+    <component id="n8" name="_EquipPos9" src="rsmato" pkg="dx5htgsv" xy="600,260"/>
   </displayList>
 </component>pz9wi.xml|1261|<component size="680,190">
   <displayList>
@@ -99,7 +99,7 @@ em852.xml|2800|<component size="720,1280">
     <text id="n2" name="_Type" xy="110,56" size="240,34" font="宋体" fontSize="30" vAlign="middle" autoSize="none" bold="true" text="类型"/>
   </displayList>
   <Button mode="Radio"/>
-</component>yys65.xml|583|<component size="680,960">
+</component>yys65.xml|1069|<component size="680,960">
   <displayList>
     <component id="n13" name="_EquipList" src="pk4oh" xy="0,0"/>
     <list id="n12" name="_AttrList" xy="50,500" size="580,460" layout="flow_hz" selectionMode="none" margin="0,0,0,0" lineGap="20" colGap="200" lineItemCount="2" defaultItem="ui://azj7nssjyys66">
@@ -121,26 +121,27 @@ em852.xml|2800|<component size="720,1280">
       <item/>
       <item/>
     </list>
+    <component id="n14" name="_MySkill1" src="rsmato" pkg="dx5htgsv" xy="120,380"/>
+    <component id="n15" name="_MySkill2" src="rsmato" pkg="dx5htgsv" xy="240,380"/>
+    <component id="n16" name="_MySkill3" src="rsmato" pkg="dx5htgsv" xy="360,380"/>
+    <component id="n17" name="_MySkill4" src="rsmato" pkg="dx5htgsv" xy="480,380"/>
+    <list id="n18" name="_MySkillList" xy="122,460" size="80,350" overflow="scroll" margin="0,0,0,0" lineGap="10" defaultItem="ui://dx5htgsvrsmato"/>
   </displayList>
 </component>yys66.xml|376|<component size="190,24">
   <displayList>
     <text id="n0" name="_AttrName" xy="0,0" size="90,24" font="宋体" fontSize="20" align="right" vAlign="middle" autoSize="none" bold="true" text="战斗力"/>
     <text id="n1" name="_AttrValue" xy="100,0" size="90,24" font="宋体" fontSize="20" align="right" vAlign="middle" autoSize="none" bold="true" text="5"/>
   </displayList>
-</component>yys69.xml|908|<component size="680,960">
+</component>yys69.xml|578|<component size="680,960">
   <controller name="c1" pages="0,,1," selected="0"/>
   <displayList>
-    <component id="n0" name="_BattleBtn" src="yys6tm" pkg="dx5htgsv" xy="10,100">
+    <component id="n0" name="_BattleBtn" src="yys6tm" pkg="dx5htgsv" xy="10,50">
       <Button checked="true" title="战斗技能" controller="c1" page="0"/>
     </component>
-    <component id="n1" name="_PassiveBtn" src="yys6tm" pkg="dx5htgsv" xy="260,100">
+    <component id="n1" name="_PassiveBtn" src="yys6tm" pkg="dx5htgsv" xy="260,50">
       <Button title="被动技能" controller="c1" page="1"/>
     </component>
-    <list id="n2" name="_SkillList" xy="0,180" size="680,760" overflow="scroll" margin="0,0,0,0" defaultItem="ui://azj7nssjpz9wi"/>
-    <component id="n7" name="_MySkill1" src="rsmato" pkg="dx5htgsv" xy="20,10"/>
-    <component id="n8" name="_MySkill2" src="rsmato" pkg="dx5htgsv" xy="140,10"/>
-    <component id="n9" name="_MySkill3" src="rsmato" pkg="dx5htgsv" xy="260,10"/>
-    <component id="n10" name="_MySkill4" src="rsmato" pkg="dx5htgsv" xy="380,10"/>
+    <list id="n2" name="_SkillList" xy="0,150" size="680,760" overflow="scroll" margin="0,0,0,0" defaultItem="ui://azj7nssjpz9wi"/>
   </displayList>
 </component>yys6c.xml|283|<component size="680,800">
   <displayList>
