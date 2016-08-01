@@ -14,6 +14,7 @@ public struct SkillLevelStruct
     public double Sing;
     public double MPCost;
     public double Attack;
+    public double MATK;
     public double HoldBuffTime;
     public double AttrValue1;
     public double AttrValue2;
@@ -27,6 +28,7 @@ public struct SkillStruct
 {
     public int ID;
     public int Type;
+    public int AttackType;
     public string Name;
     public string Desc;
     public string Icon;
@@ -90,6 +92,7 @@ public class SkillConfig
                     SkillStruct skill = new SkillStruct();
                     skill.ID = Convert.ToInt32(CurItem.GetAttribute("ID"));
                     skill.Type = Convert.ToInt32(CurItem.GetAttribute("Type"));
+                    skill.AttackType = Convert.ToInt32(CurItem.GetAttribute("AttackType"));
                     skill.Name = CurItem.GetAttribute("Name");
                     skill.Desc = CurItem.GetAttribute("Desc");
                     skill.Icon = CurItem.GetAttribute("Icon");
@@ -116,6 +119,7 @@ public class SkillConfig
                         skillLevel.Sing = Convert.ToDouble(CurLevel.GetAttribute("Sing"));
                         skillLevel.MPCost = Convert.ToDouble(CurLevel.GetAttribute("MPCost"));
                         skillLevel.Attack = Convert.ToDouble(CurLevel.GetAttribute("Attack"));
+                        skillLevel.MATK = Convert.ToDouble(CurLevel.GetAttribute("MATK"));
                         skillLevel.HoldBuffTime = Convert.ToDouble(CurLevel.GetAttribute("HoldBuffTime"));
                         skillLevel.AttrValue1 = Convert.ToDouble(CurLevel.GetAttribute("AttrValue1"));
                         skillLevel.AttrValue2 = Convert.ToDouble(CurLevel.GetAttribute("AttrValue2"));

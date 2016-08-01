@@ -30,6 +30,7 @@ public class ConfigManager
         LoadConfig("equip");
         LoadConfig("remould");
         LoadConfig("skill");
+        LoadConfig("monster");
     }
 
     private void LoadConfig(string szConfigName)
@@ -60,6 +61,10 @@ public class ConfigManager
         else if (szConfigName == "skill")
         {
             SkillConfig.Instance.ReadXml(root);
+        }
+        else if (szConfigName == "monster")
+        {
+            MonsterConfig.Instance.ReadXml(root);
         }
     }
 }

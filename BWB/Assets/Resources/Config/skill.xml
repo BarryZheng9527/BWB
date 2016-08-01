@@ -2,6 +2,7 @@
 	<!--
 	ID技能ID
 	Type类型（1战斗，2被动）
+	AttackType攻击类型（1物理，2魔法）
 	Name技能名
 	Desc技能描述
 	Icon技能Icon
@@ -23,7 +24,8 @@
 	Sing当前等级吟唱时间
 	MPCost当前等级消耗的MP
 	HoldBuffTime定身时间
-	Attack当前等级增加攻击百分比
+	Attack当前等级增加物理攻击百分比
+	MATK当前等级增加魔法攻击
 	AttrValue1当前等级增加属性值
 	AttrValue2
 	AttrValue3
@@ -32,18 +34,18 @@
 	BuffAttrValue3
 -->
 	<Skill>
-		<item ID="1001" Type="1" Name="SkillName_1001" Desc="SkillDesc_1001" Icon="Skill_1001" Gold="100" CustomID="0" SkillID="0" SkillLevel="0" AttrType1="1" AttrType2="2" AttrType3="3" BuffAttrType1="0" BuffAttrType2="0" BuffAttrType3="0">
-			<level Level="0" SkillID="1001" Exp="5" CD="5" Sing="2" MPCost="0" Attack="1" HoldBuffTime="0" AttrValue1="1" AttrValue2="2" AttrValue3="0" BuffAttrValue1="0" BuffAttrValue2="0" BuffAttrValue3="0"/>
-			<level Level="1" SkillID="1001" Exp="10" CD="5" Sing="2" MPCost="0" Attack="1.5" HoldBuffTime="0" AttrValue1="0" AttrValue2="6" AttrValue3="0" BuffAttrValue1="0" BuffAttrValue2="0" BuffAttrValue3="0"/>
+		<item ID="1001" Type="1" AttackType="1" Name="SkillName_1001" Desc="SkillDesc_1001" Icon="Skill_1001" Gold="100" CustomID="0" SkillID="0" SkillLevel="0" AttrType1="1" AttrType2="2" AttrType3="3" BuffAttrType1="0" BuffAttrType2="0" BuffAttrType3="0">
+			<level Level="0" SkillID="1001" Exp="5" CD="5" Sing="2" MPCost="0" Attack="1" MATK="0" HoldBuffTime="0" AttrValue1="1" AttrValue2="2" AttrValue3="0" BuffAttrValue1="0" BuffAttrValue2="0" BuffAttrValue3="0"/>
+			<level Level="1" SkillID="1001" Exp="10" CD="5" Sing="2" MPCost="0" Attack="1.5" MATK="0" HoldBuffTime="0" AttrValue1="0" AttrValue2="6" AttrValue3="0" BuffAttrValue1="0" BuffAttrValue2="0" BuffAttrValue3="0"/>
 		</item>
-		<item ID="1002" Type="1" Name="SkillName_1002" Desc="SkillDesc_1002" Icon="Skill_1002" Gold="500" CustomID="0" SkillID="1001" SkillLevel="0" AttrType1="2" AttrType2="10" AttrType3="13" BuffAttrType1="12" BuffAttrType2="0" BuffAttrType3="0">
-			<level Level="0" SkillID="1002" Exp="10" CD="8" Sing="3" MPCost="2" Attack="1.5" HoldBuffTime="0" AttrValue1="10" AttrValue2="20" AttrValue3="0.2" BuffAttrValue1="0.1" BuffAttrValue2="0" BuffAttrValue3="0"/>
-			<level Level="1" SkillID="1002" Exp="20" CD="7" Sing="2" MPCost="5" Attack="1.8" HoldBuffTime="3" AttrValue1="20" AttrValue2="30" AttrValue3="0.3" BuffAttrValue1="0.2" BuffAttrValue2="0" BuffAttrValue3="0"/>
+		<item ID="1002" Type="1" AttackType="1" Name="SkillName_1002" Desc="SkillDesc_1002" Icon="Skill_1002" Gold="500" CustomID="0" SkillID="1001" SkillLevel="0" AttrType1="2" AttrType2="10" AttrType3="13" BuffAttrType1="12" BuffAttrType2="0" BuffAttrType3="0">
+			<level Level="0" SkillID="1002" Exp="10" CD="8" Sing="3" MPCost="2" Attack="1.5" MATK="0" HoldBuffTime="0" AttrValue1="10" AttrValue2="20" AttrValue3="0.2" BuffAttrValue1="0.1" BuffAttrValue2="0" BuffAttrValue3="0"/>
+			<level Level="1" SkillID="1002" Exp="20" CD="7" Sing="2" MPCost="5" Attack="1.8" MATK="0" HoldBuffTime="3" AttrValue1="20" AttrValue2="30" AttrValue3="0.3" BuffAttrValue1="0.2" BuffAttrValue2="0" BuffAttrValue3="0"/>
 		</item>
-		<item ID="2001" Type="2" Name="SkillName_2001" Desc="SkillDesc_2001" Icon="Skill_2001" Gold="100" CustomID="0" SkillID="0" SkillLevel="0" AttrType1="2" AttrType2="0" AttrType3="0" BuffAttrType1="0" BuffAttrType2="0" BuffAttrType3="0">
-			<level Level="0" SkillID="1002" Exp="5" CD="0" Sing="0" MPCost="0" Attack="0" HoldBuffTime="0" AttrValue1="2" AttrValue2="0" AttrValue3="0" BuffAttrValue1="0" BuffAttrValue2="0" BuffAttrValue3="0"/>
-			<level Level="1" SkillID="1002" Exp="10" CD="0" Sing="0" MPCost="0" Attack="0" HoldBuffTime="0" AttrValue1="2" AttrValue2="0" AttrValue3="0" BuffAttrValue1="0" BuffAttrValue2="0" BuffAttrValue3="0"/>
-			<level Level="2" SkillID="1002" Exp="15" CD="0" Sing="0" MPCost="0" Attack="0" HoldBuffTime="0" AttrValue1="2" AttrValue2="0" AttrValue3="0" BuffAttrValue1="0" BuffAttrValue2="0" BuffAttrValue3="0"/>
+		<item ID="2001" Type="2" AttackType="0" Name="SkillName_2001" Desc="SkillDesc_2001" Icon="Skill_2001" Gold="100" CustomID="0" SkillID="0" SkillLevel="0" AttrType1="2" AttrType2="0" AttrType3="0" BuffAttrType1="0" BuffAttrType2="0" BuffAttrType3="0">
+			<level Level="0" SkillID="1002" Exp="5" CD="0" Sing="0" MPCost="0" Attack="0" MATK="0" HoldBuffTime="0" AttrValue1="2" AttrValue2="0" AttrValue3="0" BuffAttrValue1="0" BuffAttrValue2="0" BuffAttrValue3="0"/>
+			<level Level="1" SkillID="1002" Exp="10" CD="0" Sing="0" MPCost="0" Attack="0" MATK="0" HoldBuffTime="0" AttrValue1="2" AttrValue2="0" AttrValue3="0" BuffAttrValue1="0" BuffAttrValue2="0" BuffAttrValue3="0"/>
+			<level Level="2" SkillID="1002" Exp="15" CD="0" Sing="0" MPCost="0" Attack="0" MATK="0" HoldBuffTime="0" AttrValue1="2" AttrValue2="0" AttrValue3="0" BuffAttrValue1="0" BuffAttrValue2="0" BuffAttrValue3="0"/>
 		</item>
 	</Skill>
 </Root>

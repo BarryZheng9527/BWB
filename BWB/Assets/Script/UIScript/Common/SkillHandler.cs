@@ -18,4 +18,24 @@ public static class SkillHandler
         }
         return null;
     }
+
+    static public List<SkillClass> GetMySkillList()
+    {
+        List<SkillClass> mySkillList = new List<SkillClass>();
+        if (DataManager.Instance.SkillData.SkillDataList.Count > 0)
+        {
+            foreach (SkillClass skillClass in DataManager.Instance.SkillData.SkillDataList)
+            {
+                if (skillClass.Pos > 0)
+                {
+                    mySkillList.Add(skillClass);
+                }
+            }
+        }
+        mySkillList.Sort(delegate(SkillClass skillClass1, SkillClass skillClass2)
+        {
+            return skillClass1.Pos.CompareTo(skillClass2.Pos);
+        });
+        return mySkillList;
+    }
 }

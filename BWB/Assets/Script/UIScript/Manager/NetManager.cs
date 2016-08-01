@@ -44,6 +44,8 @@ public class NetManager
         roleclass.Job = 1;
         roleclass.Exp = 120;
         roleclass.Gold = 220;
+        roleclass.Money = 20;
+        roleclass.MonsterIndex = 1;
         rolelist.Add(roleclass);
         roledata.RoleList = rolelist;
 
