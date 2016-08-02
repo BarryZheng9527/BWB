@@ -9,7 +9,7 @@ public class ItemClass
 {
     public int ItemType;
 
-    public double UniqueID;
+    public string UniqueID;
     public int EquipID;
     public int EquipPos;
     public int Level;

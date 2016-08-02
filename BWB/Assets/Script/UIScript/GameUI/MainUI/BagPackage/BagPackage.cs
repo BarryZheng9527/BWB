@@ -17,6 +17,7 @@ public class BagPackage : GComponent
     {
         GameEventHandler.Messenger.AddEventListener(EventConstant.Equip, OnEquip);
         GameEventHandler.Messenger.AddEventListener(EventConstant.UnEquip, OnUnEquip);
+        GameEventHandler.Messenger.AddEventListener(EventConstant.ItemUpdate, OnItemUpdate);
         UpdateItemList();
     }
 
@@ -24,6 +25,7 @@ public class BagPackage : GComponent
     {
         GameEventHandler.Messenger.RemoveEventListener(EventConstant.Equip, OnEquip);
         GameEventHandler.Messenger.RemoveEventListener(EventConstant.UnEquip, OnUnEquip);
+        GameEventHandler.Messenger.RemoveEventListener(EventConstant.ItemUpdate, OnItemUpdate);
     }
 
     private void UpdateItemList()
@@ -46,6 +48,11 @@ public class BagPackage : GComponent
     }
 
     private void OnUnEquip()
+    {
+        UpdateItemList();
+    }
+
+    private void OnItemUpdate()
     {
         UpdateItemList();
     }

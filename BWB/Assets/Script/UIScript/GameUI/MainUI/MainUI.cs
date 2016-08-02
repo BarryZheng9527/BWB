@@ -32,6 +32,8 @@ public class MainUI : Window {
         base.OnShown();
         GameEventHandler.Messenger.AddEventListener(EventConstant.TotalAttr, OnTotalAttr);
         GameEventHandler.Messenger.AddEventListener(EventConstant.GoldUpdate, OnGoldUpdate);
+        GameEventHandler.Messenger.AddEventListener(EventConstant.ExpUpdate, OnExpUpdate);
+        GameEventHandler.Messenger.AddEventListener(EventConstant.LevelUpdate, OnLevelUpdate);
         InitShowInfo();
     }
 
@@ -40,6 +42,8 @@ public class MainUI : Window {
         base.OnHide();
         GameEventHandler.Messenger.RemoveEventListener(EventConstant.TotalAttr, OnTotalAttr);
         GameEventHandler.Messenger.RemoveEventListener(EventConstant.GoldUpdate, OnGoldUpdate);
+        GameEventHandler.Messenger.RemoveEventListener(EventConstant.ExpUpdate, OnExpUpdate);
+        GameEventHandler.Messenger.RemoveEventListener(EventConstant.LevelUpdate, OnLevelUpdate);
     }
 
     private void InitShowInfo()
@@ -68,9 +72,20 @@ public class MainUI : Window {
         _TotalAttr.text = LanguageConfig.Instance.GetText("Text_100003") + "????";
     }
 
-    private void OnGoldUpdate(EventContext context)
+    private void OnGoldUpdate()
     {
-        double nowGold = (double)context.data;
-        _Gold.text = nowGold.ToString();
+        _Gold.text = DataManager.Instance.CurrentRole.Gold.ToString();
+    }
+
+    private void OnExpUpdate()
+    {
+        double[] expProgress = LevelConfig.Instance.GetExpProgress(DataManager.Instance.CurrentRole.Exp);
+        _Exp.value = (int)expProgress[0];
+        _Exp.max = (int)expProgress[1];
+    }
+
+    private void OnLevelUpdate()
+    {
+        _Level.text = "Lv." + DataManager.Instance.CurrentRole.Level;
     }
 }

@@ -35,9 +35,17 @@ public class Battle : GComponent
             BattleManager.Instance.BattleManagerStart();
             bInit = false;
         }
+        GameEventHandler.Messenger.AddEventListener(EventConstant.HPUpdate, OnHPUpdate);
+        GameEventHandler.Messenger.AddEventListener(EventConstant.MPUpdate, OnMPUpdate);
+        GameEventHandler.Messenger.AddEventListener(EventConstant.MonsterHPUpdate, OnMonsterHPUpdate);
+        GameEventHandler.Messenger.AddEventListener(EventConstant.MonsterMPUpdate, OnMonsterMPUpdate);
     }
 
     private void RemovedFromStage()
     {
+        GameEventHandler.Messenger.RemoveEventListener(EventConstant.HPUpdate, OnHPUpdate);
+        GameEventHandler.Messenger.RemoveEventListener(EventConstant.MPUpdate, OnMPUpdate);
+        GameEventHandler.Messenger.RemoveEventListener(EventConstant.MonsterHPUpdate, OnMonsterHPUpdate);
+        GameEventHandler.Messenger.RemoveEventListener(EventConstant.MonsterMPUpdate, OnMonsterMPUpdate);
     }
 }

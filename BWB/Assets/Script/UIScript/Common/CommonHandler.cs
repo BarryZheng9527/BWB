@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System;
 
 public static class CommonHandler
 {
@@ -15,5 +16,15 @@ public static class CommonHandler
         szTime += ":";
         szTime += iSecond < 10 ? ("0" + iSecond) : iSecond.ToString();
         return szTime;
+    }
+
+    static public string GetUniqueID()
+    {
+        long i = 1;
+        foreach (byte b in Guid.NewGuid().ToByteArray())
+        {
+            i *= ((int)b + 1);
+        }
+        return string.Format("{0:x}", i - DateTime.Now.Ticks);
     }
 }

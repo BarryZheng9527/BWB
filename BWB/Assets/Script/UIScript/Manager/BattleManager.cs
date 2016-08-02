@@ -108,10 +108,27 @@ public class BattleManager
         }
         else if (iCurStatus == Constant.BATTLESTATUS2)
         {
+            //使用次数
+            NetManager.Instance.SkillExpRequest(_CurSkill.SkillID);
+            //buff
+            if (_CurSkillStruct.BuffAttrType1 > 0 && _CurSkillLevelStruct.BuffAttrValue1 > 0)
+            {
+                _DictTotalAttr[_CurSkillStruct.BuffAttrType1] += _CurSkillLevelStruct.BuffAttrValue1;
+            }
+            if (_CurSkillStruct.BuffAttrType2 > 0 && _CurSkillLevelStruct.BuffAttrValue2 > 0)
+            {
+                _DictTotalAttr[_CurSkillStruct.BuffAttrType2] += _CurSkillLevelStruct.BuffAttrValue2;
+            }
+            if (_CurSkillStruct.BuffAttrType3 > 0 && _CurSkillLevelStruct.BuffAttrValue3 > 0)
+            {
+                _DictTotalAttr[_CurSkillStruct.BuffAttrType3] += _CurSkillLevelStruct.BuffAttrValue3;
+            }
+            //HP
             double dCostHP0 = BattleHandler.GetSkillAttack(_DictTotalAttr, _CurSkill, _CurMonster);
             _CurMonster.HP -= dCostHP0;
             if (_CurMonster.HP <= 0)
             {
+                NetManager.Instance.MonsterIndexRequest(_CurMonster.Index);
                 InitBattle();
             }
         }
@@ -157,7 +174,7 @@ public class BattleManager
         }
         else if (iCurStatus == Constant.BATTLESTATUS1)
         {
-            if (_CurSkill != null && _CurSkillCD <= 0)
+            if (_CurSkill != null && _CurSkillCD <= 0 && _DictTotalAttr[Constant.MP] >= _CurSkillLevelStruct.MPCost)
             {
                 iNextStatus = Constant.BATTLESTATUS2;
             }

@@ -94,7 +94,7 @@ public class Remould : GComponent
 
     private void OnRemould(EventContext context)
     {
-        double uniqueID = (double)context.data;
+        string uniqueID = (string)context.data;
         UpdateEquipList(GetController("c1").selectedIndex == 0);
         for (int iIndex = 0; iIndex < DataManager.Instance.ItemData.ItemList.Count; ++iIndex)
         {

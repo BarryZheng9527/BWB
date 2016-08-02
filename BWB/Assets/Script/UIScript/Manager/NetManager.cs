@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 public class NetManager
 {
@@ -22,8 +23,40 @@ public class NetManager
 
     public void GoldNotify(double dGold)
     {
-        DataManager.Instance.CurrentRole.Gold = dGold;
-        GameEventHandler.Messenger.DispatchEvent(EventConstant.GoldUpdate, dGold);
+        DataManager.Instance.CurrentRole.Gold += dGold;
+        GameEventHandler.Messenger.DispatchEvent(EventConstant.GoldUpdate);
+    }
+
+    public void ExpNotify(double dExp)
+    {
+        DataManager.Instance.CurrentRole.Exp += dExp;
+        GameEventHandler.Messenger.DispatchEvent(EventConstant.ExpUpdate);
+        int iMyLevel = LevelConfig.Instance.GetLevelFromExp(DataManager.Instance.CurrentRole.Exp);
+        if (iMyLevel > DataManager.Instance.CurrentRole.Level)
+        {
+            DataManager.Instance.CurrentRole.Level = iMyLevel;
+            GameEventHandler.Messenger.DispatchEvent(EventConstant.LevelUpdate);
+            AttrHandler.CalculateTotalAttr();
+        }
+    }
+
+    public void EquipNotify(int iEquipID)
+    {
+        ItemClass itemclass = new ItemClass();
+        itemclass.ItemType = Constant.EQUIP;
+        itemclass.UniqueID = CommonHandler.GetUniqueID();
+        itemclass.EquipID = iEquipID;
+        DataManager.Instance.ItemData.ItemList.Add(itemclass);
+        GameEventHandler.Messenger.DispatchEvent(EventConstant.ItemUpdate);
+    }
+
+    public void ItemNotify(int iItemID)
+    {
+        ItemClass itemclass = new ItemClass();
+        itemclass.ItemType = Constant.ITEM;
+        itemclass.ItemID = iItemID;
+        DataManager.Instance.ItemData.ItemList.Add(itemclass);
+        GameEventHandler.Messenger.DispatchEvent(EventConstant.ItemUpdate);
     }
 
     public void LoginRequest(string name, string password)
@@ -74,7 +107,7 @@ public class NetManager
         List<ItemClass> itemlist = new List<ItemClass>();
         ItemClass itemclass = new ItemClass();
         itemclass.ItemType = Constant.EQUIP;
-        itemclass.UniqueID = 10100001;
+        itemclass.UniqueID = CommonHandler.GetUniqueID();
         itemclass.EquipID = 100001;
         itemclass.Level = 1;
         itemclass.RemouldOptionList.Add(1);
@@ -90,12 +123,12 @@ public class NetManager
         GameEventHandler.Messenger.DispatchEvent(EventConstant.CreatRole);
     }
 
-    public void EquipRequest(double uniqueID, int equipPos)
+    public void EquipRequest(string uniqueID, int equipPos)
     {
         EquipResponse(uniqueID, equipPos);
     }
 
-    public void EquipResponse(double uniqueID, int equipPos)
+    public void EquipResponse(string uniqueID, int equipPos)
     {
         for (int iIndex = 0; iIndex < DataManager.Instance.ItemData.ItemList.Count; ++iIndex)
         {
@@ -110,12 +143,12 @@ public class NetManager
         GameEventHandler.Messenger.DispatchEvent(EventConstant.Equip);
     }
 
-    public void UnEquipRequest(double uniqueID)
+    public void UnEquipRequest(string uniqueID)
     {
         UnEquipResponse(uniqueID);
     }
 
-    public void UnEquipResponse(double uniqueID)
+    public void UnEquipResponse(string uniqueID)
     {
         for (int iIndex = 0; iIndex < DataManager.Instance.ItemData.ItemList.Count; ++iIndex)
         {
@@ -130,12 +163,12 @@ public class NetManager
         GameEventHandler.Messenger.DispatchEvent(EventConstant.UnEquip);
     }
 
-    public void RemouldRequest(double uniqueID, int optionIndex)
+    public void RemouldRequest(string uniqueID, int optionIndex)
     {
         RemouldResponse(uniqueID, optionIndex);
     }
 
-    public void RemouldResponse(double uniqueID, int optionIndex)
+    public void RemouldResponse(string uniqueID, int optionIndex)
     {
         for (int iIndex = 0; iIndex < DataManager.Instance.ItemData.ItemList.Count; ++iIndex)
         {
@@ -166,8 +199,8 @@ public class NetManager
         skillClass.NextExp = 0;
         DataManager.Instance.SkillData.SkillDataList.Add(skillClass);
         SkillStruct skillStruct = SkillConfig.Instance.GetSkill(iSkillID);
-        double nowGold = DataManager.Instance.CurrentRole.Gold - skillStruct.Gold;
-        GoldNotify(nowGold);
+        double addGold = 0 - skillStruct.Gold;
+        GoldNotify(addGold);
 
         AttrHandler.CalculateTotalAttr();
         GameEventHandler.Messenger.DispatchEvent(EventConstant.SkillUpdate);
@@ -212,5 +245,64 @@ public class NetManager
         }
 
         GameEventHandler.Messenger.DispatchEvent(EventConstant.SkillEquipUpdate);
+    }
+
+    public void SkillExpRequest(int iSkillID)
+    {
+        SkillExpResponse(iSkillID);
+    }
+
+    public void SkillExpResponse(int iSkillID)
+    {
+        foreach (SkillClass skillClass in DataManager.Instance.SkillData.SkillDataList)
+        {
+            SkillStruct skillStruct = SkillConfig.Instance.GetSkill(skillClass.SkillID);
+            SkillLevelStruct skillLevelStruct = skillStruct.GetSkillLevel(skillClass.Level);
+            if (iSkillID == skillLevelStruct.SkillID && skillClass.NextExp < skillLevelStruct.Exp)
+            {
+                skillClass.NextExp++;
+            }
+        }
+
+        GameEventHandler.Messenger.DispatchEvent(EventConstant.SkillUpdate);
+    }
+
+    public void MonsterIndexRequest(int iMonsterIndex)
+    {
+        MonsterIndexResponse(iMonsterIndex);
+    }
+
+    public void MonsterIndexResponse(int iMonsterIndex)
+    {
+        MonsterStruct curMonster = MonsterConfig.Instance.GetMonster(iMonsterIndex);
+        MonsterStruct nextMonster = MonsterConfig.Instance.GetMonster(iMonsterIndex + 1);
+        if (nextMonster.Index > 0)
+        {
+            DataManager.Instance.CurrentRole.MonsterIndex = nextMonster.Index;
+        }
+        else
+        {
+            DataManager.Instance.CurrentRole.MonsterIndex = iMonsterIndex;
+        }
+        double addGold = curMonster.Gold;
+        if (addGold > 0)
+        {
+            GoldNotify(addGold);
+        }
+        double addExp = curMonster.Exp;
+        if (addExp > 0)
+        {
+            ExpNotify(addExp);
+        }
+        double dRate0 = UnityEngine.Random.Range(1, 101);
+        double dRate1 = UnityEngine.Random.Range(1, 101);
+        if (dRate0 < (100 * curMonster.EquipRate))
+        {
+            EquipNotify(curMonster.EquipID);
+        }
+        if (dRate1 < (100 * curMonster.ItemRate))
+        {
+            ItemNotify(curMonster.ItemID);
+        }
     }
 }

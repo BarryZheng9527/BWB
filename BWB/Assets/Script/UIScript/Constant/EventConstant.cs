@@ -11,4 +11,11 @@
     public const string SkillUpdate = "SkillUpdate";
     public const string SkillEquipUpdate = "SkillEquipUpdate";
     public const string GoldUpdate = "GoldUpdate";
+    public const string ExpUpdate = "ExpUpdate";
+    public const string LevelUpdate = "LevelUpdate";
+    public const string ItemUpdate = "ItemUpdate";
+    public const string HPUpdate = "HPUpdate";
+    public const string MPUpdate = "MPUpdate";
+    public const string MonsterHPUpdate = "MonsterHPUpdate";
+    public const string MonsterMPUpdate = "MonsterMPUpdate";
 }
