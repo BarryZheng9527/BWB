@@ -13,7 +13,7 @@ public class RoleClass
     public double Exp;
     public double Gold;
     public double Money;
-    public double MonsterIndex;
+    public int MonsterIndex;
     public double CreateTime;
     public double LastOffLineTime;
 }

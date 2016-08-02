@@ -32,9 +32,11 @@ public struct MonsterStruct
 public struct MonsterSkillStruct
 {
     public int Index;
+    public int AttackType;
     public double CD;
     public double Sing;
     public double Attack;
+    public double MATK;
     public double HoldBuffTime;
 }
 
@@ -96,9 +98,11 @@ public class MonsterConfig
                     XmlElement CurItem0 = (XmlElement)item0;
                     MonsterSkillStruct monsterSkill = new MonsterSkillStruct();
                     monsterSkill.Index = Convert.ToInt32(CurItem0.GetAttribute("Index"));
+                    monsterSkill.AttackType = Convert.ToInt32(CurItem0.GetAttribute("AttackType"));
                     monsterSkill.CD = Convert.ToDouble(CurItem0.GetAttribute("CD"));
                     monsterSkill.Sing = Convert.ToDouble(CurItem0.GetAttribute("Sing"));
                     monsterSkill.Attack = Convert.ToDouble(CurItem0.GetAttribute("Attack"));
+                    monsterSkill.MATK = Convert.ToDouble(CurItem0.GetAttribute("MATK"));
                     monsterSkill.HoldBuffTime = Convert.ToDouble(CurItem0.GetAttribute("HoldBuffTime"));
                     DictMonsterSkill.Add(monsterSkill.Index, monsterSkill);
                 }

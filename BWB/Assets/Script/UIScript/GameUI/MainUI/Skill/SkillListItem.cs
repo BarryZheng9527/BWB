@@ -122,6 +122,10 @@ public class SkillListItem : GComponent
             }
             if (_SkillStruct.CustomID > 0)
             {
+                if (DataManager.Instance.CurrentRole.MonsterIndex < _SkillStruct.CustomID)
+                {
+                    bCondition2 = false;
+                }
             }
             if (_SkillStruct.SkillID > 0)
             {

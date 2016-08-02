@@ -17,13 +17,282 @@ public class BattleManager
         }
     }
 
-    private Dictionary<int, double> _DictTotalAttr;
-    private List<SkillClass> _MySkillList;
-    private SkillClass _CurSkill;
-    private int _CurStatus;
+    private Dictionary<int, double> _DictTotalAttr; //角色战斗属性
+    private List<SkillClass> _MySkillList; //角色技能列表
+    private double _FireCD; //角色普攻CD
 
+    private MonsterStruct _CurMonster; //当前关卡怪物
+    private List<MonsterSkillStruct> _CurMonsterSkillList; //当前怪物技能
+
+    private int iMySkillIndex; //当前技能下标
+    private SkillClass _CurSkill = null; //当前技能
+    private double _CurSkillCD; //当前技能CD
+    private SkillStruct _CurSkillStruct = new SkillStruct();
+    private SkillLevelStruct _CurSkillLevelStruct = new SkillLevelStruct();
+    private int _CurStatus; //当前状态（0寻路，1普攻，2技能，3定身）
+    private double _CurCountDown; //当前状态剩余时间
+
+    private int iMonsterSkillIndex; //当前怪物技能下标
+    private MonsterSkillStruct _CurMonsterSkill = new MonsterSkillStruct(); //当前怪物技能
+    private double _CurMonsterSkillCD; //当前怪物技能CD
+    private int _CurMonsterStatus; //当前怪物状态（0寻路，1普攻，2技能，3定身）
+    private double _CurMonsterCountDown; //怪物当前状态剩余时间
+
+    /*
+     * 战斗启动
+     */
     public void BattleManagerStart()
     {
-        //Timers.inst.Add(0.1f, 0, UpdateTaskTab);
+        InitBattle();
+        Timers.inst.Add(0.1f, 0, UpdateBattle);
+    }
+
+    /*
+     * 单次战斗启动
+     */
+    private void InitBattle()
+    {
+        _CurStatus = Constant.BATTLESTATUS0;
+        _CurMonsterStatus = Constant.BATTLESTATUS0;
+        StatusTransform(_CurStatus, _CurStatus);
+        MonsterStatusTransform(_CurMonsterStatus, _CurMonsterStatus);
+    }
+
+    /*
+     * timer回调
+     */
+    public void UpdateBattle(object param)
+    {
+        _CurCountDown -= 0.1;
+        _CurMonsterCountDown -= 0.1;
+        if (_CurCountDown <= 0)
+        {
+            CalculateStatus(_CurStatus);
+            int iNextStatus = NextStatus(_CurStatus);
+            StatusTransform(_CurStatus, iNextStatus);
+            _CurStatus = iNextStatus;
+        }
+        if (_CurMonsterCountDown <= 0)
+        {
+            MonsterCalculateStatus(_CurMonsterStatus);
+            int iMonsterNextStatus = MonsterNextStatus(_CurMonsterStatus);
+            MonsterStatusTransform(_CurMonsterStatus, iMonsterNextStatus);
+            _CurMonsterStatus = iMonsterNextStatus;
+        }
+        if (_CurSkill != null)
+        {
+            _CurSkillCD -= 0.1;
+        }
+        if (_CurMonsterSkill.Index > 0)
+        {
+            _CurMonsterSkillCD -= 0.1;
+        }
+    }
+
+    /*
+     * 结算当前状态
+     */
+    private void CalculateStatus(int iCurStatus)
+    {
+        if (iCurStatus == Constant.BATTLESTATUS0)
+        {
+        }
+        else if (iCurStatus == Constant.BATTLESTATUS1)
+        {
+            double dCostHP = BattleHandler.GetRoleAttack(_DictTotalAttr, _CurMonster);
+            _CurMonster.HP -= dCostHP;
+            if (_CurMonster.HP <= 0)
+            {
+                InitBattle();
+            }
+        }
+        else if (iCurStatus == Constant.BATTLESTATUS2)
+        {
+            double dCostHP0 = BattleHandler.GetSkillAttack(_DictTotalAttr, _CurSkill, _CurMonster);
+            _CurMonster.HP -= dCostHP0;
+            if (_CurMonster.HP <= 0)
+            {
+                InitBattle();
+            }
+        }
+    }
+
+    /*
+     * 结算怪物当前状态
+     */
+    private void MonsterCalculateStatus(int iCurStatus)
+    {
+        if (iCurStatus == Constant.BATTLESTATUS0)
+        {
+        }
+        else if (iCurStatus == Constant.BATTLESTATUS1)
+        {
+            double dCostHP = BattleHandler.GetMonsterAttack(_DictTotalAttr, _CurMonster);
+            _DictTotalAttr[Constant.HP] -= dCostHP;
+            if (_DictTotalAttr[Constant.HP] <= 0)
+            {
+                InitBattle();
+            }
+        }
+        else if (iCurStatus == Constant.BATTLESTATUS2)
+        {
+            double dCostHP0 = BattleHandler.GetMonsterSkillAttack(_DictTotalAttr, _CurMonster, _CurMonsterSkill);
+            _DictTotalAttr[Constant.HP] -= dCostHP0;
+            if (_DictTotalAttr[Constant.HP] <= 0)
+            {
+                InitBattle();
+            }
+        }
+    }
+
+    /*
+     * 下一状态
+     */
+    private int NextStatus(int iCurStatus)
+    {
+        int iNextStatus = 0;
+        if (iCurStatus == Constant.BATTLESTATUS0)
+        {
+            iNextStatus = Constant.BATTLESTATUS1;
+        }
+        else if (iCurStatus == Constant.BATTLESTATUS1)
+        {
+            if (_CurSkill != null && _CurSkillCD <= 0)
+            {
+                iNextStatus = Constant.BATTLESTATUS2;
+            }
+            else
+            {
+                iNextStatus = Constant.BATTLESTATUS1;
+            }
+        }
+        else if (iCurStatus == Constant.BATTLESTATUS2)
+        {
+            iNextStatus = Constant.BATTLESTATUS1;
+        }
+        return iNextStatus;
+    }
+
+    /*
+     * 怪物下一状态
+     */
+    private int MonsterNextStatus(int iCurStatus)
+    {
+        int iNextStatus = 0;
+        if (iCurStatus == Constant.BATTLESTATUS0)
+        {
+            iNextStatus = Constant.BATTLESTATUS1;
+        }
+        else if (iCurStatus == Constant.BATTLESTATUS1)
+        {
+            if (_CurMonsterSkill.Index > 0 && _CurMonsterSkillCD <= 0)
+            {
+                iNextStatus = Constant.BATTLESTATUS2;
+            }
+            else
+            {
+                iNextStatus = Constant.BATTLESTATUS1;
+            }
+        }
+        else if (iCurStatus == Constant.BATTLESTATUS2)
+        {
+            iNextStatus = Constant.BATTLESTATUS1;
+        }
+        return iNextStatus;
+    }
+
+    /*
+     * 状态转换
+     */
+    private void StatusTransform(int iCurStatus, int iNextStatus)
+    {
+        switch (iNextStatus)
+        {
+            case Constant.BATTLESTATUS0:
+                {
+                    _DictTotalAttr = DataManager.Instance.DictTotalAttr;
+                    _MySkillList = SkillHandler.GetMySkillList();
+                    _FireCD = Constant.FIRECD / _DictTotalAttr[Constant.FIRERATE];
+                    _CurCountDown = Constant.SEARCHMONSTERTIME;
+                    iMySkillIndex = 0;
+                    break;
+                }
+            case Constant.BATTLESTATUS1:
+                {
+                    _CurCountDown = _FireCD;
+                    if (iCurStatus != iNextStatus)
+                    {
+                        if (_MySkillList.Count > 0)
+                        {
+                            _CurSkill = _MySkillList[iMySkillIndex];
+                            if (_CurSkill != null)
+                            {
+                                _CurSkillStruct = SkillConfig.Instance.GetSkill(_CurSkill.SkillID);
+                                _CurSkillLevelStruct = _CurSkillStruct.GetSkillLevel(_CurSkill.Level);
+                                _CurSkillCD = _CurSkillLevelStruct.CD;
+                            }
+                            iMySkillIndex ++;
+                            if (iMySkillIndex >= _MySkillList.Count)
+                            {
+                                iMySkillIndex = 0;
+                            }
+                        }
+                    }
+                    break;
+                }
+            case Constant.BATTLESTATUS2:
+                {
+                    _CurCountDown = _CurSkillLevelStruct.Sing / _DictTotalAttr[Constant.SINGRATE];
+                    break;
+                }
+            default:
+                return;
+        }
+    }
+
+    /*
+     * 怪物状态转换
+     */
+    private void MonsterStatusTransform(int iCurStatus, int iMonsterNextStatus)
+    {
+        switch (iMonsterNextStatus)
+        {
+            case Constant.BATTLESTATUS0:
+                {
+                    _CurMonster = MonsterConfig.Instance.GetMonster(DataManager.Instance.CurrentRole.MonsterIndex);
+                    _CurMonsterSkillList = MonsterHandler.GetMonsterSkillList(DataManager.Instance.CurrentRole.MonsterIndex);
+                    _CurMonsterCountDown = Constant.SEARCHMONSTERTIME;
+                    iMonsterSkillIndex = 0;
+                    break;
+                }
+            case Constant.BATTLESTATUS1:
+                {
+                    _CurMonsterCountDown = Constant.FIRECD;
+                    if (iCurStatus != iMonsterNextStatus)
+                    {
+                        if (_CurMonsterSkillList.Count > 0)
+                        {
+                            _CurMonsterSkill = _CurMonsterSkillList[iMonsterSkillIndex];
+                            if (_CurMonsterSkill.Index > 0)
+                            {
+                                _CurMonsterSkillCD = _CurMonsterSkill.CD;
+                            }
+                            iMonsterSkillIndex++;
+                            if (iMonsterSkillIndex >= _CurMonsterSkillList.Count)
+                            {
+                                iMonsterSkillIndex = 0;
+                            }
+                        }
+                    }
+                    break;
+                }
+            case Constant.BATTLESTATUS2:
+                {
+                    _CurMonsterCountDown = _CurMonsterSkill.Sing;
+                    break;
+                }
+            default:
+                return;
+        }
     }
 }

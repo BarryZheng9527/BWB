@@ -21,12 +21,14 @@
 	</Monster>
 <!--
 	Index怪物技能Index
+	AttackType攻击类型（1物理，2魔法）
+	MATK增加魔法攻击
 	CD怪物技能CD
 	Sing怪物技能吟唱时间
 	Attack怪物技能伤害百分比
 	HoldBuffTime怪物技能定身时间
 -->
 	<MonsterSkill>
-		<item Index="1" CD="5" Sing="2" Attack="1" HoldBuffTime="0"/>
+		<item Index="1" AttackType="1" CD="5" Sing="2" Attack="1" MATK="0" HoldBuffTime="0"/>
 	</MonsterSkill>
 </Root>

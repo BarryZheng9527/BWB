@@ -8,6 +8,8 @@
     public const int ITEM = 2; //道具类型
     public const int BATTLESKILL = 1; //战斗技能
     public const int PASSIVESKILL = 2; //被动技能
+    public const int PHYSICSSKILL = 1; //物理技能
+    public const int MAGICSKILL = 2; //魔法技能
     public const int WHITE = 1; //白
     public const int GREEN = 2; //绿
     public const int BLUE = 3; //蓝
@@ -40,6 +42,8 @@
     public const int AGILITYWEAKEN = 50; //敏捷削弱值
     public const int AGILITYOVERFLOW = 200; //敏捷防溢出值
     public const int PROTECTOVERFLOW = 150; //保护防溢出值
+    public const int DEFENSEMULTIPLE = 2; //防御减少物理伤害倍数
+    public const int MAGICATTACKMULTIPLE = 3; //魔法攻击伤害倍数
     public const int REMOULDNUM = 5; //改造上限次数
     public const int ARMNUM = 4; //武器类型总数
     public const int BOW = 1; //弓
@@ -67,4 +71,11 @@
     public const int EQUIPPOS8 = 8; //戒指
     public const int EQUIPPOS9 = 9; //项链
     public const double EQUIPPOS2RATE = 0.2; //副手单手武器属性比率
+    public const int SKILLNUM = 4; //技能携带上限
+    public const double FIRECD = 2; //普通攻击CD时间
+    public const double SEARCHMONSTERTIME = 5; //寻怪时间
+    public const int BATTLESTATUS0 = 0; //寻路状态
+    public const int BATTLESTATUS1 = 1; //普攻状态
+    public const int BATTLESTATUS2 = 2; //技能状态
+    public const int BATTLESTATUS3 = 3; //定身状态
 }

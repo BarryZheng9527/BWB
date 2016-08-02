@@ -21,21 +21,29 @@ public static class SkillHandler
 
     static public List<SkillClass> GetMySkillList()
     {
-        List<SkillClass> mySkillList = new List<SkillClass>();
+        List<SkillClass> MySkillList = new List<SkillClass>();
+        Dictionary<int, SkillClass> DictMySkill = new Dictionary<int, SkillClass>();
+        for (int iIndex = 0; iIndex < Constant.SKILLNUM; ++iIndex)
+        {
+            DictMySkill.Add(iIndex + 1, null);
+        }
         if (DataManager.Instance.SkillData.SkillDataList.Count > 0)
         {
             foreach (SkillClass skillClass in DataManager.Instance.SkillData.SkillDataList)
             {
                 if (skillClass.Pos > 0)
                 {
-                    mySkillList.Add(skillClass);
+                    DictMySkill[skillClass.Pos] = skillClass;
                 }
             }
         }
-        mySkillList.Sort(delegate(SkillClass skillClass1, SkillClass skillClass2)
+        for (int iIndex0 = 0; iIndex0 < Constant.SKILLNUM; ++iIndex0)
         {
-            return skillClass1.Pos.CompareTo(skillClass2.Pos);
-        });
-        return mySkillList;
+            if (DictMySkill[iIndex0] != null)
+            {
+                MySkillList.Add(DictMySkill[iIndex0]);
+            }
+        }
+        return MySkillList;
     }
 }
