@@ -267,42 +267,50 @@ public class NetManager
         GameEventHandler.Messenger.DispatchEvent(EventConstant.SkillUpdate);
     }
 
-    public void MonsterIndexRequest(int iMonsterIndex)
+    public void MonsterIndexRequest(int iMonsterIndex, bool bWin = false)
     {
-        MonsterIndexResponse(iMonsterIndex);
+        MonsterIndexResponse(iMonsterIndex, bWin);
     }
 
-    public void MonsterIndexResponse(int iMonsterIndex)
+    public void MonsterIndexResponse(int iMonsterIndex, bool bWin = false)
     {
-        MonsterStruct curMonster = MonsterConfig.Instance.GetMonster(iMonsterIndex);
-        MonsterStruct nextMonster = MonsterConfig.Instance.GetMonster(iMonsterIndex + 1);
-        if (nextMonster.Index > 0)
+        if (bWin)
         {
-            DataManager.Instance.CurrentRole.MonsterIndex = nextMonster.Index;
+            MonsterStruct curMonster = MonsterConfig.Instance.GetMonster(iMonsterIndex);
+            MonsterStruct nextMonster = MonsterConfig.Instance.GetMonster(iMonsterIndex + 1);
+            if (nextMonster.Index > 0)
+            {
+                DataManager.Instance.CurrentRole.MonsterIndex = nextMonster.Index;
+            }
+            else
+            {
+                DataManager.Instance.CurrentRole.MonsterIndex = iMonsterIndex;
+            }
+            double addGold = curMonster.Gold;
+            if (addGold > 0)
+            {
+                GoldNotify(addGold);
+            }
+            double addExp = curMonster.Exp;
+            if (addExp > 0)
+            {
+                ExpNotify(addExp);
+            }
+            double dRate0 = UnityEngine.Random.Range(1, 101);
+            double dRate1 = UnityEngine.Random.Range(1, 101);
+            if (dRate0 < (100 * curMonster.EquipRate))
+            {
+                EquipNotify(curMonster.EquipID);
+            }
+            if (dRate1 < (100 * curMonster.ItemRate))
+            {
+                ItemNotify(curMonster.ItemID);
+            }
         }
         else
         {
             DataManager.Instance.CurrentRole.MonsterIndex = iMonsterIndex;
         }
-        double addGold = curMonster.Gold;
-        if (addGold > 0)
-        {
-            GoldNotify(addGold);
-        }
-        double addExp = curMonster.Exp;
-        if (addExp > 0)
-        {
-            ExpNotify(addExp);
-        }
-        double dRate0 = UnityEngine.Random.Range(1, 101);
-        double dRate1 = UnityEngine.Random.Range(1, 101);
-        if (dRate0 < (100 * curMonster.EquipRate))
-        {
-            EquipNotify(curMonster.EquipID);
-        }
-        if (dRate1 < (100 * curMonster.ItemRate))
-        {
-            ItemNotify(curMonster.ItemID);
-        }
+        BattleManager.Instance.BattleManagerStart();
     }
 }

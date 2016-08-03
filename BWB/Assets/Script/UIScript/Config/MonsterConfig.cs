@@ -12,6 +12,7 @@ public struct MonsterStruct
     public string Name;
     public double Attack;
     public double HP;
+    public double MP;
     public int SkillID1;
     public int SkillID2;
     public int SkillID3;
@@ -35,6 +36,7 @@ public struct MonsterSkillStruct
     public int AttackType;
     public double CD;
     public double Sing;
+    public double MPCost;
     public double Attack;
     public double MATK;
     public double HoldBuffTime;
@@ -77,6 +79,7 @@ public class MonsterConfig
                     monster.Name = CurItem.GetAttribute("Name");
                     monster.Attack = Convert.ToDouble(CurItem.GetAttribute("Attack"));
                     monster.HP = Convert.ToDouble(CurItem.GetAttribute("HP"));
+                    monster.MP = Convert.ToDouble(CurItem.GetAttribute("MP"));
                     monster.SkillID1 = Convert.ToInt32(CurItem.GetAttribute("SkillID1"));
                     monster.SkillID2 = Convert.ToInt32(CurItem.GetAttribute("SkillID2"));
                     monster.SkillID3 = Convert.ToInt32(CurItem.GetAttribute("SkillID3"));
@@ -101,6 +104,7 @@ public class MonsterConfig
                     monsterSkill.AttackType = Convert.ToInt32(CurItem0.GetAttribute("AttackType"));
                     monsterSkill.CD = Convert.ToDouble(CurItem0.GetAttribute("CD"));
                     monsterSkill.Sing = Convert.ToDouble(CurItem0.GetAttribute("Sing"));
+                    monsterSkill.MPCost = Convert.ToDouble(CurItem0.GetAttribute("MPCost"));
                     monsterSkill.Attack = Convert.ToDouble(CurItem0.GetAttribute("Attack"));
                     monsterSkill.MATK = Convert.ToDouble(CurItem0.GetAttribute("MATK"));
                     monsterSkill.HoldBuffTime = Convert.ToDouble(CurItem0.GetAttribute("HoldBuffTime"));

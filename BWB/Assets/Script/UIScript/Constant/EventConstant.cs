@@ -14,6 +14,7 @@
     public const string ExpUpdate = "ExpUpdate";
     public const string LevelUpdate = "LevelUpdate";
     public const string ItemUpdate = "ItemUpdate";
+    public const string InitHpMp = "InitHpMp";
     public const string HPUpdate = "HPUpdate";
     public const string MPUpdate = "MPUpdate";
     public const string MonsterHPUpdate = "MonsterHPUpdate";

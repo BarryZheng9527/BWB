@@ -38,6 +38,30 @@ public class BattleManager
     private int _CurMonsterStatus; //当前怪物状态（0寻路，1普攻，2技能，3定身）
     private double _CurMonsterCountDown; //怪物当前状态剩余时间
 
+    public Dictionary<int, double> DictTotalAttr
+    {
+        get
+        {
+            return _DictTotalAttr;
+        }
+        set
+        {
+            _DictTotalAttr = value;
+        }
+    }
+
+    public MonsterStruct CurMonster
+    {
+        get
+        {
+            return _CurMonster;
+        }
+        set
+        {
+            _CurMonster = value;
+        }
+    }
+
     /*
      * 战斗启动
      */
@@ -56,6 +80,7 @@ public class BattleManager
         _CurMonsterStatus = Constant.BATTLESTATUS0;
         StatusTransform(_CurStatus, _CurStatus);
         MonsterStatusTransform(_CurMonsterStatus, _CurMonsterStatus);
+        GameEventHandler.Messenger.DispatchEvent(EventConstant.InitHpMp);
     }
 
     /*
@@ -103,8 +128,10 @@ public class BattleManager
             _CurMonster.HP -= dCostHP;
             if (_CurMonster.HP <= 0)
             {
-                InitBattle();
+                Timers.inst.Remove(UpdateBattle);
+                NetManager.Instance.MonsterIndexRequest(_CurMonster.Index, true);
             }
+            GameEventHandler.Messenger.DispatchEvent(EventConstant.MonsterHPUpdate, _CurMonster.HP);
         }
         else if (iCurStatus == Constant.BATTLESTATUS2)
         {
@@ -128,9 +155,10 @@ public class BattleManager
             _CurMonster.HP -= dCostHP0;
             if (_CurMonster.HP <= 0)
             {
-                NetManager.Instance.MonsterIndexRequest(_CurMonster.Index);
-                InitBattle();
+                Timers.inst.Remove(UpdateBattle);
+                NetManager.Instance.MonsterIndexRequest(_CurMonster.Index, true);
             }
+            GameEventHandler.Messenger.DispatchEvent(EventConstant.MonsterHPUpdate, _CurMonster.HP);
         }
     }
 
@@ -148,8 +176,10 @@ public class BattleManager
             _DictTotalAttr[Constant.HP] -= dCostHP;
             if (_DictTotalAttr[Constant.HP] <= 0)
             {
-                InitBattle();
+                Timers.inst.Remove(UpdateBattle);
+                NetManager.Instance.MonsterIndexRequest(_CurMonster.Index);
             }
+            GameEventHandler.Messenger.DispatchEvent(EventConstant.HPUpdate, _DictTotalAttr[Constant.HP]);
         }
         else if (iCurStatus == Constant.BATTLESTATUS2)
         {
@@ -157,8 +187,10 @@ public class BattleManager
             _DictTotalAttr[Constant.HP] -= dCostHP0;
             if (_DictTotalAttr[Constant.HP] <= 0)
             {
-                InitBattle();
+                Timers.inst.Remove(UpdateBattle);
+                NetManager.Instance.MonsterIndexRequest(_CurMonster.Index);
             }
+            GameEventHandler.Messenger.DispatchEvent(EventConstant.HPUpdate, _DictTotalAttr[Constant.HP]);
         }
     }
 
@@ -202,7 +234,7 @@ public class BattleManager
         }
         else if (iCurStatus == Constant.BATTLESTATUS1)
         {
-            if (_CurMonsterSkill.Index > 0 && _CurMonsterSkillCD <= 0)
+            if (_CurMonsterSkill.Index > 0 && _CurMonsterSkillCD <= 0 && _CurMonster.MP >= _CurMonsterSkill.MPCost)
             {
                 iNextStatus = Constant.BATTLESTATUS2;
             }
@@ -260,6 +292,8 @@ public class BattleManager
             case Constant.BATTLESTATUS2:
                 {
                     _CurCountDown = _CurSkillLevelStruct.Sing / _DictTotalAttr[Constant.SINGRATE];
+                    _DictTotalAttr[Constant.MP] -= _CurSkillLevelStruct.MPCost;
+                    GameEventHandler.Messenger.DispatchEvent(EventConstant.MPUpdate, _DictTotalAttr[Constant.MP]);
                     break;
                 }
             default:
@@ -306,6 +340,8 @@ public class BattleManager
             case Constant.BATTLESTATUS2:
                 {
                     _CurMonsterCountDown = _CurMonsterSkill.Sing;
+                    _CurMonster.MP -= _CurMonsterSkill.MPCost;
+                    GameEventHandler.Messenger.DispatchEvent(EventConstant.MonsterMPUpdate, _CurMonster.MP);
                     break;
                 }
             default:
