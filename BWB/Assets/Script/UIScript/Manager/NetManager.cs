@@ -127,6 +127,7 @@ public class NetManager
         itemclass.ItemType = Constant.EQUIP;
         itemclass.UniqueID = CommonHandler.GetUniqueID();
         itemclass.EquipID = 100001;
+        itemclass.EquipPos = 1;
         itemclass.Level = 1;
         itemclass.RemouldOptionList.Add(1);
         itemlist.Add(itemclass);

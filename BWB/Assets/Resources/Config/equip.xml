@@ -64,6 +64,6 @@
 	Remould5
 -->
 	<Equips>
-		<item ID="100001" EquipType="1" EquipPos="1" Name="EquipName_100001" TypeDesc="EquipType1" Desc="EquipDesc_100001" Icon="Equip_100001" Quality="1" MinAttack="0" MaxAttack="0" Matk="0" Firerate="0" Balance="0" Attr1="0" Attr2="0" Attr3="0" Attr4="0" Attr5="0" Attr6="0" Attr7="0" Attr8="0" Attr9="0" Attr10="0" Attr11="0" Attr12="0" Attr13="0" Attr14="0" Attr15="0" Attr16="0" Attr17="0" Remould1="1" Remould2="2" Remould3="3" Remould4="4" Remould5="5"/>
+		<item ID="100001" EquipType="1" EquipPos="1" Name="EquipName_100001" TypeDesc="EquipType1" Desc="EquipDesc_100001" Icon="Equip_100001" Quality="1" MinAttack="10" MaxAttack="20" Matk="0" Firerate="2" Balance="0.85" Attr1="0" Attr2="0" Attr3="0" Attr4="0" Attr5="0" Attr6="0" Attr7="100" Attr8="0" Attr9="0" Attr10="0" Attr11="0" Attr12="0" Attr13="0" Attr14="0" Attr15="0" Attr16="0" Attr17="0" Remould1="1" Remould2="2" Remould3="3" Remould4="4" Remould5="5"/>
 	</Equips>
 </Root>
