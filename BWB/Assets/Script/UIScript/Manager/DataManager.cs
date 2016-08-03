@@ -16,13 +16,14 @@ public class DataManager
         }
     }
 
-    private RoleData _RoleData = new RoleData();
-    private RoleClass _CurrentRole = new RoleClass();
-    private ItemData _ItemData = new ItemData();
-    private SkillData _SkillData = new SkillData();
-    private Dictionary<int, double> _DictBaseAttr = new Dictionary<int, double>();
-    private Dictionary<int, string> _DictBaseAttrShow = new Dictionary<int, string>();
-    private Dictionary<int, double> _DictTotalAttr = new Dictionary<int, double>();
+    private RoleData _RoleData = new RoleData(); //角色列表信息
+    private RoleClass _CurrentRole = new RoleClass(); //当前选择角色
+    private ItemData _ItemData = new ItemData(); //道具信息
+    private SkillData _SkillData = new SkillData(); //拥有技能信息
+    private Dictionary<int, double> _DictBaseAttr = new Dictionary<int, double>(); //基础属性
+    private Dictionary<int, string> _DictBaseAttrShow = new Dictionary<int, string>(); //展示面板属性
+    private Dictionary<int, double> _DictTotalAttr = new Dictionary<int, double>(); //战斗属性
+    private bool _AutoMonster = false;
 
     public RoleData RoleData
     {
@@ -105,6 +106,18 @@ public class DataManager
         set
         {
             _DictTotalAttr = value;
+        }
+    }
+
+    public bool AutoMonster
+    {
+        get
+        {
+            return _AutoMonster;
+        }
+        set
+        {
+            _AutoMonster = value;
         }
     }
 }

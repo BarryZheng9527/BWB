@@ -41,6 +41,9 @@ public class Remould : GComponent
         _OptionList.RemoveChildrenToPool();
     }
 
+    /*
+     * 更新装备显示列表
+     */
     private void UpdateEquipList(bool bEquip)
     {
         _EquipList.RemoveChildrenToPool();
@@ -58,6 +61,9 @@ public class Remould : GComponent
         }
     }
 
+    /*
+     * 更新装备改造信息
+     */
     private void UpdateOptionInfo()
     {
         _CurEquip.SetEquipData(_CurItemData, ITEM_TIPS_TYPE.NOTIPS);
@@ -92,6 +98,9 @@ public class Remould : GComponent
         UpdateEquipList(false);
     }
 
+    /*
+     * 改造回调
+     */
     private void OnRemould(EventContext context)
     {
         string uniqueID = (string)context.data;

@@ -12,6 +12,8 @@ public class Battle : GComponent
     private GProgressBar _EnemyHP;
     private GProgressBar _EnemyMP;
 
+    private bool bInitBattle = true;
+
     public override void ConstructFromXML(XML xml)
     {
         base.ConstructFromXML(xml);
@@ -34,7 +36,16 @@ public class Battle : GComponent
         GameEventHandler.Messenger.AddEventListener(EventConstant.MPUpdate, OnMPUpdate);
         GameEventHandler.Messenger.AddEventListener(EventConstant.MonsterHPUpdate, OnMonsterHPUpdate);
         GameEventHandler.Messenger.AddEventListener(EventConstant.MonsterMPUpdate, OnMonsterMPUpdate);
-        UpdateShowInfo();
+        if (bInitBattle)
+        {
+            BattleManager.Instance.BattleManagerStart();
+            bInitBattle = false;
+            DataManager.Instance.AutoMonster = false;
+        }
+        else
+        {
+            UpdateShowInfo();
+        }
     }
 
     private void RemovedFromStage()
@@ -46,14 +57,21 @@ public class Battle : GComponent
         GameEventHandler.Messenger.RemoveEventListener(EventConstant.MonsterMPUpdate, OnMonsterMPUpdate);
     }
 
+    /*
+     * 血条魔法条初始化
+     */
     private void OnInitHpMp()
     {
         Dictionary<int, double> dictTotalAttr = DataManager.Instance.DictTotalAttr;
         MonsterStruct monster = MonsterConfig.Instance.GetMonster(DataManager.Instance.CurrentRole.MonsterIndex);
         _MyHP.max = (int)dictTotalAttr[Constant.HP];
+        _MyHP.value = (int)dictTotalAttr[Constant.HP];
         _MyMP.max = (int)dictTotalAttr[Constant.MP];
+        _MyMP.value = (int)dictTotalAttr[Constant.MP];
         _EnemyHP.max = (int)monster.HP;
+        _EnemyHP.value = (int)monster.HP;
         _EnemyMP.max = (int)monster.MP;
+        _EnemyMP.value = (int)monster.MP;
     }
 
     private void OnHPUpdate(EventContext context)

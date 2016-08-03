@@ -27,6 +27,9 @@ public class Option : GComponent
     {
     }
 
+    /*
+     * 改造信息
+     */
     public void SetData(ItemClass itemData, OptionStruct optionStruct)
     {
         _CurItemData = itemData;

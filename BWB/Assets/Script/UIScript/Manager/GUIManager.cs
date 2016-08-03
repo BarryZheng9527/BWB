@@ -67,27 +67,42 @@ public class GUIManager
         UIObjectFactory.SetPackageItemExtension(UIPackage.GetItemURL("Common", "ItemCard"), typeof(ItemCard));
     }
 
+    /*
+     * 登陆界面
+     */
     public void OpenLogin()
     {
         login.Show();
     }
 
+    /*
+     * 主界面
+     */
     public void OpenMainUI()
     {
         mainUI.Show();
     }
 
+    /*
+     * 选角界面
+     */
     public void OpenCreatRole()
     {
         creatRole.Show();
     }
 
+    /*
+     * 装备tips
+     */
     public void OpenEquipTips(ItemClass data, ITEM_TIPS_TYPE tipsType)
     {
         equipTips.SetData(data, tipsType);
         equipTips.Show();
     }
 
+    /*
+     * 弹字信息
+     */
     public void OpenPopMessage(string text)
     {
         popMessage.setText(text);

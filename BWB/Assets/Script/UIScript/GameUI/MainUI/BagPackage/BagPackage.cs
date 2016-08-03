@@ -42,16 +42,25 @@ public class BagPackage : GComponent
         }
     }
 
+    /*
+     * 装备
+     */
     private void OnEquip()
     {
         UpdateItemList();
     }
 
+    /*
+     * 卸载装备
+     */
     private void OnUnEquip()
     {
         UpdateItemList();
     }
 
+    /*
+     * 获取道具
+     */
     private void OnItemUpdate()
     {
         UpdateItemList();

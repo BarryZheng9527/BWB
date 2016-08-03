@@ -53,6 +53,9 @@ public class Role : GComponent
 		GameEventHandler.Messenger.RemoveEventListener(EventConstant.SkillEquipUpdate, OnMySkillUpdate);
     }
 
+    /*
+     * 更新装备列表
+     */
     private void UpdateEquipList()
     {
         for (int index = 1; index <= Constant.EQUIPPOSNUM; ++index)
@@ -71,6 +74,9 @@ public class Role : GComponent
         }
     }
 
+    /*
+     * 更新属性列表
+     */
     private void UpdateAttrList()
     {
         for (int iAttrIndex = 1; iAttrIndex <= Constant.ATTRNUM; ++iAttrIndex)
@@ -82,6 +88,9 @@ public class Role : GComponent
         }
     }
 
+    /*
+     * 更新已装备技能列表
+     */
 	private void OnUpdateMySkill()
 	{
 		_MySkill1.ClearShow();
@@ -137,6 +146,9 @@ public class Role : GComponent
 		ShowMySkillList();
 	}
 
+    /*
+     * 显示选择技能列表
+     */
 	private void ShowMySkillList()
 	{
 		_MySkillList.x = _iPos * 120;
@@ -160,21 +172,33 @@ public class Role : GComponent
 		NetManager.Instance.SkillEquipRequest (item._CurSkillData.ID, _iPos);
 	}
 
+    /*
+     * 装备
+     */
     private void OnEquip()
     {
         UpdateEquipList();
     }
 
+    /*
+     * 卸载装备
+     */
     private void OnUnEquip()
     {
         UpdateEquipList();
     }
 
+    /*
+     * 属性更新
+     */
     private void OnTotalAttr()
     {
         UpdateAttrList();
     }
 
+    /*
+     * 已装备技能更新
+     */
 	private void OnMySkillUpdate()
 	{
 		OnUpdateMySkill();

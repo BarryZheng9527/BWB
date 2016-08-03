@@ -46,6 +46,9 @@ public class MainUI : Window {
         GameEventHandler.Messenger.RemoveEventListener(EventConstant.LevelUpdate, OnLevelUpdate);
     }
 
+    /*
+     * 更新角色基本信息
+     */
     private void InitShowInfo()
     {
         RoleClass currentRole = DataManager.Instance.CurrentRole;
@@ -67,16 +70,25 @@ public class MainUI : Window {
         _Exp.max = (int)expProgress[1];
     }
 
+    /*
+     * 更新战力属性
+     */
     private void OnTotalAttr()
     {
         _TotalAttr.text = LanguageConfig.Instance.GetText("Text_100003") + "????";
     }
 
+    /*
+     * 更新金币
+     */
     private void OnGoldUpdate()
     {
         _Gold.text = DataManager.Instance.CurrentRole.Gold.ToString();
     }
 
+    /*
+     * 更新经验
+     */
     private void OnExpUpdate()
     {
         double[] expProgress = LevelConfig.Instance.GetExpProgress(DataManager.Instance.CurrentRole.Exp);
@@ -84,6 +96,9 @@ public class MainUI : Window {
         _Exp.max = (int)expProgress[1];
     }
 
+    /*
+     * 更新等级
+     */
     private void OnLevelUpdate()
     {
         _Level.text = "Lv." + DataManager.Instance.CurrentRole.Level;

@@ -7,13 +7,13 @@ public class RoleData
 
 public class RoleClass
 {
-    public string Name;
-    public int Level;
-    public int Job;
-    public double Exp;
-    public double Gold;
-    public double Money;
-    public int MonsterIndex;
-    public double CreateTime;
-    public double LastOffLineTime;
+    public string Name; //名
+    public int Level; //等级
+    public int Job; //职业
+    public double Exp; //经验
+    public double Gold; //金币
+    public double Money; //钻石
+    public int MonsterIndex; //关卡进度
+    public double CreateTime; //创建时间
+    public double LastOffLineTime; //上次登录时间
 }

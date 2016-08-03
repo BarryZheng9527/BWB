@@ -4,6 +4,9 @@ using System.Collections.Generic;
 
 public static class AttrHandler
 {
+    /*
+     * 计算存储属性
+     */
     static public void CalculateTotalAttr()
     {
         Dictionary<int, double> DictBaseAttr = new Dictionary<int, double>();

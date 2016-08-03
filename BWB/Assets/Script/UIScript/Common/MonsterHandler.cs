@@ -4,6 +4,9 @@ using System.Collections.Generic;
 
 public static class MonsterHandler
 {
+    /*
+     * 获取怪物技能
+     */
     static public List<MonsterSkillStruct> GetMonsterSkillList(int iMonsterID)
     {
         List<MonsterSkillStruct> monsterSkillList = new List<MonsterSkillStruct>();

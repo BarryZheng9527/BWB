@@ -5,6 +5,9 @@ using System;
 
 public static class CommonHandler
 {
+    /*
+     * 时间转换
+     */
     static public string TimeTransform(int iTime)
     {
         int iHour = (int)(iTime / 3600);
@@ -18,6 +21,9 @@ public static class CommonHandler
         return szTime;
     }
 
+    /*
+     * 生成唯一ID
+     */
     static public string GetUniqueID()
     {
         long i = 1;

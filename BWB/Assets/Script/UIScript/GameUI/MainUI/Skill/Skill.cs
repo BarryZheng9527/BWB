@@ -33,6 +33,9 @@ public class Skill : GComponent
         GameEventHandler.Messenger.RemoveEventListener(EventConstant.SkillUpdate, OnSkillUpdate);
     }
 
+    /*
+     * 更新技能列表
+     */
     private void OnUpdateShowList()
     {
         _SkillList.RemoveChildrenToPool();

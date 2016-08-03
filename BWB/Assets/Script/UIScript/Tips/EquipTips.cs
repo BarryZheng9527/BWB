@@ -57,6 +57,9 @@ public class EquipTips : Window
         TipsType = tipsType;
     }
 
+    /*
+     * 装备信息
+     */
     private void UpdateShowInfo()
     {
         if (_CurItemData != null)
@@ -84,6 +87,9 @@ public class EquipTips : Window
         }
     }
 
+    /*
+     * 装备属性
+     */
     private void SetBasePropStr()
     {
         _Attr.text = "";
@@ -115,6 +121,9 @@ public class EquipTips : Window
         }
     }
 
+    /*
+     * 装备
+     */
     private void OnEquip()
     {
         if (_CurItemData != null)
@@ -125,6 +134,9 @@ public class EquipTips : Window
         Hide();
     }
 
+    /*
+     * 卸载
+     */
     private void OnUnLoad()
     {
         if (_CurItemData != null)

@@ -21,12 +21,18 @@ public class NetManager
         }
     }
 
+    /*
+     * 金币增量
+     */
     public void GoldNotify(double dGold)
     {
         DataManager.Instance.CurrentRole.Gold += dGold;
         GameEventHandler.Messenger.DispatchEvent(EventConstant.GoldUpdate);
     }
 
+    /*
+     * 经验增量
+     */
     public void ExpNotify(double dExp)
     {
         DataManager.Instance.CurrentRole.Exp += dExp;
@@ -40,6 +46,9 @@ public class NetManager
         }
     }
 
+    /*
+     * 新增装备
+     */
     public void EquipNotify(int iEquipID)
     {
         ItemClass itemclass = new ItemClass();
@@ -50,6 +59,9 @@ public class NetManager
         GameEventHandler.Messenger.DispatchEvent(EventConstant.ItemUpdate);
     }
 
+    /*
+     * 新增道具
+     */
     public void ItemNotify(int iItemID)
     {
         ItemClass itemclass = new ItemClass();
@@ -59,6 +71,9 @@ public class NetManager
         GameEventHandler.Messenger.DispatchEvent(EventConstant.ItemUpdate);
     }
 
+    /*
+     * 登陆
+     */
     public void LoginRequest(string name, string password)
     {
         if (name == "bwb" && password == "bwb")
@@ -86,6 +101,9 @@ public class NetManager
         GameEventHandler.Messenger.DispatchEvent(EventConstant.Login);
     }
 
+    /*
+     * 选角进入游戏
+     */
     public void EnterGameRequest(string name)
     {
         EnterGameResponse(name);
@@ -123,6 +141,9 @@ public class NetManager
         GameEventHandler.Messenger.DispatchEvent(EventConstant.CreatRole);
     }
 
+    /*
+     * 装备
+     */
     public void EquipRequest(string uniqueID, int equipPos)
     {
         EquipResponse(uniqueID, equipPos);
@@ -143,6 +164,9 @@ public class NetManager
         GameEventHandler.Messenger.DispatchEvent(EventConstant.Equip);
     }
 
+    /*
+     * 卸载装备
+     */
     public void UnEquipRequest(string uniqueID)
     {
         UnEquipResponse(uniqueID);
@@ -163,6 +187,9 @@ public class NetManager
         GameEventHandler.Messenger.DispatchEvent(EventConstant.UnEquip);
     }
 
+    /*
+     * 装备改造
+     */
     public void RemouldRequest(string uniqueID, int optionIndex)
     {
         RemouldResponse(uniqueID, optionIndex);
@@ -184,6 +211,9 @@ public class NetManager
         GameEventHandler.Messenger.DispatchEvent(EventConstant.Remould, uniqueID);
     }
 
+    /*
+     * 技能获取
+     */
     public void SkillGetRequest(int iSkillID, int iType)
     {
         SkillGetResponse(iSkillID, iType);
@@ -206,6 +236,9 @@ public class NetManager
         GameEventHandler.Messenger.DispatchEvent(EventConstant.SkillUpdate);
     }
 
+    /*
+     * 技能升级
+     */
     public void SkillLevelUpRequest(int iSkillID)
     {
         SkillLevelUpResponse(iSkillID);
@@ -225,6 +258,9 @@ public class NetManager
         GameEventHandler.Messenger.DispatchEvent(EventConstant.SkillUpdate);
     }
 
+    /*
+     * 技能装载
+     */
     public void SkillEquipRequest(int iSkillID, int iPos)
     {
         SkillEquipResponse(iSkillID, iPos);
@@ -247,6 +283,9 @@ public class NetManager
         GameEventHandler.Messenger.DispatchEvent(EventConstant.SkillEquipUpdate);
     }
 
+    /*
+     * 技能经验增加
+     */
     public void SkillExpRequest(int iSkillID)
     {
         SkillExpResponse(iSkillID);
@@ -267,6 +306,9 @@ public class NetManager
         GameEventHandler.Messenger.DispatchEvent(EventConstant.SkillUpdate);
     }
 
+    /*
+     * 更新关卡
+     */
     public void MonsterIndexRequest(int iMonsterIndex, bool bWin = false)
     {
         MonsterIndexResponse(iMonsterIndex, bWin);
@@ -278,7 +320,7 @@ public class NetManager
         {
             MonsterStruct curMonster = MonsterConfig.Instance.GetMonster(iMonsterIndex);
             MonsterStruct nextMonster = MonsterConfig.Instance.GetMonster(iMonsterIndex + 1);
-            if (nextMonster.Index > 0)
+            if (nextMonster.Index > 0 && DataManager.Instance.AutoMonster)
             {
                 DataManager.Instance.CurrentRole.MonsterIndex = nextMonster.Index;
             }
@@ -310,6 +352,10 @@ public class NetManager
         else
         {
             DataManager.Instance.CurrentRole.MonsterIndex = iMonsterIndex;
+            if (DataManager.Instance.AutoMonster)
+            {
+                DataManager.Instance.AutoMonster = false;
+            }
         }
         BattleManager.Instance.BattleManagerStart();
     }

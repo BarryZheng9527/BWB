@@ -3,6 +3,9 @@ using System.Collections;
 
 public static class ColorHandler
 {
+    /*
+     * 装备颜色名
+     */
     static public string GetEquipColorText(string text, int quality)
     {
         switch (quality)

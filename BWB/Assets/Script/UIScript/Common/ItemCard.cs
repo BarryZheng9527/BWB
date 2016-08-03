@@ -40,6 +40,9 @@ public class ItemCard : GComponent
         onClick.Add(OnShowTips);
     }
 
+    /*
+     * 装备道具
+     */
     public void SetEquipData(ItemClass data, ITEM_TIPS_TYPE tipsType)
     {
         ClearShow();
@@ -65,6 +68,9 @@ public class ItemCard : GComponent
         }
     }
 
+    /*
+     * 技能
+     */
     public void SetSkillData(SkillStruct data, ITEM_TIPS_TYPE tipsType)
     {
         ClearShow();

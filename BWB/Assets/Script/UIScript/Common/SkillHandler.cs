@@ -4,6 +4,9 @@ using System.Collections.Generic;
 
 public static class SkillHandler
 {
+    /*
+     * 获取已拥有的某技能信息
+     */
     static public SkillClass GetSkillData(int iSkillID)
     {
         if (DataManager.Instance.SkillData.SkillDataList.Count > 0)
@@ -19,6 +22,9 @@ public static class SkillHandler
         return null;
     }
 
+    /*
+     * 获取装载技能列表
+     */
     static public List<SkillClass> GetMySkillList()
     {
         List<SkillClass> MySkillList = new List<SkillClass>();

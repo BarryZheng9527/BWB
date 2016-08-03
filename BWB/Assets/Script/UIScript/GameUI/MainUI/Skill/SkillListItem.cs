@@ -41,6 +41,9 @@ public class SkillListItem : GComponent
     {
     }
 
+    /*
+     * 技能信息
+     */
     public void SetData(SkillStruct skillStruct)
     {
         InitShow();
