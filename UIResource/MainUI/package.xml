@@ -14,6 +14,8 @@
     <component id="tkoig" name="RemouldListItem" folder="" file="tkoig.xml"/>
     <component id="pk4oh" name="EquipList" folder="" file="pk4oh.xml"/>
     <component id="pz9wi" name="SkillListItem" folder="" file="pz9wi.xml"/>
+    <component id="mfjvj" name="BattleMessageItem" folder="" file="mfjvj.xml"/>
+    <component id="o7r7k" name="BattleMessage" folder="" file="o7r7k.xml"/>
   </resources>
   <publish name="MainUI" extractAlpha="true"/>
 </packageDescription>

@@ -19,4 +19,5 @@
     public const string MPUpdate = "MPUpdate"; //魔法条实时更新
     public const string MonsterHPUpdate = "MonsterHPUpdate"; //怪物血条实时更新
     public const string MonsterMPUpdate = "MonsterMPUpdate"; //怪物魔法条实时更新
+    public const string BattleMessage = "BattleMessage"; //战斗信息
 }

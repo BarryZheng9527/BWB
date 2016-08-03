@@ -1,23 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <component size="720,1030">
-  <controller name="tab" pages="0,,1,,2," selected="0"/>
+  <controller name="tab" pages="0,,1,,2," selected="2"/>
   <displayList>
     <image id="n0" name="_Container" src="oyu0ti" pkg="dx5htgsv" xy="0,0"/>
     <image id="n1" name="n1" src="oyu0ti" pkg="dx5htgsv" xy="0,624"/>
     <component id="n5" name="n5" src="yys6tj" pkg="dx5htgsv" xy="4,560">
-      <Button checked="true" title="聊天" controller="tab" page="0"/>
+      <Button title="聊天" controller="tab" page="0"/>
     </component>
     <component id="n8" name="n8" src="yys6tj" pkg="dx5htgsv" xy="188,560">
       <Button title="战斗讯息" controller="tab" page="1"/>
     </component>
     <component id="n9" name="n9" src="yys6tj" pkg="dx5htgsv" xy="372,560">
-      <Button title="挂机设置" controller="tab" page="2"/>
+      <Button checked="true" title="挂机设置" controller="tab" page="2"/>
     </component>
     <text id="n11" name="title" xy="20,720" size="680,64" font="宋体" fontSize="60" align="center" vAlign="middle" autoSize="height" bold="true" text="聊天没做">
       <gearDisplay controller="tab" pages="0"/>
-    </text>
-    <text id="n10" name="title" xy="20,720" size="680,64" font="宋体" fontSize="60" align="center" vAlign="middle" autoSize="height" bold="true" text="战斗讯息也没做">
-      <gearDisplay controller="tab" pages="1"/>
     </text>
     <text id="n12" name="title" xy="20,720" size="680,64" font="宋体" fontSize="60" align="center" vAlign="middle" autoSize="height" bold="true" text="挂机设置也没做">
       <gearDisplay controller="tab" pages="2"/>
@@ -41,6 +38,9 @@
     </component>
     <component id="n33" name="_EnemyMP" src="yys6tk" pkg="dx5htgsv" xy="370,500" size="280,19">
       <ProgressBar value="30" max="100"/>
+    </component>
+    <component id="n35" name="n35" src="o7r7k" xy="10,635">
+      <gearDisplay controller="tab" pages="1"/>
     </component>
   </displayList>
 </component>

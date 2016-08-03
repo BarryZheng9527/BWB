@@ -78,4 +78,5 @@
     public const int BATTLESTATUS1 = 1; //普攻状态
     public const int BATTLESTATUS2 = 2; //技能状态
     public const int BATTLESTATUS3 = 3; //定身状态
+    public const int BATTLEMESSAGENUM = 50; //战斗信息最大容量
 }

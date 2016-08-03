@@ -56,14 +56,16 @@ public class GUIManager
     void SetPackageExtension()
     {
        // UIObjectFactory.SetLoaderExtension(typeof(MyGLoader));
-        UIObjectFactory.SetPackageItemExtension(UIPackage.GetItemURL("MainUI", "Attr"), typeof(Attr));
-        UIObjectFactory.SetPackageItemExtension(UIPackage.GetItemURL("MainUI", "Option"), typeof(Option));
         UIObjectFactory.SetPackageItemExtension(UIPackage.GetItemURL("MainUI", "Role"), typeof(Role));
+        UIObjectFactory.SetPackageItemExtension(UIPackage.GetItemURL("MainUI", "Attr"), typeof(Attr));
         UIObjectFactory.SetPackageItemExtension(UIPackage.GetItemURL("MainUI", "BagPackage"), typeof(BagPackage));
         UIObjectFactory.SetPackageItemExtension(UIPackage.GetItemURL("MainUI", "Battle"), typeof(Battle));
+        UIObjectFactory.SetPackageItemExtension(UIPackage.GetItemURL("MainUI", "BattleMessage"), typeof(BattleMessage));
+        UIObjectFactory.SetPackageItemExtension(UIPackage.GetItemURL("MainUI", "BattleMessageItem"), typeof(BattleMessageItem));
         UIObjectFactory.SetPackageItemExtension(UIPackage.GetItemURL("MainUI", "Skill"), typeof(Skill));
         UIObjectFactory.SetPackageItemExtension(UIPackage.GetItemURL("MainUI", "SkillListItem"), typeof(SkillListItem));
         UIObjectFactory.SetPackageItemExtension(UIPackage.GetItemURL("MainUI", "Remould"), typeof(Remould));
+        UIObjectFactory.SetPackageItemExtension(UIPackage.GetItemURL("MainUI", "Option"), typeof(Option));
         UIObjectFactory.SetPackageItemExtension(UIPackage.GetItemURL("Common", "ItemCard"), typeof(ItemCard));
     }
 

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="700,384">
+  <displayList>
+    <list id="n0" name="_MessageList" xy="0,0" size="700,384" overflow="scroll" margin="0,0,0,0" defaultItem="ui://azj7nssjmfjvj"/>
+  </displayList>
+</component>

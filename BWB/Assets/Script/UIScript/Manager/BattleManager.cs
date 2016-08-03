@@ -38,6 +38,8 @@ public class BattleManager
     private int _CurMonsterStatus; //当前怪物状态（0寻路，1普攻，2技能，3定身）
     private double _CurMonsterCountDown; //怪物当前状态剩余时间
 
+    private double dTime;
+
     public Dictionary<int, double> DictTotalAttr
     {
         get
@@ -68,6 +70,7 @@ public class BattleManager
     public void BattleManagerStart()
     {
         InitBattle();
+        dTime = 0;
         Timers.inst.Add(0.1f, 0, UpdateBattle);
     }
 
@@ -76,6 +79,7 @@ public class BattleManager
      */
     private void InitBattle()
     {
+        GameEventHandler.Messenger.DispatchEvent(EventConstant.BattleMessage, "[" + dTime + "]" + "单次战斗启动");
         _CurStatus = Constant.BATTLESTATUS0;
         _CurMonsterStatus = Constant.BATTLESTATUS0;
         StatusTransform(_CurStatus, _CurStatus);
@@ -88,6 +92,7 @@ public class BattleManager
      */
     public void UpdateBattle(object param)
     {
+        dTime += 0.1;
         _CurCountDown -= 0.1;
         _CurMonsterCountDown -= 0.1;
         if (_CurCountDown <= 0)
@@ -121,15 +126,18 @@ public class BattleManager
     {
         if (iCurStatus == Constant.BATTLESTATUS0)
         {
+            GameEventHandler.Messenger.DispatchEvent(EventConstant.BattleMessage, "[" + dTime + "]" + "寻怪结束");
         }
         else if (iCurStatus == Constant.BATTLESTATUS1)
         {
             double dCostHP = BattleHandler.GetRoleAttack(_DictTotalAttr, _CurMonster);
             _CurMonster.HP -= dCostHP;
+            GameEventHandler.Messenger.DispatchEvent(EventConstant.BattleMessage, "[" + dTime + "]" + "角色普攻，怪物掉血" + dCostHP);
             if (_CurMonster.HP <= 0)
             {
                 Timers.inst.Remove(UpdateBattle);
                 NetManager.Instance.MonsterIndexRequest(_CurMonster.Index, true);
+                GameEventHandler.Messenger.DispatchEvent(EventConstant.BattleMessage, "[" + dTime + "]" + "怪物死亡，结算奖励");
             }
             GameEventHandler.Messenger.DispatchEvent(EventConstant.MonsterHPUpdate, _CurMonster.HP);
         }
@@ -153,10 +161,12 @@ public class BattleManager
             //HP
             double dCostHP0 = BattleHandler.GetSkillAttack(_DictTotalAttr, _CurSkill, _CurMonster);
             _CurMonster.HP -= dCostHP0;
+            GameEventHandler.Messenger.DispatchEvent(EventConstant.BattleMessage, "[" + dTime + "]" + "角色技能，" + _CurSkillStruct.GetName() + "，怪物掉血" + dCostHP0);
             if (_CurMonster.HP <= 0)
             {
                 Timers.inst.Remove(UpdateBattle);
                 NetManager.Instance.MonsterIndexRequest(_CurMonster.Index, true);
+                GameEventHandler.Messenger.DispatchEvent(EventConstant.BattleMessage, "[" + dTime + "]" + "怪物死亡，结算奖励");
             }
             GameEventHandler.Messenger.DispatchEvent(EventConstant.MonsterHPUpdate, _CurMonster.HP);
         }
@@ -174,10 +184,12 @@ public class BattleManager
         {
             double dCostHP = BattleHandler.GetMonsterAttack(_DictTotalAttr, _CurMonster);
             _DictTotalAttr[Constant.HP] -= dCostHP;
+            GameEventHandler.Messenger.DispatchEvent(EventConstant.BattleMessage, "[" + dTime + "]" + "怪物普攻，角色掉血" + dCostHP);
             if (_DictTotalAttr[Constant.HP] <= 0)
             {
                 Timers.inst.Remove(UpdateBattle);
                 NetManager.Instance.MonsterIndexRequest(_CurMonster.Index);
+                GameEventHandler.Messenger.DispatchEvent(EventConstant.BattleMessage, "[" + dTime + "]" + "角色死亡");
             }
             GameEventHandler.Messenger.DispatchEvent(EventConstant.HPUpdate, _DictTotalAttr[Constant.HP]);
         }
@@ -185,10 +197,12 @@ public class BattleManager
         {
             double dCostHP0 = BattleHandler.GetMonsterSkillAttack(_DictTotalAttr, _CurMonster, _CurMonsterSkill);
             _DictTotalAttr[Constant.HP] -= dCostHP0;
+            GameEventHandler.Messenger.DispatchEvent(EventConstant.BattleMessage, "[" + dTime + "]" + "怪物技能，" + _CurMonsterSkill.Index + "，角色掉血" + dCostHP0);
             if (_DictTotalAttr[Constant.HP] <= 0)
             {
                 Timers.inst.Remove(UpdateBattle);
                 NetManager.Instance.MonsterIndexRequest(_CurMonster.Index);
+                GameEventHandler.Messenger.DispatchEvent(EventConstant.BattleMessage, "[" + dTime + "]" + "角色死亡");
             }
             GameEventHandler.Messenger.DispatchEvent(EventConstant.HPUpdate, _DictTotalAttr[Constant.HP]);
         }

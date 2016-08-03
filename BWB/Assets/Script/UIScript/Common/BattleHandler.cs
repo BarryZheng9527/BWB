@@ -27,6 +27,10 @@ public static class BattleHandler
         {
             attack = attack * dictTotalAttr[Constant.CRITDAMAGE];
         }
+        if (attack < 0)
+        {
+            attack = 0;
+        }
         return attack;
     }
 
@@ -35,7 +39,12 @@ public static class BattleHandler
      */
     static public double GetMonsterAttack(Dictionary<int, double> dictTotalAttr, MonsterStruct monster)
     {
-        return (monster.Attack - Constant.DEFENSEMULTIPLE * dictTotalAttr[Constant.DEFENSE]) * (1 - dictTotalAttr[Constant.REDUCEDAMAGE]);
+        double attack = (monster.Attack - Constant.DEFENSEMULTIPLE * dictTotalAttr[Constant.DEFENSE]) * (1 - dictTotalAttr[Constant.REDUCEDAMAGE]);
+        if (attack < 0)
+        {
+            attack = 0;
+        }
+        return attack;
     }
 
     /*
@@ -74,6 +83,10 @@ public static class BattleHandler
         {
             attack = attack * skillLevelStruct.Attack;
         }
+        if (attack < 0)
+        {
+            attack = 0;
+        }
         return attack;
     }
 
@@ -90,6 +103,10 @@ public static class BattleHandler
         else if (monsterSkill.AttackType == Constant.MAGICSKILL)
         {
             attack = (Constant.MAGICATTACKMULTIPLE * monster.Attack + monsterSkill.MATK) * (1 - dictTotalAttr[Constant.REDUCEDAMAGE]);
+        }
+        if (attack < 0)
+        {
+            attack = 0;
         }
         return attack;
     }

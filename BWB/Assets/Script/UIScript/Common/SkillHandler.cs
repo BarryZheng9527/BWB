@@ -43,7 +43,7 @@ public static class SkillHandler
                 }
             }
         }
-        for (int iIndex0 = 0; iIndex0 < Constant.SKILLNUM; ++iIndex0)
+        for (int iIndex0 = 1; iIndex0 <= Constant.SKILLNUM; ++iIndex0)
         {
             if (DictMySkill[iIndex0] != null)
             {
