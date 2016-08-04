@@ -35,7 +35,7 @@
 -->
 	<Skill>
 		<item ID="1001" Type="1" AttackType="1" Name="SkillName_1001" Desc="SkillDesc_1001" Icon="Skill_1001" Gold="100" CustomID="0" SkillID="0" SkillLevel="0" AttrType1="1" AttrType2="2" AttrType3="3" BuffAttrType1="0" BuffAttrType2="0" BuffAttrType3="0">
-			<level Level="0" SkillID="1001" Exp="5" CD="5" Sing="2" MPCost="0" Attack="1" MATK="0" HoldBuffTime="0" AttrValue1="1" AttrValue2="2" AttrValue3="0" BuffAttrValue1="0" BuffAttrValue2="0" BuffAttrValue3="0"/>
+			<level Level="0" SkillID="1001" Exp="5" CD="3" Sing="2" MPCost="0" Attack="1" MATK="0" HoldBuffTime="0" AttrValue1="1" AttrValue2="2" AttrValue3="0" BuffAttrValue1="0" BuffAttrValue2="0" BuffAttrValue3="0"/>
 			<level Level="1" SkillID="1001" Exp="10" CD="5" Sing="2" MPCost="0" Attack="1.5" MATK="0" HoldBuffTime="0" AttrValue1="0" AttrValue2="6" AttrValue3="0" BuffAttrValue1="0" BuffAttrValue2="0" BuffAttrValue3="0"/>
 		</item>
 		<item ID="1002" Type="1" AttackType="1" Name="SkillName_1002" Desc="SkillDesc_1002" Icon="Skill_1002" Gold="500" CustomID="0" SkillID="1001" SkillLevel="0" AttrType1="2" AttrType2="10" AttrType3="13" BuffAttrType1="12" BuffAttrType2="0" BuffAttrType3="0">

@@ -110,4 +110,30 @@ public static class BattleHandler
         }
         return attack;
     }
+
+    /*
+     * 属性克隆
+     */
+    static public Dictionary<int, double> CloneTotalAttr(Dictionary<int, double> dictTotalAttr)
+    {
+        Dictionary<int, double> DictTotalAttr = new Dictionary<int, double>();
+        DictTotalAttr[Constant.STRENGTH] = dictTotalAttr[Constant.STRENGTH];
+        DictTotalAttr[Constant.AGILITY] = dictTotalAttr[Constant.AGILITY];
+        DictTotalAttr[Constant.WIT] = dictTotalAttr[Constant.WIT];
+        DictTotalAttr[Constant.LUCY] = dictTotalAttr[Constant.LUCY];
+        DictTotalAttr[Constant.DEFENSE] = dictTotalAttr[Constant.DEFENSE];
+        DictTotalAttr[Constant.PROTECT] = dictTotalAttr[Constant.PROTECT];
+        DictTotalAttr[Constant.HP] = dictTotalAttr[Constant.HP];
+        DictTotalAttr[Constant.MP] = dictTotalAttr[Constant.MP];
+        DictTotalAttr[Constant.MINATTACK] = dictTotalAttr[Constant.MINATTACK];
+        DictTotalAttr[Constant.MAXATTACK] = dictTotalAttr[Constant.MAXATTACK];
+        DictTotalAttr[Constant.MATK] = dictTotalAttr[Constant.MATK];
+        DictTotalAttr[Constant.CRIT] = dictTotalAttr[Constant.CRIT];
+        DictTotalAttr[Constant.CRITDAMAGE] = dictTotalAttr[Constant.CRITDAMAGE];
+        DictTotalAttr[Constant.BALANCE] = dictTotalAttr[Constant.BALANCE];
+        DictTotalAttr[Constant.FIRERATE] = dictTotalAttr[Constant.FIRERATE];
+        DictTotalAttr[Constant.SINGRATE] = dictTotalAttr[Constant.SINGRATE];
+        DictTotalAttr[Constant.REDUCEDAMAGE] = dictTotalAttr[Constant.REDUCEDAMAGE];
+        return DictTotalAttr;
+    }
 }

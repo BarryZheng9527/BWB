@@ -18,7 +18,7 @@
 	ItemRate道具掉落概率
 -->
 	<Monster>
-		<item Index="1" IsBoss="0" Name="MonsterName_1" Attack="20" HP="100" MP="0" SkillID1="0" SkillID2="0" SkillID3="0" SkillID4="0" Gold="10" Exp="10" EquipID="0" EquipRate="0" ItemID="0" ItemRate="0"/>
+		<item Index="1" IsBoss="0" Name="MonsterName_1" Attack="20" HP="100" MP="10" SkillID1="0" SkillID2="0" SkillID3="0" SkillID4="0" Gold="10" Exp="10" EquipID="0" EquipRate="0" ItemID="0" ItemRate="0"/>
 	</Monster>
 <!--
 	Index怪物技能Index

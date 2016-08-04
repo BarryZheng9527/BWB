@@ -97,17 +97,21 @@ public class BattleManager
         _CurMonsterCountDown -= 0.1;
         if (_CurCountDown <= 0)
         {
-            CalculateStatus(_CurStatus);
-            int iNextStatus = NextStatus(_CurStatus);
-            StatusTransform(_CurStatus, iNextStatus);
-            _CurStatus = iNextStatus;
+            if (CalculateStatus(_CurStatus))
+            {
+                int iNextStatus = NextStatus(_CurStatus);
+                StatusTransform(_CurStatus, iNextStatus);
+                _CurStatus = iNextStatus;
+            }
         }
         if (_CurMonsterCountDown <= 0)
         {
-            MonsterCalculateStatus(_CurMonsterStatus);
-            int iMonsterNextStatus = MonsterNextStatus(_CurMonsterStatus);
-            MonsterStatusTransform(_CurMonsterStatus, iMonsterNextStatus);
-            _CurMonsterStatus = iMonsterNextStatus;
+            if (MonsterCalculateStatus(_CurMonsterStatus))
+            {
+                int iMonsterNextStatus = MonsterNextStatus(_CurMonsterStatus);
+                MonsterStatusTransform(_CurMonsterStatus, iMonsterNextStatus);
+                _CurMonsterStatus = iMonsterNextStatus;
+            }
         }
         if (_CurSkill != null)
         {
@@ -122,7 +126,7 @@ public class BattleManager
     /*
      * 结算当前状态
      */
-    private void CalculateStatus(int iCurStatus)
+    private bool CalculateStatus(int iCurStatus)
     {
         if (iCurStatus == Constant.BATTLESTATUS0)
         {
@@ -138,6 +142,7 @@ public class BattleManager
                 Timers.inst.Remove(UpdateBattle);
                 GameEventHandler.Messenger.DispatchEvent(EventConstant.BattleMessage, "[" + dTime + "]" + "怪物死亡，结算奖励");
                 NetManager.Instance.MonsterIndexRequest(_CurMonster.Index, true);
+                return false;
             }
             GameEventHandler.Messenger.DispatchEvent(EventConstant.MonsterHPUpdate, _CurMonster.HP);
         }
@@ -167,15 +172,17 @@ public class BattleManager
                 Timers.inst.Remove(UpdateBattle);
                 GameEventHandler.Messenger.DispatchEvent(EventConstant.BattleMessage, "[" + dTime + "]" + "怪物死亡，结算奖励");
                 NetManager.Instance.MonsterIndexRequest(_CurMonster.Index, true);
+                return false;
             }
             GameEventHandler.Messenger.DispatchEvent(EventConstant.MonsterHPUpdate, _CurMonster.HP);
         }
+        return true;
     }
 
     /*
      * 结算怪物当前状态
      */
-    private void MonsterCalculateStatus(int iCurStatus)
+    private bool MonsterCalculateStatus(int iCurStatus)
     {
         if (iCurStatus == Constant.BATTLESTATUS0)
         {
@@ -190,6 +197,7 @@ public class BattleManager
                 Timers.inst.Remove(UpdateBattle);
                 GameEventHandler.Messenger.DispatchEvent(EventConstant.BattleMessage, "[" + dTime + "]" + "角色死亡");
                 NetManager.Instance.MonsterIndexRequest(_CurMonster.Index);
+                return false;
             }
             GameEventHandler.Messenger.DispatchEvent(EventConstant.HPUpdate, _DictTotalAttr[Constant.HP]);
         }
@@ -203,9 +211,11 @@ public class BattleManager
                 Timers.inst.Remove(UpdateBattle);
                 GameEventHandler.Messenger.DispatchEvent(EventConstant.BattleMessage, "[" + dTime + "]" + "角色死亡");
                 NetManager.Instance.MonsterIndexRequest(_CurMonster.Index);
+                return false;
             }
             GameEventHandler.Messenger.DispatchEvent(EventConstant.HPUpdate, _DictTotalAttr[Constant.HP]);
         }
+        return true;
     }
 
     /*
@@ -273,7 +283,7 @@ public class BattleManager
         {
             case Constant.BATTLESTATUS0:
                 {
-                    _DictTotalAttr = DataManager.Instance.DictTotalAttr;
+                    _DictTotalAttr = BattleHandler.CloneTotalAttr(DataManager.Instance.DictTotalAttr);
                     _MySkillList = SkillHandler.GetMySkillList();
                     _FireCD = Constant.FIRECD / _DictTotalAttr[Constant.FIRERATE];
                     _CurCountDown = Constant.SEARCHMONSTERTIME;
