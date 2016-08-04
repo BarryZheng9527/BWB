@@ -73,7 +73,7 @@
     public const double EQUIPPOS2RATE = 0.2; //副手单手武器属性比率
     public const int SKILLNUM = 4; //技能携带上限
     public const double FIRECD = 2; //普通攻击CD时间
-    public const double SEARCHMONSTERTIME = 5; //寻怪时间
+    public const int SEARCHMONSTERTIME = 5; //寻怪时间
     public const int BATTLESTATUS0 = 0; //寻路状态
     public const int BATTLESTATUS1 = 1; //普攻状态
     public const int BATTLESTATUS2 = 2; //技能状态

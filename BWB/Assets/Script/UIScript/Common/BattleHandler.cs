@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System;
 
 public static class BattleHandler
 {
@@ -31,6 +32,7 @@ public static class BattleHandler
         {
             attack = 0;
         }
+        attack = Math.Round(attack, MidpointRounding.AwayFromZero);
         return attack;
     }
 
@@ -44,6 +46,7 @@ public static class BattleHandler
         {
             attack = 0;
         }
+        attack = Math.Round(attack, MidpointRounding.AwayFromZero);
         return attack;
     }
 
@@ -87,6 +90,7 @@ public static class BattleHandler
         {
             attack = 0;
         }
+        attack = Math.Round(attack, MidpointRounding.AwayFromZero);
         return attack;
     }
 
@@ -108,6 +112,7 @@ public static class BattleHandler
         {
             attack = 0;
         }
+        attack = Math.Round(attack, MidpointRounding.AwayFromZero);
         return attack;
     }
 

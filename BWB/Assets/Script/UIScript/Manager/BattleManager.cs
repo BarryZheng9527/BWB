@@ -1,4 +1,5 @@
 ﻿using FairyGUI;
+using System;
 using System.Collections.Generic;
 
 public class BattleManager
@@ -30,13 +31,13 @@ public class BattleManager
     private SkillStruct _CurSkillStruct = new SkillStruct();
     private SkillLevelStruct _CurSkillLevelStruct = new SkillLevelStruct();
     private int _CurStatus; //当前状态（0寻路，1普攻，2技能，3定身）
-    private double _CurCountDown; //当前状态剩余时间
+    private int _CurCountDown; //当前状态剩余时间单位
 
     private int iMonsterSkillIndex; //当前怪物技能下标
     private MonsterSkillStruct _CurMonsterSkill = new MonsterSkillStruct(); //当前怪物技能
     private double _CurMonsterSkillCD; //当前怪物技能CD
     private int _CurMonsterStatus; //当前怪物状态（0寻路，1普攻，2技能，3定身）
-    private double _CurMonsterCountDown; //怪物当前状态剩余时间
+    private int _CurMonsterCountDown; //怪物当前状态剩余时间单位
 
     private double dTime;
 
@@ -93,8 +94,9 @@ public class BattleManager
     public void UpdateBattle(object param)
     {
         dTime += 0.1;
-        _CurCountDown -= 0.1;
-        _CurMonsterCountDown -= 0.1;
+        dTime = Math.Round(dTime, 1, MidpointRounding.AwayFromZero);
+        _CurCountDown -= 1;
+        _CurMonsterCountDown -= 1;
         if (_CurCountDown <= 0)
         {
             if (CalculateStatus(_CurStatus))
@@ -286,13 +288,13 @@ public class BattleManager
                     _DictTotalAttr = BattleHandler.CloneTotalAttr(DataManager.Instance.DictTotalAttr);
                     _MySkillList = SkillHandler.GetMySkillList();
                     _FireCD = Constant.FIRECD / _DictTotalAttr[Constant.FIRERATE];
-                    _CurCountDown = Constant.SEARCHMONSTERTIME;
+                    _CurCountDown = 10 * Constant.SEARCHMONSTERTIME;
                     iMySkillIndex = 0;
                     break;
                 }
             case Constant.BATTLESTATUS1:
                 {
-                    _CurCountDown = _FireCD;
+                    _CurCountDown = (int)(10 * Math.Round(_FireCD, 1, MidpointRounding.AwayFromZero));
                     if (iCurStatus != iNextStatus)
                     {
                         if (_MySkillList.Count > 0)
@@ -315,7 +317,7 @@ public class BattleManager
                 }
             case Constant.BATTLESTATUS2:
                 {
-                    _CurCountDown = _CurSkillLevelStruct.Sing / _DictTotalAttr[Constant.SINGRATE];
+                    _CurCountDown = (int)(10 * Math.Round(_CurSkillLevelStruct.Sing / _DictTotalAttr[Constant.SINGRATE], 1, MidpointRounding.AwayFromZero));
                     _DictTotalAttr[Constant.MP] -= _CurSkillLevelStruct.MPCost;
                     GameEventHandler.Messenger.DispatchEvent(EventConstant.MPUpdate, _DictTotalAttr[Constant.MP]);
                     break;
@@ -336,13 +338,13 @@ public class BattleManager
                 {
                     _CurMonster = MonsterConfig.Instance.GetMonster(DataManager.Instance.CurrentRole.MonsterIndex);
                     _CurMonsterSkillList = MonsterHandler.GetMonsterSkillList(DataManager.Instance.CurrentRole.MonsterIndex);
-                    _CurMonsterCountDown = Constant.SEARCHMONSTERTIME;
+                    _CurMonsterCountDown = 10 * Constant.SEARCHMONSTERTIME;
                     iMonsterSkillIndex = 0;
                     break;
                 }
             case Constant.BATTLESTATUS1:
                 {
-                    _CurMonsterCountDown = Constant.FIRECD;
+                    _CurMonsterCountDown = (int)(10 * Math.Round(Constant.FIRECD, 1, MidpointRounding.AwayFromZero));
                     if (iCurStatus != iMonsterNextStatus)
                     {
                         if (_CurMonsterSkillList.Count > 0)
@@ -363,7 +365,7 @@ public class BattleManager
                 }
             case Constant.BATTLESTATUS2:
                 {
-                    _CurMonsterCountDown = _CurMonsterSkill.Sing;
+                    _CurMonsterCountDown = (int)(10 * Math.Round(_CurMonsterSkill.Sing, 1, MidpointRounding.AwayFromZero));
                     _CurMonster.MP -= _CurMonsterSkill.MPCost;
                     GameEventHandler.Messenger.DispatchEvent(EventConstant.MonsterMPUpdate, _CurMonster.MP);
                     break;
