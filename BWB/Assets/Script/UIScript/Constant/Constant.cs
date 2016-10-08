@@ -37,7 +37,7 @@
     public const int INITPROTECT = 1; //初始保护
     public const int HPMULTIPLE = 5; //等级HP倍数
     public const int MPMULTIPLE = 2; //等级MP倍数
-    public const int ATTACKMULTIPLE = 2; //最大攻是最小攻的倍数
+    public const int ATTACKMULTIPLE = 2; //最大攻是主要计算属性（力量，敏捷）的倍数
     public const int LUCYOVERFLOW = 300; //幸运防溢出值
     public const int AGILITYWEAKEN = 50; //敏捷削弱值
     public const int AGILITYOVERFLOW = 200; //敏捷防溢出值

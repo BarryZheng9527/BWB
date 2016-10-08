@@ -26,11 +26,11 @@
 	MATK增加魔法攻击
 	CD怪物技能CD
 	Sing怪物技能吟唱时间
-	MPCost当前等级消耗的MP
+	MPCost消耗的MP
 	Attack怪物技能伤害百分比
 	HoldBuffTime怪物技能定身时间
 -->
 	<MonsterSkill>
-		<item Index="1" AttackType="1" CD="5" Sing="2" MPCost="0" Attack="1" MATK="0" HoldBuffTime="0"/>
+		<item Index="1" AttackType="1" MATK="0" CD="5" Sing="2" MPCost="0" Attack="1" HoldBuffTime="0"/>
 	</MonsterSkill>
 </Root>

@@ -35,6 +35,7 @@
 		<item TextID="SkillDesc_1002" Text="鬼道第二式，增加敏捷，大攻，暴伤，每次使用有暴击buff，持续时间问+1，等级高了还带定身效果"/>
 		<item TextID="SkillName_2001" Text="疾风"/>
 		<item TextID="SkillDesc_2001" Text="每使用五次鬼道基式就能升级加两点敏捷，是不是很划算？初次习得，需要给我一百块"/>
+		<item TextID="MonsterName_1" Text="怪物+宝1"/>
 		<item TextID="Text_100001" Text="创建角色"/>
 		<item TextID="Text_100002" Text="进入游戏"/>
 		<item TextID="Text_100003" Text="战力"/>
