@@ -58,7 +58,7 @@ public class Option : GComponent
         double myGold = DataManager.Instance.CurrentRole.Gold;
         if (myGold < _OptionStruct.Cost)
         {
-            GUIManager.Instance.OpenPopMessage(LanguageConfig.Instance.GetErrorText("100001"));
+            GUIManager.Instance.OpenPopMessage(LanguageConfig.Instance.GetErrorText(ErrorConstant.ERROR_100001));
         }
         else
         {

@@ -55,8 +55,9 @@ public class LanguageConfig
         }
     }
 
-    public string GetErrorText(string szErrorID)
+    public string GetErrorText(int iErrorID)
     {
+        string szErrorID = iErrorID.ToString();
         if (DictError.ContainsKey(szErrorID))
         {
             return DictError[szErrorID];

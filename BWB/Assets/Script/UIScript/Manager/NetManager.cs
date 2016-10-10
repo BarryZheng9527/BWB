@@ -72,33 +72,64 @@ public class NetManager
     }
 
     /*
+     * 注册
+     */
+    public void RegisterRequest(string name, string password)
+    {
+        RegisterResponse(name, password);
+    }
+
+    public void RegisterResponse(string name, string password)
+    {
+        RegisterResponse response = new RegisterResponse();
+        if (name == "bwb" && password == "bwb")
+        {
+        }
+        else
+        {
+            response.iResponseId = ErrorConstant.ERROR_100005;
+        }
+
+        GameEventHandler.Messenger.DispatchEvent(EventConstant.Register, response);
+    }
+
+    /*
      * 登陆
      */
     public void LoginRequest(string name, string password)
     {
-        if (name == "bwb" && password == "bwb")
-        {
-            LoginResponse(name, password);
-        }
+        LoginResponse(name, password);
     }
 
     public void LoginResponse(string name, string password)
     {
-        RoleData roledata = new RoleData();
-        List<RoleClass> rolelist = new List<RoleClass>();
-        RoleClass roleclass = new RoleClass();
-        roleclass.Name = "英雄饶命";
-        roleclass.Level = 1;
-        roleclass.Job = 1;
-        roleclass.Exp = 120;
-        roleclass.Gold = 220;
-        roleclass.Money = 20;
-        roleclass.MonsterIndex = 1;
-        rolelist.Add(roleclass);
-        roledata.RoleList = rolelist;
+        LoginResponse response = new LoginResponse();
+        if (name == "bwb" && password == "bwb")
+        {
+            response.name = name;
+            response.password = password;
 
-        DataManager.Instance.RoleData = roledata;
-        GameEventHandler.Messenger.DispatchEvent(EventConstant.Login);
+            RoleData roledata = new RoleData();
+            List<RoleClass> rolelist = new List<RoleClass>();
+            RoleClass roleclass = new RoleClass();
+            roleclass.Name = "英雄饶命";
+            roleclass.Level = 1;
+            roleclass.Job = 1;
+            roleclass.Exp = 120;
+            roleclass.Gold = 220;
+            roleclass.Money = 20;
+            roleclass.MonsterIndex = 1;
+            rolelist.Add(roleclass);
+            roledata.RoleList = rolelist;
+
+            DataManager.Instance.RoleData = roledata;
+        }
+        else
+        {
+            response.iResponseId = ErrorConstant.ERROR_100002;
+        }
+
+        GameEventHandler.Messenger.DispatchEvent(EventConstant.Login, response);
     }
 
     /*

@@ -39,6 +39,9 @@ public class CreatRole : Window
         GameEventHandler.Messenger.RemoveEventListener(EventConstant.CreatRole, OnEnterGameResponse);
     }
 
+    /*
+     * 初始化默认选中角色
+     */
     private void InitRoleData()
     {
         _CurrentIndex = 0;
@@ -56,6 +59,9 @@ public class CreatRole : Window
         UpdateShowInfo();
     }
 
+    /*
+     * 更新选中角色信息
+     */
     private void UpdateShowInfo()
     {
         _CurrentRoleInfo = GetRoleInfo(_CurrentIndex);
@@ -75,6 +81,9 @@ public class CreatRole : Window
         }
     }
 
+    /*
+     * 获取对应角色位的角色信息
+     */
     private RoleClass GetRoleInfo(int iTargetIndex)
     {
         for (int iIndex = 0; iIndex < _RoleData.RoleList.Count; ++iIndex)
@@ -88,6 +97,9 @@ public class CreatRole : Window
         return null;
     }
 
+    /*
+     * 随机名
+     */
     private void OnRandomName()
     {
         bool isMale = _CurrentIndex < 1 ? true : false;
@@ -100,10 +112,14 @@ public class CreatRole : Window
         UpdateShowInfo();
     }
 
+    /*
+     * 创建角色/进入游戏
+     */
     private void OnSure()
     {
         if (_CurrentRoleInfo == null)
         {
+            //创建
         }
         else
         {

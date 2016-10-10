@@ -5,10 +5,23 @@ using System.Collections;
 public class Login : Window
 {
     private GTextField _Account;
-    private GTextField _PassWord;
-    private GButton _RememberBtn;
+    private GTextField _Servicer;
+    private GTextField _LoginAccount;
+    private GTextField _LoginPassWord;
+    private GTextField _RegisterAccount;
+    private GTextField _RegisterPassWord;
+    private GTextField _RegisterPassWord0;
+
     private GButton _ChangeBtn;
+    private GButton _EnterGameBtn;
+    private GButton _RememberBtn;
     private GButton _LoginBtn;
+    private GButton _RegisterBtn;
+    private GButton _OkBtn;
+    private GButton _CancelBtn;
+
+    private string _szName;
+    private string _szPassWord;
 
     protected override void OnInit()
     {
@@ -17,65 +30,218 @@ public class Login : Window
         Center();
         modal = true;
         _Account = contentPane.GetChild("_Account").asTextField;
-        _PassWord = contentPane.GetChild("_PassWord").asTextField;
-        _RememberBtn = contentPane.GetChild("_RememberBtn").asButton;
+        _Servicer = contentPane.GetChild("_Servicer").asTextField;
+        _LoginAccount = contentPane.GetChild("_LoginAccount").asTextField;
+        _LoginPassWord = contentPane.GetChild("_LoginPassWord").asTextField;
+        _RegisterAccount = contentPane.GetChild("_RegisterAccount").asTextField;
+        _RegisterPassWord = contentPane.GetChild("_RegisterPassWord").asTextField;
+        _RegisterPassWord0 = contentPane.GetChild("_RegisterPassWord0").asTextField;
         _ChangeBtn = contentPane.GetChild("_ChangeBtn").asButton;
         _ChangeBtn.onClick.Add(OnChangeAccount);
+        _EnterGameBtn = contentPane.GetChild("_EnterGameBtn").asButton;
+        _EnterGameBtn.onClick.Add(OnEnterGame);
+        _RememberBtn = contentPane.GetChild("_RememberBtn").asButton;
         _LoginBtn = contentPane.GetChild("_LoginBtn").asButton;
         _LoginBtn.onClick.Add(OnLogin);
+        _RegisterBtn = contentPane.GetChild("_RegisterBtn").asButton;
+        _RegisterBtn.onClick.Add(OnRegister);
+        _OkBtn = contentPane.GetChild("_OkBtn").asButton;
+        _OkBtn.onClick.Add(OnRegisterOk);
+        _CancelBtn = contentPane.GetChild("_CancelBtn").asButton;
+        _CancelBtn.onClick.Add(OnRegisterCancel);
+        contentPane.GetController("change").onChanged.Add(OnPageChanged);
     }
 
     protected override void OnShown()
     {
         base.OnShown();
         GameEventHandler.Messenger.AddEventListener(EventConstant.Login, OnLoginResponse);
-        InitNameAndPassWord();
+        GameEventHandler.Messenger.AddEventListener(EventConstant.Register, OnRegisterResponse);
+        InitLoginStatus();
     }
 
     protected override void OnHide()
     {
         base.OnHide();
         GameEventHandler.Messenger.RemoveEventListener(EventConstant.Login, OnLoginResponse);
+        GameEventHandler.Messenger.AddEventListener(EventConstant.Register, OnRegisterResponse);
     }
 
-    private void InitNameAndPassWord()
+    /*
+     * 页码变化更新按钮可用状态
+     */
+    private void OnPageChanged()
     {
-        string name = PlayerPrefs.GetString("LastName");
-        string password = PlayerPrefs.GetString("LastPassWord");
-        _Account.text = name;
-        _PassWord.text = password;
-    }
+        _RememberBtn.focusable = false;
+        _LoginBtn.focusable = false;
+        _RegisterBtn.focusable = false;
+        _OkBtn.focusable = false;
+        _CancelBtn.focusable = false;
+        _LoginAccount.focusable = false;
+        _LoginPassWord.focusable = false;
+        _RegisterAccount.focusable = false;
+        _RegisterPassWord.focusable = false;
+        _RegisterPassWord0.focusable = false;
 
-    private void OnChangeAccount()
-    {
-        if (0 == contentPane.GetController("change").selectedIndex)
+        int iPageIndex = contentPane.GetController("change").selectedIndex;
+        if (iPageIndex == 1)
         {
-            contentPane.GetController("change").SetSelectedIndex(1);
+            _RememberBtn.focusable = true;
+            _LoginBtn.focusable = true;
+            _RegisterBtn.focusable = true;
+            _LoginAccount.focusable = true;
+            _LoginPassWord.focusable = true;
         }
-        else if (1 == contentPane.GetController("change").selectedIndex)
+        else if (iPageIndex == 2)
         {
-            contentPane.GetController("change").SetSelectedIndex(0);
+            _OkBtn.focusable = true;
+            _CancelBtn.focusable = true;
+            _RegisterAccount.focusable = true;
+            _RegisterPassWord.focusable = true;
+            _RegisterPassWord0.focusable = true;
         }
     }
 
-    private void OnLogin()
+    /*
+     * 初始状态
+     */
+    private void InitLoginStatus()
     {
-        NetManager.Instance.LoginRequest(_Account.text, _PassWord.text);
-    }
-
-    public void OnLoginResponse()
-    {
-        if (_RememberBtn.selected)
+        _szName = PlayerPrefs.GetString("LastName");
+        _szPassWord = PlayerPrefs.GetString("LastPassWord");
+        if (_szName != "")
         {
-            PlayerPrefs.SetString("LastName", _Account.text);
-            PlayerPrefs.SetString("LastPassWord", _PassWord.text);
+            NetManager.Instance.LoginRequest(_szName, _szPassWord);
         }
         else
         {
-            PlayerPrefs.SetString("LastName", "");
-            PlayerPrefs.SetString("LastPassWord", "");
+            contentPane.GetController("change").SetSelectedIndex(1);
         }
+    }
+
+    /*
+     * 切换账号
+     */
+    private void OnChangeAccount()
+    {
+        contentPane.GetController("change").SetSelectedIndex(1);
+        _LoginAccount.text = _Account.text;
+        _LoginPassWord.text = "";
+        _RememberBtn.selected = true;
+    }
+
+    /*
+     * 进入游戏
+     */
+    private void OnEnterGame()
+    {
         Hide();
         GUIManager.Instance.OpenCreatRole();
+    }
+
+    /*
+     * 登陆
+     */
+    private void OnLogin()
+    {
+        string szName = _LoginAccount.text;
+        string szPassWord = _LoginPassWord.text;
+        if (szName == "" || szPassWord == "")
+        {
+            GUIManager.Instance.OpenPopMessage(LanguageConfig.Instance.GetErrorText(ErrorConstant.ERROR_100003));
+        }
+        else
+        {
+            NetManager.Instance.LoginRequest(szName, szPassWord);
+        }
+    }
+
+    /*
+     * 登陆结果
+     */
+    public void OnLoginResponse(EventContext context)
+    {
+        LoginResponse response = context.data as LoginResponse;
+        if (response.iResponseId == 0)
+        {
+            if (_RememberBtn.selected)
+            {
+                PlayerPrefs.SetString("LastName", response.name);
+                PlayerPrefs.SetString("LastPassWord", response.password);
+            }
+            else
+            {
+                PlayerPrefs.SetString("LastName", "");
+                PlayerPrefs.SetString("LastPassWord", "");
+            }
+            contentPane.GetController("change").SetSelectedIndex(0);
+            _Account.text = response.name;
+        }
+        else
+        {
+            GUIManager.Instance.OpenPopMessage(LanguageConfig.Instance.GetErrorText(response.iResponseId));
+            contentPane.GetController("change").SetSelectedIndex(1);
+            _LoginAccount.text = "";
+            _LoginPassWord.text = "";
+        }
+    }
+
+    /*
+     * 进入注册页面
+     */
+    private void OnRegister()
+    {
+        contentPane.GetController("change").SetSelectedIndex(2);
+        _RegisterAccount.text = "";
+        _RegisterPassWord.text = "";
+        _RegisterPassWord0.text = "";
+    }
+
+    /*
+     * 注册
+     */
+    private void OnRegisterOk()
+    {
+        string szName = _RegisterAccount.text;
+        string szPassWord = _RegisterPassWord.text;
+        string szPassWord0 = _RegisterPassWord0.text;
+        if (szName == "" || szPassWord == "" || szPassWord0 == "")
+        {
+            GUIManager.Instance.OpenPopMessage(LanguageConfig.Instance.GetErrorText(ErrorConstant.ERROR_100003));
+        }
+        else if (szPassWord != szPassWord0)
+        {
+            GUIManager.Instance.OpenPopMessage(LanguageConfig.Instance.GetErrorText(ErrorConstant.ERROR_100004));
+        }
+        else
+        {
+            NetManager.Instance.RegisterRequest(szName, szPassWord);
+        }
+    }
+
+    /*
+     * 注册结果
+     */
+    public void OnRegisterResponse(EventContext context)
+    {
+        RegisterResponse response = context.data as RegisterResponse;
+        if (response.iResponseId == 0)
+        {
+            NetManager.Instance.LoginRequest(response.name, response.password);
+        }
+        else
+        {
+            GUIManager.Instance.OpenPopMessage(LanguageConfig.Instance.GetErrorText(response.iResponseId));
+        }
+    }
+
+    /*
+     * 离开注册
+     */
+    private void OnRegisterCancel()
+    {
+        contentPane.GetController("change").SetSelectedIndex(1);
+        _LoginAccount.text = "";
+        _LoginPassWord.text = "";
     }
 }
