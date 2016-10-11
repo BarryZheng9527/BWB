@@ -84,8 +84,6 @@ public class NetManager
         RegisterResponse response = new RegisterResponse();
         if (name == "bwb" && password == "bwb")
         {
-			response.name = name;
-			response.password = password;
         }
         else
         {
