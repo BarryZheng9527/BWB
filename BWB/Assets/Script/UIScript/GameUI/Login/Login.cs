@@ -49,7 +49,6 @@ public class Login : Window
         _OkBtn.onClick.Add(OnRegisterOk);
         _CancelBtn = contentPane.GetChild("_CancelBtn").asButton;
         _CancelBtn.onClick.Add(OnRegisterCancel);
-        contentPane.GetController("change").onChanged.Add(OnPageChanged);
     }
 
     protected override void OnShown()
@@ -65,41 +64,6 @@ public class Login : Window
         base.OnHide();
         GameEventHandler.Messenger.RemoveEventListener(EventConstant.Login, OnLoginResponse);
         GameEventHandler.Messenger.AddEventListener(EventConstant.Register, OnRegisterResponse);
-    }
-
-    /*
-     * 页码变化更新按钮可用状态
-     */
-    private void OnPageChanged()
-    {
-        _RememberBtn.focusable = false;
-        _LoginBtn.focusable = false;
-        _RegisterBtn.focusable = false;
-        _OkBtn.focusable = false;
-        _CancelBtn.focusable = false;
-        _LoginAccount.focusable = false;
-        _LoginPassWord.focusable = false;
-        _RegisterAccount.focusable = false;
-        _RegisterPassWord.focusable = false;
-        _RegisterPassWord0.focusable = false;
-
-        int iPageIndex = contentPane.GetController("change").selectedIndex;
-        if (iPageIndex == 1)
-        {
-            _RememberBtn.focusable = true;
-            _LoginBtn.focusable = true;
-            _RegisterBtn.focusable = true;
-            _LoginAccount.focusable = true;
-            _LoginPassWord.focusable = true;
-        }
-        else if (iPageIndex == 2)
-        {
-            _OkBtn.focusable = true;
-            _CancelBtn.focusable = true;
-            _RegisterAccount.focusable = true;
-            _RegisterPassWord.focusable = true;
-            _RegisterPassWord0.focusable = true;
-        }
     }
 
     /*

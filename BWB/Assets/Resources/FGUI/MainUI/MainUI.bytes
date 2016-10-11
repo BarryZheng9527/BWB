@@ -1,92 +1,4 @@
-tkoig.xml|485|<component size="360,100" extention="Button">
-  <displayList>
-    <component id="n0" name="_CurItemCard" src="rsmato" pkg="dx5htgsv" xy="10,10"/>
-    <text id="n1" name="_Name" xy="110,12" size="240,34" font="宋体" fontSize="30" vAlign="middle" ubb="true" autoSize="none" bold="true" text="名称"/>
-    <text id="n2" name="_Type" xy="110,56" size="240,34" font="宋体" fontSize="30" vAlign="middle" autoSize="none" bold="true" text="类型"/>
-  </displayList>
-  <Button mode="Radio"/>
-</component>pk4oh.xml|816|<component size="680,340">
-  <displayList>
-    <component id="n0" name="_EquipPos1" src="rsmato" pkg="dx5htgsv" xy="0,130"/>
-    <component id="n1" name="_EquipPos2" src="rsmato" pkg="dx5htgsv" xy="600,130"/>
-    <component id="n2" name="_EquipPos3" src="rsmato" pkg="dx5htgsv" xy="300,0"/>
-    <component id="n3" name="_EquipPos4" src="rsmato" pkg="dx5htgsv" xy="300,130"/>
-    <component id="n4" name="_EquipPos5" src="rsmato" pkg="dx5htgsv" xy="0,0"/>
-    <component id="n5" name="_EquipPos6" src="rsmato" pkg="dx5htgsv" xy="600,0"/>
-    <component id="n6" name="_EquipPos7" src="rsmato" pkg="dx5htgsv" xy="300,260"/>
-    <component id="n7" name="_EquipPos8" src="rsmato" pkg="dx5htgsv" xy="0,260"/>
-    <component id="n8" name="_EquipPos9" src="rsmato" pkg="dx5htgsv" xy="600,260"/>
-  </displayList>
-</component>o7r7k.xml|204|<component size="700,384">
-  <displayList>
-    <list id="n0" name="_MessageList" xy="0,0" size="700,384" overflow="scroll" margin="0,0,0,0" defaultItem="ui://azj7nssjmfjvj"/>
-  </displayList>
-</component>yys65.xml|1069|<component size="680,960">
-  <displayList>
-    <component id="n13" name="_EquipList" src="pk4oh" xy="0,0"/>
-    <list id="n12" name="_AttrList" xy="50,500" size="580,460" layout="flow_hz" selectionMode="none" margin="0,0,0,0" lineGap="20" colGap="200" lineItemCount="2" defaultItem="ui://azj7nssjyys66">
-      <item/>
-      <item/>
-      <item/>
-      <item/>
-      <item/>
-      <item/>
-      <item/>
-      <item/>
-      <item/>
-      <item/>
-      <item/>
-      <item/>
-      <item/>
-      <item/>
-      <item/>
-      <item/>
-      <item/>
-    </list>
-    <component id="n14" name="_MySkill1" src="rsmato" pkg="dx5htgsv" xy="120,380"/>
-    <component id="n15" name="_MySkill2" src="rsmato" pkg="dx5htgsv" xy="240,380"/>
-    <component id="n16" name="_MySkill3" src="rsmato" pkg="dx5htgsv" xy="360,380"/>
-    <component id="n17" name="_MySkill4" src="rsmato" pkg="dx5htgsv" xy="480,380"/>
-    <list id="n18" name="_MySkillList" xy="122,460" size="80,350" overflow="scroll" margin="0,0,0,0" lineGap="10" defaultItem="ui://dx5htgsvrsmato"/>
-  </displayList>
-</component>pz9wi.xml|1261|<component size="680,190">
-  <displayList>
-    <component id="n0" name="_CurSkill" src="rsmato" pkg="dx5htgsv" xy="5,5"/>
-    <text id="n1" name="_Name" xy="90,10" size="310,34" font="宋体" fontSize="30" vAlign="middle" ubb="true" autoSize="none" bold="true" text=""/>
-    <text id="n2" name="_Condition" xy="415,5" size="260,80" font="宋体" fontSize="22" align="right" vAlign="middle" ubb="true" autoSize="none" bold="true" text=""/>
-    <component id="n3" name="_Exp" src="oyu0tf" pkg="dx5htgsv" xy="90,61">
-      <ProgressBar value="50" max="100"/>
-    </component>
-    <text id="n4" name="_Attr1" xy="5,90" size="170,28" font="宋体" fontSize="24" vAlign="middle" ubb="true" autoSize="none" bold="true" text=""/>
-    <text id="n5" name="_Attr2" xy="185,90" size="170,28" font="宋体" fontSize="24" vAlign="middle" ubb="true" autoSize="none" bold="true" text=""/>
-    <text id="n6" name="_Attr3" xy="365,90" size="170,28" font="宋体" fontSize="24" vAlign="middle" ubb="true" autoSize="none" bold="true" text=""/>
-    <text id="n7" name="_Desc" xy="5,123" size="670,62" font="宋体" fontSize="24" vAlign="middle" ubb="true" autoSize="none" bold="true" text=""/>
-    <component id="n9" name="_LevelUpBtn" src="oyu0tb" pkg="dx5htgsv" xy="435,5"/>
-  </displayList>
-</component>yys66.xml|376|<component size="190,24">
-  <displayList>
-    <text id="n0" name="_AttrName" xy="0,0" size="90,24" font="宋体" fontSize="20" align="right" vAlign="middle" autoSize="none" bold="true" text="战斗力"/>
-    <text id="n1" name="_AttrValue" xy="100,0" size="90,24" font="宋体" fontSize="20" align="right" vAlign="middle" autoSize="none" bold="true" text="5"/>
-  </displayList>
-</component>t7etf.xml|349|<component size="360,120">
-  <displayList>
-    <text id="n0" name="_AttrDesc" xy="10,10" size="340,100" font="宋体" fontSize="22" vAlign="middle" ubb="true" autoSize="none" bold="true" text=""/>
-    <component id="n2" name="_RemouldBtn" src="oyu0te" pkg="dx5htgsv" xy="240,40">
-      <Button title="改造"/>
-    </component>
-  </displayList>
-</component>yys69.xml|578|<component size="680,960">
-  <controller name="c1" pages="0,,1," selected="0"/>
-  <displayList>
-    <component id="n0" name="_BattleBtn" src="yys6tm" pkg="dx5htgsv" xy="10,50">
-      <Button checked="true" title="战斗技能" controller="c1" page="0"/>
-    </component>
-    <component id="n1" name="_PassiveBtn" src="yys6tm" pkg="dx5htgsv" xy="260,50">
-      <Button title="被动技能" controller="c1" page="1"/>
-    </component>
-    <list id="n2" name="_SkillList" xy="0,150" size="680,760" overflow="scroll" margin="0,0,0,0" defaultItem="ui://azj7nssjpz9wi"/>
-  </displayList>
-</component>em852.xml|2800|<component size="720,1280">
+em852.xml|2800|<component size="720,1280">
   <controller name="tab" pages="0,,1,,2,,3,,4," selected="3"/>
   <displayList>
     <image id="n0" name="n0" src="gt1ita" pkg="dx5htgsv" xy="0,0"/>
@@ -133,6 +45,132 @@ tkoig.xml|485|<component size="360,100" extention="Button">
     <image id="n34" name="n34" src="jap33" pkg="m6y29aea" xy="340,12"/>
     <image id="n35" name="n35" src="jap30" pkg="m6y29aea" xy="340,54"/>
   </displayList>
+</component>mfjvj.xml|210|<component size="700,32">
+  <displayList>
+    <text id="n0" name="_MessageText" xy="0,1" size="700,30" font="宋体" fontSize="26" vAlign="middle" autoSize="none" bold="true" text=""/>
+  </displayList>
+</component>o7r7k.xml|204|<component size="700,384">
+  <displayList>
+    <list id="n0" name="_MessageList" xy="0,0" size="700,384" overflow="scroll" margin="0,0,0,0" defaultItem="ui://azj7nssjmfjvj"/>
+  </displayList>
+</component>package.xml|893|<packageDescription id="azj7nssj" name="MainUI">
+  <resources>
+    <component id="em852" name="MainUI" exported="true" size="720,1280"/>
+    <component id="mfjvj" name="BattleMessageItem" size="700,32"/>
+    <component id="o7r7k" name="BattleMessage" size="700,384"/>
+    <component id="pk4oh" name="EquipList" size="680,340"/>
+    <component id="pz9wi" name="SkillListItem" size="680,190"/>
+    <component id="t7etf" name="Option" size="360,120"/>
+    <component id="tkoig" name="RemouldListItem" size="360,100"/>
+    <component id="yys65" name="Role" size="680,960"/>
+    <component id="yys66" name="Attr" size="190,24"/>
+    <component id="yys69" name="Skill" size="680,960"/>
+    <component id="yys6c" name="BagPackage" size="680,800"/>
+    <component id="yys6d" name="Remould" size="720,960"/>
+    <component id="yys6e" name="Battle" size="720,1030"/>
+  </resources>
+</packageDescription>pk4oh.xml|816|<component size="680,340">
+  <displayList>
+    <component id="n0" name="_EquipPos1" src="rsmato" pkg="dx5htgsv" xy="0,130"/>
+    <component id="n1" name="_EquipPos2" src="rsmato" pkg="dx5htgsv" xy="600,130"/>
+    <component id="n2" name="_EquipPos3" src="rsmato" pkg="dx5htgsv" xy="300,0"/>
+    <component id="n3" name="_EquipPos4" src="rsmato" pkg="dx5htgsv" xy="300,130"/>
+    <component id="n4" name="_EquipPos5" src="rsmato" pkg="dx5htgsv" xy="0,0"/>
+    <component id="n5" name="_EquipPos6" src="rsmato" pkg="dx5htgsv" xy="600,0"/>
+    <component id="n6" name="_EquipPos7" src="rsmato" pkg="dx5htgsv" xy="300,260"/>
+    <component id="n7" name="_EquipPos8" src="rsmato" pkg="dx5htgsv" xy="0,260"/>
+    <component id="n8" name="_EquipPos9" src="rsmato" pkg="dx5htgsv" xy="600,260"/>
+  </displayList>
+</component>pz9wi.xml|1261|<component size="680,190">
+  <displayList>
+    <component id="n0" name="_CurSkill" src="rsmato" pkg="dx5htgsv" xy="5,5"/>
+    <text id="n1" name="_Name" xy="90,10" size="310,34" font="宋体" fontSize="30" vAlign="middle" ubb="true" autoSize="none" bold="true" text=""/>
+    <text id="n2" name="_Condition" xy="415,5" size="260,80" font="宋体" fontSize="22" align="right" vAlign="middle" ubb="true" autoSize="none" bold="true" text=""/>
+    <component id="n3" name="_Exp" src="oyu0tf" pkg="dx5htgsv" xy="90,61">
+      <ProgressBar value="50" max="100"/>
+    </component>
+    <text id="n4" name="_Attr1" xy="5,90" size="170,28" font="宋体" fontSize="24" vAlign="middle" ubb="true" autoSize="none" bold="true" text=""/>
+    <text id="n5" name="_Attr2" xy="185,90" size="170,28" font="宋体" fontSize="24" vAlign="middle" ubb="true" autoSize="none" bold="true" text=""/>
+    <text id="n6" name="_Attr3" xy="365,90" size="170,28" font="宋体" fontSize="24" vAlign="middle" ubb="true" autoSize="none" bold="true" text=""/>
+    <text id="n7" name="_Desc" xy="5,123" size="670,62" font="宋体" fontSize="24" vAlign="middle" ubb="true" autoSize="none" bold="true" text=""/>
+    <component id="n9" name="_LevelUpBtn" src="oyu0tb" pkg="dx5htgsv" xy="435,5"/>
+  </displayList>
+</component>t7etf.xml|349|<component size="360,120">
+  <displayList>
+    <text id="n0" name="_AttrDesc" xy="10,10" size="340,100" font="宋体" fontSize="22" vAlign="middle" ubb="true" autoSize="none" bold="true" text=""/>
+    <component id="n2" name="_RemouldBtn" src="oyu0te" pkg="dx5htgsv" xy="240,40">
+      <Button title="改造"/>
+    </component>
+  </displayList>
+</component>tkoig.xml|485|<component size="360,100" extention="Button">
+  <displayList>
+    <component id="n0" name="_CurItemCard" src="rsmato" pkg="dx5htgsv" xy="10,10"/>
+    <text id="n1" name="_Name" xy="110,12" size="240,34" font="宋体" fontSize="30" vAlign="middle" ubb="true" autoSize="none" bold="true" text="名称"/>
+    <text id="n2" name="_Type" xy="110,56" size="240,34" font="宋体" fontSize="30" vAlign="middle" autoSize="none" bold="true" text="类型"/>
+  </displayList>
+  <Button mode="Radio"/>
+</component>yys65.xml|1069|<component size="680,960">
+  <displayList>
+    <component id="n13" name="_EquipList" src="pk4oh" xy="0,0"/>
+    <list id="n12" name="_AttrList" xy="50,500" size="580,460" layout="flow_hz" selectionMode="none" margin="0,0,0,0" lineGap="20" colGap="200" lineItemCount="2" defaultItem="ui://azj7nssjyys66">
+      <item/>
+      <item/>
+      <item/>
+      <item/>
+      <item/>
+      <item/>
+      <item/>
+      <item/>
+      <item/>
+      <item/>
+      <item/>
+      <item/>
+      <item/>
+      <item/>
+      <item/>
+      <item/>
+      <item/>
+    </list>
+    <component id="n14" name="_MySkill1" src="rsmato" pkg="dx5htgsv" xy="120,380"/>
+    <component id="n15" name="_MySkill2" src="rsmato" pkg="dx5htgsv" xy="240,380"/>
+    <component id="n16" name="_MySkill3" src="rsmato" pkg="dx5htgsv" xy="360,380"/>
+    <component id="n17" name="_MySkill4" src="rsmato" pkg="dx5htgsv" xy="480,380"/>
+    <list id="n18" name="_MySkillList" xy="122,460" size="80,350" overflow="scroll" margin="0,0,0,0" lineGap="10" defaultItem="ui://dx5htgsvrsmato"/>
+  </displayList>
+</component>yys66.xml|376|<component size="190,24">
+  <displayList>
+    <text id="n0" name="_AttrName" xy="0,0" size="90,24" font="宋体" fontSize="20" align="right" vAlign="middle" autoSize="none" bold="true" text="战斗力"/>
+    <text id="n1" name="_AttrValue" xy="100,0" size="90,24" font="宋体" fontSize="20" align="right" vAlign="middle" autoSize="none" bold="true" text="5"/>
+  </displayList>
+</component>yys69.xml|578|<component size="680,960">
+  <controller name="c1" pages="0,,1," selected="0"/>
+  <displayList>
+    <component id="n0" name="_BattleBtn" src="yys6tm" pkg="dx5htgsv" xy="10,50">
+      <Button checked="true" title="战斗技能" controller="c1" page="0"/>
+    </component>
+    <component id="n1" name="_PassiveBtn" src="yys6tm" pkg="dx5htgsv" xy="260,50">
+      <Button title="被动技能" controller="c1" page="1"/>
+    </component>
+    <list id="n2" name="_SkillList" xy="0,150" size="680,760" overflow="scroll" margin="0,0,0,0" defaultItem="ui://azj7nssjpz9wi"/>
+  </displayList>
+</component>yys6c.xml|283|<component size="680,800">
+  <displayList>
+    <list id="n0" name="_ItemList" xy="0,0" size="680,800" layout="flow_hz" selectionMode="none" overflow="scroll" margin="0,0,0,0" lineGap="20" colGap="20" lineItemCount="7" defaultItem="ui://dx5htgsvrsmato"/>
+  </displayList>
+</component>yys6d.xml|946|<component size="720,960">
+  <controller name="c1" pages="0,,1," selected="0"/>
+  <displayList>
+    <list id="n1" name="_OptionList" xy="0,300" size="360,600" overflow="scroll" margin="0,0,0,0" defaultItem="ui://azj7nssjt7etf"/>
+    <list id="n2" name="_EquipList" xy="360,200" size="360,700" overflow="scroll" margin="0,0,0,0" defaultItem="ui://azj7nssjtkoig"/>
+    <text id="n3" name="_Name" xy="2,260" size="240,34" font="宋体" fontSize="30" vAlign="middle" ubb="true" autoSize="none" bold="true" text="可改造项目"/>
+    <component id="n4" name="_CurEquip" src="rsmato" pkg="dx5htgsv" xy="140,140"/>
+    <component id="n5" name="_EquipTab" src="yys6tj" pkg="dx5htgsv" xy="360,140">
+      <Button checked="true" title="已装备" controller="c1" page="0"/>
+    </component>
+    <component id="n6" name="_UnEquipTab" src="yys6tj" pkg="dx5htgsv" xy="540,140">
+      <Button title="未装备" controller="c1" page="1"/>
+    </component>
+  </displayList>
 </component>yys6e.xml|2820|<component size="720,1030">
   <controller name="tab" pages="0,,1,,2," selected="2"/>
   <displayList>
@@ -175,44 +213,6 @@ tkoig.xml|485|<component size="360,100" extention="Button">
     </component>
     <component id="n35" name="n35" src="o7r7k" xy="10,635">
       <gearDisplay controller="tab" pages="1"/>
-    </component>
-  </displayList>
-</component>yys6c.xml|283|<component size="680,800">
-  <displayList>
-    <list id="n0" name="_ItemList" xy="0,0" size="680,800" layout="flow_hz" selectionMode="none" overflow="scroll" margin="0,0,0,0" lineGap="20" colGap="20" lineItemCount="7" defaultItem="ui://dx5htgsvrsmato"/>
-  </displayList>
-</component>mfjvj.xml|210|<component size="700,32">
-  <displayList>
-    <text id="n0" name="_MessageText" xy="0,1" size="700,30" font="宋体" fontSize="26" vAlign="middle" autoSize="none" bold="true" text=""/>
-  </displayList>
-</component>package.xml|893|<packageDescription id="azj7nssj" name="MainUI">
-  <resources>
-    <component id="yys65" name="Role" size="680,960"/>
-    <component id="yys69" name="Skill" size="680,960"/>
-    <component id="yys6e" name="Battle" size="720,1030"/>
-    <component id="t7etf" name="Option" size="360,120"/>
-    <component id="em852" name="MainUI" exported="true" size="720,1280"/>
-    <component id="pk4oh" name="EquipList" size="680,340"/>
-    <component id="yys6c" name="BagPackage" size="680,800"/>
-    <component id="tkoig" name="RemouldListItem" size="360,100"/>
-    <component id="mfjvj" name="BattleMessageItem" size="700,32"/>
-    <component id="yys6d" name="Remould" size="720,960"/>
-    <component id="o7r7k" name="BattleMessage" size="700,384"/>
-    <component id="yys66" name="Attr" size="190,24"/>
-    <component id="pz9wi" name="SkillListItem" size="680,190"/>
-  </resources>
-</packageDescription>yys6d.xml|946|<component size="720,960">
-  <controller name="c1" pages="0,,1," selected="0"/>
-  <displayList>
-    <list id="n1" name="_OptionList" xy="0,300" size="360,600" overflow="scroll" margin="0,0,0,0" defaultItem="ui://azj7nssjt7etf"/>
-    <list id="n2" name="_EquipList" xy="360,200" size="360,700" overflow="scroll" margin="0,0,0,0" defaultItem="ui://azj7nssjtkoig"/>
-    <text id="n3" name="_Name" xy="2,260" size="240,34" font="宋体" fontSize="30" vAlign="middle" ubb="true" autoSize="none" bold="true" text="可改造项目"/>
-    <component id="n4" name="_CurEquip" src="rsmato" pkg="dx5htgsv" xy="140,140"/>
-    <component id="n5" name="_EquipTab" src="yys6tj" pkg="dx5htgsv" xy="360,140">
-      <Button checked="true" title="已装备" controller="c1" page="0"/>
-    </component>
-    <component id="n6" name="_UnEquipTab" src="yys6tj" pkg="dx5htgsv" xy="540,140">
-      <Button title="未装备" controller="c1" page="1"/>
     </component>
   </displayList>
 </component>
