@@ -1,4 +1,35 @@
-yys6tk.xml|582|<component size="306,19" overflow="hidden" extention="ProgressBar">
+rsmato.xml|486|<component size="80,80">
+  <displayList>
+    <image id="n0" name="_Bg" src="gt1it7" xy="0,0"/>
+    <loader id="n1" name="_IconLoader" xy="0,0" size="80,80"/>
+    <text id="n3" name="_Level" xy="0,0" size="80,28" font="宋体" fontSize="24" align="right" vAlign="middle" autoSize="none" bold="true" text="+999"/>
+    <text id="n4" name="_Num" xy="0,52" size="80,28" font="宋体" fontSize="24" align="right" vAlign="middle" autoSize="none" bold="true" text="+999"/>
+  </displayList>
+</component>oyu0tc.xml|1006|<component size="180,60" extention="Button">
+  <controller name="button" pages="0,up,1,down,2,over,3,selectedOver" selected="0"/>
+  <displayList>
+    <image id="n1" name="n1" src="gt1it6" xy="0,0">
+      <gearDisplay controller="button" pages="0"/>
+      <relation target="" sidePair="width-width,height-height"/>
+    </image>
+    <image id="n2" name="n2" src="gt1it6" xy="-9,-3" size="198,66">
+      <gearDisplay controller="button" pages="1,3"/>
+      <relation target="" sidePair="width-width,height-height"/>
+    </image>
+    <image id="n3" name="n3" src="gt1it6" xy="0,-4">
+      <gearDisplay controller="button" pages="2"/>
+      <relation target="" sidePair="width-width,height-height"/>
+    </image>
+    <text id="n4" name="title" xy="0,13" size="180,34" font="宋体" fontSize="30" align="center" vAlign="middle" autoSize="height" bold="true" text="按钮文本">
+      <gearXY controller="button" pages="0,1,2,3" values="0,13|0,13|0,9|-" default="0,13"/>
+    </text>
+  </displayList>
+  <Button/>
+</component>pk4otp.xml|179|<component size="720,1280">
+  <displayList>
+    <text id="n0" name="_MessageText" xy="0,0" size="10,44" font="宋体" fontSize="40" bold="true" text=""/>
+  </displayList>
+</component>oyu0tf.xml|567|<component size="306,19" overflow="hidden" extention="ProgressBar">
   <displayList>
     <image id="n1" name="n1" src="gt1it2" xy="0,0" size="306,19">
       <relation target="" sidePair="width-width,height-height"/>
@@ -8,7 +39,7 @@ yys6tk.xml|582|<component size="306,19" overflow="hidden" extention="ProgressBar
       <relation target="" sidePair="width-width,height-height"/>
     </text>
   </displayList>
-  <ProgressBar titleType="valueAndmax" reverse="true"/>
+  <ProgressBar titleType="valueAndmax"/>
 </component>yys6tj.xml|1022|<component size="180,60" extention="Button">
   <controller name="button" pages="0,up,1,down,2,over,3,selectedOver" selected="0"/>
   <displayList>
@@ -26,51 +57,6 @@ yys6tk.xml|582|<component size="306,19" overflow="hidden" extention="ProgressBar
     </image>
     <text id="n4" name="title" xy="0,13" size="180,34" font="宋体" fontSize="30" align="center" vAlign="middle" autoSize="height" bold="true" text="按钮文本">
       <gearXY controller="button" pages="0,1,2,3" values="0,13|0,13|0,9|0,13" default="0,13"/>
-    </text>
-  </displayList>
-  <Button mode="Radio"/>
-</component>pk4otp.xml|179|<component size="720,1280">
-  <displayList>
-    <text id="n0" name="_MessageText" xy="0,0" size="10,44" font="宋体" fontSize="40" bold="true" text=""/>
-  </displayList>
-</component>oyu0tf.xml|567|<component size="306,19" overflow="hidden" extention="ProgressBar">
-  <displayList>
-    <image id="n1" name="n1" src="gt1it2" xy="0,0" size="306,19">
-      <relation target="" sidePair="width-width,height-height"/>
-    </image>
-    <image id="n2" name="bar" src="gt1it3" xy="3,2" size="300,15"/>
-    <text id="n3" name="title" xy="0,1" size="306,19" fontSize="12" align="center" vAlign="middle" autoSize="none" text="">
-      <relation target="" sidePair="width-width,height-height"/>
-    </text>
-  </displayList>
-  <ProgressBar titleType="valueAndmax"/>
-</component>oyu0th.xml|177|<component size="40,40">
-  <displayList>
-    <image id="n0" name="n0" src="gt1it4" xy="0,0"/>
-    <loader id="n1" name="n1" xy="0,0" size="40,40"/>
-  </displayList>
-</component>oyu0tg.xml|177|<component size="80,80">
-  <displayList>
-    <image id="n0" name="n0" src="gt1it7" xy="0,0"/>
-    <loader id="n1" name="n1" xy="0,0" size="80,80"/>
-  </displayList>
-</component>yys6tn.xml|1018|<component size="120,40" extention="Button">
-  <controller name="button" pages="0,up,1,down,2,over,3,selectedOver" selected="0"/>
-  <displayList>
-    <image id="n1" name="n1" src="gt1it5" xy="0,0">
-      <gearDisplay controller="button" pages="0"/>
-      <relation target="" sidePair="width-width,height-height"/>
-    </image>
-    <image id="n2" name="n2" src="gt1it5" xy="0,0" color="#999999">
-      <gearDisplay controller="button" pages="1,3"/>
-      <relation target="" sidePair="width-width,height-height"/>
-    </image>
-    <image id="n3" name="n3" src="gt1it5" xy="0,-3">
-      <gearDisplay controller="button" pages="2"/>
-      <relation target="" sidePair="width-width,height-height"/>
-    </image>
-    <text id="n4" name="title" xy="0,8" size="120,24" font="宋体" fontSize="20" align="center" vAlign="middle" autoSize="height" bold="true" text="按钮文本">
-      <gearXY controller="button" pages="0,1,2,3" values="0,8|0,8|0,5|0,8" default="0,13"/>
     </text>
   </displayList>
   <Button mode="Radio"/>
@@ -114,38 +100,67 @@ yys6tk.xml|582|<component size="306,19" overflow="hidden" extention="ProgressBar
     </text>
   </displayList>
   <Button/>
+</component>yys6tk.xml|582|<component size="306,19" overflow="hidden" extention="ProgressBar">
+  <displayList>
+    <image id="n1" name="n1" src="gt1it2" xy="0,0" size="306,19">
+      <relation target="" sidePair="width-width,height-height"/>
+    </image>
+    <image id="n2" name="bar" src="gt1it3" xy="3,2" size="300,15"/>
+    <text id="n3" name="title" xy="0,1" size="306,19" fontSize="12" align="center" vAlign="middle" autoSize="none" text="">
+      <relation target="" sidePair="width-width,height-height"/>
+    </text>
+  </displayList>
+  <ProgressBar titleType="valueAndmax" reverse="true"/>
+</component>oyu0th.xml|177|<component size="40,40">
+  <displayList>
+    <image id="n0" name="n0" src="gt1it4" xy="0,0"/>
+    <loader id="n1" name="n1" xy="0,0" size="40,40"/>
+  </displayList>
 </component>package.xml|1608|<packageDescription id="dx5htgsv" name="Common">
   <resources>
-    <image id="gt1it7" name="Icon1" size="81,80" exported="true"/>
-    <component id="oyu0te" name="MiniButton" exported="true" size="120,40"/>
-    <component id="pk4otp" name="PopMessage" exported="true" size="720,1280"/>
-    <atlas id="atlas0" size="1024,2048" file="atlas0.png"/>
-    <component id="oyu0th" name="MiniIcon" exported="true" size="40,40"/>
-    <image id="gt1it2" name="ProgressBottom" size="306,19"/>
-    <component id="oyu0tb" name="BigButton" exported="true" size="240,80"/>
-    <image id="gt1it4" name="Icon2" size="40,40"/>
-    <component id="yys6tm" name="BigTab" exported="true" size="240,80"/>
-    <component id="yys6tj" name="MiddleTab" exported="true" size="180,60"/>
-    <component id="oyu0tf" name="Progress" exported="true" size="306,19"/>
-    <image id="gt1it5" name="MiniBtn" size="120,40"/>
-    <image id="oyu0ti" name="Container" size="720,406" exported="true"/>
-    <component id="yys6tk" name="Progress2" exported="true" size="306,19"/>
-    <image id="gt1it9" name="BigBtn" size="240,80"/>
-    <component id="oyu0tc" name="MiddleButton" exported="true" size="180,60"/>
-    <component id="rsmato" name="ItemCard" exported="true" size="80,80"/>
-    <image id="gt1it6" name="MiddleBtn" size="180,60"/>
-    <image id="gt1it3" name="ProgressBar" size="300,15"/>
-    <component id="oyu0tg" name="MiddleIcon" exported="true" size="80,80"/>
     <component id="yys6tn" name="MiniTab" exported="true" size="120,40"/>
     <image id="gt1ita" name="Bg" size="720,1281" exported="true"/>
+    <component id="oyu0tf" name="Progress" exported="true" size="306,19"/>
+    <image id="gt1it5" name="MiniBtn" size="120,40"/>
+    <component id="yys6tm" name="BigTab" exported="true" size="240,80"/>
+    <image id="oyu0ti" name="Container" size="720,406" exported="true"/>
+    <component id="yys6tk" name="Progress2" exported="true" size="306,19"/>
+    <component id="oyu0tc" name="MiddleButton" exported="true" size="180,60"/>
+    <image id="gt1it2" name="ProgressBottom" size="306,19"/>
+    <component id="oyu0tg" name="MiddleIcon" exported="true" size="80,80"/>
+    <image id="gt1it9" name="BigBtn" size="240,80"/>
+    <atlas id="atlas0" size="1024,2048" file="atlas0.png"/>
+    <image id="gt1it4" name="Icon2" size="40,40"/>
+    <component id="oyu0th" name="MiniIcon" exported="true" size="40,40"/>
+    <component id="oyu0tb" name="BigButton" exported="true" size="240,80"/>
+    <component id="pk4otp" name="PopMessage" exported="true" size="720,1280"/>
+    <image id="gt1it6" name="MiddleBtn" size="180,60"/>
+    <image id="gt1it7" name="Icon1" size="81,80" exported="true"/>
+    <component id="yys6tj" name="MiddleTab" exported="true" size="180,60"/>
+    <component id="rsmato" name="ItemCard" exported="true" size="80,80"/>
+    <image id="gt1it3" name="ProgressBar" size="300,15"/>
+    <component id="oyu0te" name="MiniButton" exported="true" size="120,40"/>
   </resources>
-</packageDescription>rsmato.xml|486|<component size="80,80">
+</packageDescription>yys6tn.xml|1018|<component size="120,40" extention="Button">
+  <controller name="button" pages="0,up,1,down,2,over,3,selectedOver" selected="0"/>
   <displayList>
-    <image id="n0" name="_Bg" src="gt1it7" xy="0,0"/>
-    <loader id="n1" name="_IconLoader" xy="0,0" size="80,80"/>
-    <text id="n3" name="_Level" xy="0,0" size="80,28" font="宋体" fontSize="24" align="right" vAlign="middle" autoSize="none" bold="true" text="+999"/>
-    <text id="n4" name="_Num" xy="0,52" size="80,28" font="宋体" fontSize="24" align="right" vAlign="middle" autoSize="none" bold="true" text="+999"/>
+    <image id="n1" name="n1" src="gt1it5" xy="0,0">
+      <gearDisplay controller="button" pages="0"/>
+      <relation target="" sidePair="width-width,height-height"/>
+    </image>
+    <image id="n2" name="n2" src="gt1it5" xy="0,0" color="#999999">
+      <gearDisplay controller="button" pages="1,3"/>
+      <relation target="" sidePair="width-width,height-height"/>
+    </image>
+    <image id="n3" name="n3" src="gt1it5" xy="0,-3">
+      <gearDisplay controller="button" pages="2"/>
+      <relation target="" sidePair="width-width,height-height"/>
+    </image>
+    <text id="n4" name="title" xy="0,8" size="120,24" font="宋体" fontSize="20" align="center" vAlign="middle" autoSize="height" bold="true" text="按钮文本">
+      <gearXY controller="button" pages="0,1,2,3" values="0,8|0,8|0,5|0,8" default="0,13"/>
+    </text>
   </displayList>
+  <Button mode="Radio"/>
 </component>yys6tm.xml|1037|<component size="240,80" extention="Button">
   <controller name="button" pages="0,up,1,down,2,over,3,selectedOver" selected="0"/>
   <displayList>
@@ -166,24 +181,9 @@ yys6tk.xml|582|<component size="306,19" overflow="hidden" extention="ProgressBar
     </text>
   </displayList>
   <Button mode="Radio"/>
-</component>oyu0tc.xml|1006|<component size="180,60" extention="Button">
-  <controller name="button" pages="0,up,1,down,2,over,3,selectedOver" selected="0"/>
+</component>oyu0tg.xml|177|<component size="80,80">
   <displayList>
-    <image id="n1" name="n1" src="gt1it6" xy="0,0">
-      <gearDisplay controller="button" pages="0"/>
-      <relation target="" sidePair="width-width,height-height"/>
-    </image>
-    <image id="n2" name="n2" src="gt1it6" xy="-9,-3" size="198,66">
-      <gearDisplay controller="button" pages="1,3"/>
-      <relation target="" sidePair="width-width,height-height"/>
-    </image>
-    <image id="n3" name="n3" src="gt1it6" xy="0,-4">
-      <gearDisplay controller="button" pages="2"/>
-      <relation target="" sidePair="width-width,height-height"/>
-    </image>
-    <text id="n4" name="title" xy="0,13" size="180,34" font="宋体" fontSize="30" align="center" vAlign="middle" autoSize="height" bold="true" text="按钮文本">
-      <gearXY controller="button" pages="0,1,2,3" values="0,13|0,13|0,9|-" default="0,13"/>
-    </text>
+    <image id="n0" name="n0" src="gt1it7" xy="0,0"/>
+    <loader id="n1" name="n1" xy="0,0" size="80,80"/>
   </displayList>
-  <Button/>
 </component>
