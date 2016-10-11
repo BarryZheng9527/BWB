@@ -1,0 +1,8 @@
+package.xml|373|<packageDescription id="7stlsvix" name="IconSkill">
+  <resources>
+    <atlas id="atlas0" size="256,128" file="atlas0.png"/>
+    <image id="b4lp1" name="Skill_1002" size="80,80" exported="true"/>
+    <image id="b4lp2" name="Skill_2001" size="80,80" exported="true"/>
+    <image id="b4lp0" name="Skill_1001" size="80,80" exported="true"/>
+  </resources>
+</packageDescription>
