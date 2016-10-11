@@ -2,7 +2,7 @@
 	<Errors>
 		<item ErrorID="0" Text="成功"/>
 		<item ErrorID="100001" Text="金币不足"/>
-		<item ErrorID="100002" Text="进入游戏失败"/>
+		<item ErrorID="100002" Text="登陆失败"/>
 		<item ErrorID="100003" Text="角色名或密码不能为空"/>
 		<item ErrorID="100004" Text="两次输入密码不一致"/>
 		<item ErrorID="100005" Text="注册失败"/>
