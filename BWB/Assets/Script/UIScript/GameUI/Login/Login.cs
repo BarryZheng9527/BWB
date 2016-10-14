@@ -179,7 +179,7 @@ public class Login : Window
         }
         else
         {
-            NetManager.Instance.RegisterRequest(szName, szPassWord);
+            NetManager.Instance.CheckRegisterRequest(szName, szPassWord);
         }
     }
 
@@ -189,14 +189,7 @@ public class Login : Window
     public void OnRegisterResponse(EventContext context)
     {
         RegisterResponse response = context.data as RegisterResponse;
-        if (response.iResponseId == 0)
-        {
-            NetManager.Instance.LoginRequest(response.name, response.password);
-        }
-        else
-        {
-            GUIManager.Instance.OpenPopMessage(LanguageConfig.Instance.GetErrorText(response.iResponseId));
-        }
+        NetManager.Instance.LoginRequest(response.name, response.password);
     }
 
     /*

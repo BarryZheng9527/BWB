@@ -1,11 +1,12 @@
 ﻿using FairyGUI;
 using System.Collections.Generic;
+using UnityEngine;
 
 class PopMessage : Window
 {
     private GTextField _MessageText;
 
-    private int _iCountDown;
+    private float _iCountDown;
     private string _Message;
     private int _iPosX;
     private int _iPosY;
@@ -24,8 +25,8 @@ class PopMessage : Window
     {
         base.OnShown();
         UpdateShow();
-        _iCountDown = 2;
-        Timers.inst.Add(1, 0, CountDown);
+        _iCountDown = 1f;
+        Timers.inst.Add(0.5f, 0, CountDown);
     }
 
     protected override void OnHide()
@@ -36,7 +37,7 @@ class PopMessage : Window
 
     private void CountDown(object param)
     {
-        _iCountDown--;
+        _iCountDown -= 0.5f;
         if (_iCountDown <= 0)
         {
             Hide();
@@ -51,7 +52,7 @@ class PopMessage : Window
         if (isShowing)
         {
             UpdateShow();
-            _iCountDown = 2;
+            _iCountDown = 1f;
         }
         else
         {
@@ -72,5 +73,6 @@ class PopMessage : Window
             _MessageText.x = _iPosX;
             _MessageText.y = _iPosY;
         }
+        _MessageText.TweenMove(new Vector2(_MessageText.x, _MessageText.y - 120), 0.8f);
     }
 }

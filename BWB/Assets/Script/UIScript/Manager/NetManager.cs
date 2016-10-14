@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using AVOSCloud;
 
 public class NetManager
 {
@@ -74,25 +75,66 @@ public class NetManager
     /*
      * 注册
      */
-    public void RegisterRequest(string name, string password)
+    public void CheckRegisterRequest(string name, string password)
     {
-        RegisterResponse(name, password);
+        AVUser.Query.WhereEqualTo("username", name).CountAsync().ContinueWith(t =>
+        {
+            int iCount = t.Result;
+            CheckRegisterResponse response = new CheckRegisterResponse();
+            response.ID = MessageConstant.CHECK_REGISTER_RESPONSE;
+            if (t.IsFaulted || t.IsCanceled)
+            {
+                response.iResponseId = ErrorConstant.ERROR_100005;
+            }
+            else if (t.IsCompleted)
+            {
+                if (iCount > 0)
+                {
+                    response.iResponseId = ErrorConstant.ERROR_100006;
+                }
+                else
+                {
+                    response.name = name;
+                    response.password = password;
+                }
+            }
+            MessageQueueManager.Instance.AddMessage(response);
+        });
     }
 
-    public void RegisterResponse(string name, string password)
+    public void RegisterRequest(CheckRegisterResponse checkresponse)
     {
-        RegisterResponse response = new RegisterResponse();
-        if (name == "bwb" && password == "bwb")
+        AVUser user = new AVUser();
+        user.Username = checkresponse.name;
+        user.Password = checkresponse.password;
+        user.SignUpAsync().ContinueWith(t =>
         {
-			response.name = name;
-			response.password = password;
+            RegisterResponse response = new RegisterResponse();
+            response.ID = MessageConstant.REGISTER_RESPONSE;
+            if (t.IsFaulted || t.IsCanceled)
+            {
+                response.iResponseId = ErrorConstant.ERROR_100005;
+            }
+            else if (t.IsCompleted)
+            {
+                response.uid = user.ObjectId;
+                response.name = checkresponse.name;
+                response.password = checkresponse.password;
+            }
+            MessageQueueManager.Instance.AddMessage(response);
+        });
+    }
+
+    public void RegisterResponse(RegisterResponse response)
+    {
+        if (response.iResponseId == 0)
+        {
+            GameEventHandler.Messenger.DispatchEvent(EventConstant.Register, response);
         }
         else
         {
-            response.iResponseId = ErrorConstant.ERROR_100005;
+            GUIManager.Instance.OpenPopMessage(LanguageConfig.Instance.GetErrorText(response.iResponseId));
         }
-
-        GameEventHandler.Messenger.DispatchEvent(EventConstant.Register, response);
     }
 
     /*

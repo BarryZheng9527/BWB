@@ -18,8 +18,14 @@ public class GameLoader : MonoBehaviour {
         GUIManager.Instance.Init();
     }
 
-    void Start() {
+    void Start() 
+    {
         GRoot.inst.SetContentScaleFactor(1280, 720, UIContentScaler.ScreenMatchMode.MatchHeight);
         GUIManager.Instance.OpenLogin();
+    }
+
+    void Update ()
+    {
+        MessageQueueManager.Instance.MessageHandler();
     }
 }

@@ -8,4 +8,5 @@
     public const int ERROR_100003 = 100003; //角色名或密码不能为空
     public const int ERROR_100004 = 100004; //两次输入密码不一致
     public const int ERROR_100005 = 100005; //注册失败
+    public const int ERROR_100006 = 100006; //用户名重复
 }
