@@ -84,13 +84,13 @@ public class NetManager
             response.ID = MessageConstant.CHECK_REGISTER_RESPONSE;
             if (t.IsFaulted || t.IsCanceled)
             {
-                response.iResponseId = ErrorConstant.ERROR_100005;
+                response.iResponseId = ErrorConstant.ERROR_100001;
             }
             else if (t.IsCompleted)
             {
                 if (iCount > 0)
                 {
-                    response.iResponseId = ErrorConstant.ERROR_100006;
+                    response.iResponseId = ErrorConstant.ERROR_100005;
                 }
                 else
                 {
@@ -113,7 +113,7 @@ public class NetManager
             response.ID = MessageConstant.REGISTER_RESPONSE;
             if (t.IsFaulted || t.IsCanceled)
             {
-                response.iResponseId = ErrorConstant.ERROR_100005;
+                response.iResponseId = ErrorConstant.ERROR_100001;
             }
             else if (t.IsCompleted)
             {
@@ -170,7 +170,7 @@ public class NetManager
         }
         else
         {
-            response.iResponseId = ErrorConstant.ERROR_100002;
+            response.iResponseId = ErrorConstant.ERROR_100001;
         }
 
         GameEventHandler.Messenger.DispatchEvent(EventConstant.Login, response);
