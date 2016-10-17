@@ -33,4 +33,22 @@ public static class CommonHandler
         }
         return string.Format("{0:x}", i - DateTime.Now.Ticks);
     }
+
+    /*
+     * 时间戳和DateTime互转
+     */
+    static public DateTime ConvertIntDateTime(double d)
+    {
+        DateTime time = DateTime.MinValue;
+        DateTime startTime = TimeZone.CurrentTimeZone.ToLocalTime(new System.DateTime(1970, 1, 1));
+        time = startTime.AddMilliseconds(d);
+        return time;
+    }
+
+    static public long ConvertDateTimeInt(DateTime time)
+    {
+        DateTime startTime = TimeZone.CurrentTimeZone.ToLocalTime(new System.DateTime(1970, 1, 1, 0, 0, 0, 0));
+        long t = (time.Ticks - startTime.Ticks) / 10000;
+        return t;
+    }
 }

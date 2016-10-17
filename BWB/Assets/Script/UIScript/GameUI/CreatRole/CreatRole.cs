@@ -28,7 +28,8 @@ public class CreatRole : Window
     protected override void OnShown()
     {
         base.OnShown();
-        GameEventHandler.Messenger.AddEventListener(EventConstant.CreatRole, OnEnterGameResponse);
+        GameEventHandler.Messenger.AddEventListener(EventConstant.CreatRole, OnCreatRoleResponse);
+        GameEventHandler.Messenger.AddEventListener(EventConstant.ChooseRole, OnEnterGameResponse);
         _RoleData = DataManager.Instance.RoleData;
         InitRoleData();
     }
@@ -36,7 +37,8 @@ public class CreatRole : Window
     protected override void OnHide()
     {
         base.OnHide();
-        GameEventHandler.Messenger.RemoveEventListener(EventConstant.CreatRole, OnEnterGameResponse);
+        GameEventHandler.Messenger.RemoveEventListener(EventConstant.CreatRole, OnCreatRoleResponse);
+        GameEventHandler.Messenger.RemoveEventListener(EventConstant.ChooseRole, OnEnterGameResponse);
     }
 
     /*
@@ -106,6 +108,9 @@ public class CreatRole : Window
         _RoleName.text = NameConfig.Instance.GetRandomName(isMale);
     }
 
+    /*
+     * 更新当前页信息
+     */
     private void OnPageChanged()
     {
         _CurrentIndex = contentPane.GetController("role").selectedIndex;
@@ -119,7 +124,11 @@ public class CreatRole : Window
     {
         if (_CurrentRoleInfo == null)
         {
-            //创建
+            string roleName = _RoleName.text;
+            if (roleName != "")
+            {
+                NetManager.Instance.CreatRoleRequest(roleName, _CurrentIndex + 1);
+            }
         }
         else
         {
@@ -127,6 +136,18 @@ public class CreatRole : Window
         }
     }
 
+    /*
+     * 创角结果
+     */
+    public void OnCreatRoleResponse(EventContext context)
+    {
+        CreatRoleResponse response = context.data as CreatRoleResponse;
+        OnPageChanged();
+    }
+
+    /*
+     * 进入游戏结果
+     */
     private void OnEnterGameResponse()
     {
         Hide();

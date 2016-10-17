@@ -4,7 +4,7 @@
     public int ID;
 }
 
-public class CheckRegisterResponse : BaseResponse
+public class CheckUserResponse : BaseResponse
 {
     public string name;
     public string password;
@@ -21,4 +21,9 @@ public class LoginResponse:BaseResponse
 {
     public string name;
     public string password;
+}
+
+public class CreatRoleResponse : BaseResponse
+{
+    public RoleClass role;
 }

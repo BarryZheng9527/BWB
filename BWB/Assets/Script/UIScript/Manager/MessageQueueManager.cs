@@ -43,12 +43,24 @@ public class MessageQueueManager
         switch (stBaseResponse.ID)
         {
             case MessageConstant.CHECK_REGISTER_RESPONSE:
-                CheckRegisterResponse stCheckRegisterResponse = (CheckRegisterResponse)stBaseResponse;
+                CheckUserResponse stCheckRegisterResponse = (CheckUserResponse)stBaseResponse;
                 NetManager.Instance.RegisterRequest(stCheckRegisterResponse);
                 break;
             case MessageConstant.REGISTER_RESPONSE:
                 RegisterResponse stRegisterResponse = (RegisterResponse)stBaseResponse;
                 NetManager.Instance.RegisterResponse(stRegisterResponse);
+                break;
+            case MessageConstant.CHECK_LOGIN_RESPONSE:
+                CheckUserResponse stCheckLoginResponse = (CheckUserResponse)stBaseResponse;
+                NetManager.Instance.LoginRequest(stCheckLoginResponse);
+                break;
+            case MessageConstant.LOGIN_RESPONSE:
+                LoginResponse stLoginResponse = (LoginResponse)stBaseResponse;
+                NetManager.Instance.LoginResponse(stLoginResponse);
+                break;
+            case MessageConstant.CREAT_ROLE_RESPONSE:
+                CreatRoleResponse stCreatRoleResponse = (CreatRoleResponse)stBaseResponse;
+                NetManager.Instance.CreatRoleResponse(stCreatRoleResponse);
                 break;
             default:
                 break;

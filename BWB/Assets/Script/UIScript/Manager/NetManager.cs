@@ -80,7 +80,7 @@ public class NetManager
         AVUser.Query.WhereEqualTo("username", name).CountAsync().ContinueWith(t =>
         {
             int iCount = t.Result;
-            CheckRegisterResponse response = new CheckRegisterResponse();
+            CheckUserResponse response = new CheckUserResponse();
             response.ID = MessageConstant.CHECK_REGISTER_RESPONSE;
             if (t.IsFaulted || t.IsCanceled)
             {
@@ -102,27 +102,34 @@ public class NetManager
         });
     }
 
-    public void RegisterRequest(CheckRegisterResponse checkresponse)
+    public void RegisterRequest(CheckUserResponse stCheckUserResponse)
     {
-        AVUser user = new AVUser();
-        user.Username = checkresponse.name;
-        user.Password = checkresponse.password;
-        user.SignUpAsync().ContinueWith(t =>
+        if (stCheckUserResponse.iResponseId == 0)
         {
-            RegisterResponse response = new RegisterResponse();
-            response.ID = MessageConstant.REGISTER_RESPONSE;
-            if (t.IsFaulted || t.IsCanceled)
+            AVUser user = new AVUser();
+            user.Username = stCheckUserResponse.name;
+            user.Password = stCheckUserResponse.password;
+            user.SignUpAsync().ContinueWith(t =>
             {
-                response.iResponseId = ErrorConstant.ERROR_100001;
-            }
-            else if (t.IsCompleted)
-            {
-                response.uid = user.ObjectId;
-                response.name = checkresponse.name;
-                response.password = checkresponse.password;
-            }
-            MessageQueueManager.Instance.AddMessage(response);
-        });
+                RegisterResponse response = new RegisterResponse();
+                response.ID = MessageConstant.REGISTER_RESPONSE;
+                if (t.IsFaulted || t.IsCanceled)
+                {
+                    response.iResponseId = ErrorConstant.ERROR_100001;
+                }
+                else if (t.IsCompleted)
+                {
+                    response.uid = user.ObjectId;
+                    response.name = stCheckUserResponse.name;
+                    response.password = stCheckUserResponse.password;
+                }
+                MessageQueueManager.Instance.AddMessage(response);
+            });
+        }
+        else
+        {
+            GUIManager.Instance.OpenPopMessage(LanguageConfig.Instance.GetErrorText(stCheckUserResponse.iResponseId));
+        }
     }
 
     public void RegisterResponse(RegisterResponse response)
@@ -140,40 +147,162 @@ public class NetManager
     /*
      * 登陆
      */
-    public void LoginRequest(string name, string password)
+    public void CheckLoginRequest(string name, string password)
     {
-        LoginResponse(name, password);
+        AVUser.Query.WhereEqualTo("username", name).CountAsync().ContinueWith(t =>
+        {
+            int iCount = t.Result;
+            CheckUserResponse response = new CheckUserResponse();
+            response.ID = MessageConstant.CHECK_LOGIN_RESPONSE;
+            if (t.IsFaulted || t.IsCanceled)
+            {
+                response.iResponseId = ErrorConstant.ERROR_100001;
+            }
+            else if (t.IsCompleted)
+            {
+                if (iCount == 1)
+                {
+                    response.name = name;
+                    response.password = password;
+                }
+                else
+                {
+                    response.iResponseId = ErrorConstant.ERROR_100006;
+                }
+            }
+            MessageQueueManager.Instance.AddMessage(response);
+        });
     }
 
-    public void LoginResponse(string name, string password)
+    public void LoginRequest(CheckUserResponse stCheckUserResponse)
     {
-        LoginResponse response = new LoginResponse();
-        if (name == "bwb" && password == "bwb")
+        if (stCheckUserResponse.iResponseId == 0)
         {
-            response.name = name;
-            response.password = password;
-
-            RoleData roledata = new RoleData();
-            List<RoleClass> rolelist = new List<RoleClass>();
-            RoleClass roleclass = new RoleClass();
-            roleclass.Name = "英雄饶命";
-            roleclass.Level = 1;
-            roleclass.Job = 1;
-            roleclass.Exp = 120;
-            roleclass.Gold = 220;
-            roleclass.Money = 20;
-            roleclass.MonsterIndex = 1;
-            rolelist.Add(roleclass);
-            roledata.RoleList = rolelist;
-
-            DataManager.Instance.RoleData = roledata;
+            AVUser.LogInAsync(stCheckUserResponse.name, stCheckUserResponse.password).ContinueWith(t =>
+            {
+                LoginResponse response = new LoginResponse();
+                response.ID = MessageConstant.LOGIN_RESPONSE;
+                if (t.IsFaulted || t.IsCanceled)
+                {
+                    response.iResponseId = ErrorConstant.ERROR_100007;
+                }
+                else if (t.IsCompleted)
+                {
+                    response.name = stCheckUserResponse.name;
+                    response.password = stCheckUserResponse.password;
+                }
+                MessageQueueManager.Instance.AddMessage(response);
+            });
         }
         else
         {
-            response.iResponseId = ErrorConstant.ERROR_100001;
+            GUIManager.Instance.OpenPopMessage(LanguageConfig.Instance.GetErrorText(stCheckUserResponse.iResponseId));
         }
+    }
 
-        GameEventHandler.Messenger.DispatchEvent(EventConstant.Login, response);
+    public void LoginResponse(LoginResponse response)
+    {
+        if (response.iResponseId == 0)
+        {
+            GameEventHandler.Messenger.DispatchEvent(EventConstant.Login, response);
+            AVCloud.GetServerDateTime().ContinueWith(t =>
+            {
+                if (t.IsFaulted || t.IsCanceled)
+                {
+                }
+                else if (t.IsCompleted)
+                {
+                    DateTime time = t.Result;
+                    DataManager.Instance.ServerTime = CommonHandler.ConvertDateTimeInt(time);
+                    CurrentTimeHandler.Instance.StartTimer();
+                }
+            });
+            AVQuery<AVObject> query = new AVQuery<AVObject>("Hero").WhereEqualTo("userID", AVUser.CurrentUser.ObjectId).OrderBy("job");
+            query.FindAsync().ContinueWith(t =>
+            {
+                if (t.IsFaulted || t.IsCanceled)
+                {
+                }
+                else if (t.IsCompleted)
+                {
+                    IEnumerable<AVObject> roles = t.Result;
+                    foreach(AVObject role in roles)
+                    {
+                        RoleClass myRole = new RoleClass();
+                        myRole.Name = role.Get<string>("name");
+                        myRole.Level = role.Get<int>("level");
+                        myRole.Job = role.Get<int>("job");
+                        myRole.Exp = role.Get<double>("exp");
+                        myRole.Gold = role.Get<double>("gold");
+                        myRole.Money = role.Get<double>("money");
+                        myRole.MonsterIndex = role.Get<int>("monsterIndex");
+                        myRole.CreateTime = role.Get<long>("createTime");
+                        myRole.LastOffLineTime = role.Get<long>("lastLoginTime");
+                        DataManager.Instance.RoleData.RoleList.Add(myRole);
+                    }
+                }
+            });
+        }
+        else
+        {
+            GUIManager.Instance.OpenPopMessage(LanguageConfig.Instance.GetErrorText(response.iResponseId));
+        }
+    }
+
+    /*
+     * 创角
+     */
+    public void CreatRoleRequest(string roleName, int iJob)
+    {
+        AVObject hero = new AVObject("Hero")
+        {
+            {"name", roleName},
+            {"level", 0},
+            {"job", iJob},
+            {"exp", 0},
+            {"gold", 0},
+            {"money", 0},
+            {"monsterIndex", 0},
+            {"createTime", DataManager.Instance.ServerTime},
+            {"lastLoginTime", 0},
+            {"userID", AVUser.CurrentUser.ObjectId},
+        };
+        hero.SaveAsync().ContinueWith(t =>
+        {
+            CreatRoleResponse response = new CreatRoleResponse();
+            response.ID = MessageConstant.CREAT_ROLE_RESPONSE;
+            if (t.IsFaulted || t.IsCanceled)
+            {
+                response.iResponseId = ErrorConstant.ERROR_100001;
+            }
+            else if (t.IsCompleted)
+            {
+                response.role = new RoleClass();
+                response.role.Name = hero.Get<string>("name");
+                response.role.Level = hero.Get<int>("level");
+                response.role.Job = hero.Get<int>("job");
+                response.role.Exp = hero.Get<double>("exp");
+                response.role.Gold = hero.Get<double>("gold");
+                response.role.Money = hero.Get<double>("money");
+                response.role.MonsterIndex = hero.Get<int>("monsterIndex");
+                response.role.CreateTime = hero.Get<long>("createTime");
+                response.role.LastOffLineTime = hero.Get<long>("lastLoginTime");
+            }
+            MessageQueueManager.Instance.AddMessage(response);
+        });
+    }
+
+    public void CreatRoleResponse(CreatRoleResponse response)
+    {
+        if (response.iResponseId == 0)
+        {
+            DataManager.Instance.RoleData.RoleList.Add(response.role);
+            GameEventHandler.Messenger.DispatchEvent(EventConstant.CreatRole, response);
+        }
+        else
+        {
+            GUIManager.Instance.OpenPopMessage(LanguageConfig.Instance.GetErrorText(response.iResponseId));
+        }
     }
 
     /*
@@ -214,7 +343,7 @@ public class NetManager
         DataManager.Instance.ItemData = itemdata;
         DataManager.Instance.SkillData = skillData;
         AttrHandler.CalculateTotalAttr();
-        GameEventHandler.Messenger.DispatchEvent(EventConstant.CreatRole);
+        GameEventHandler.Messenger.DispatchEvent(EventConstant.ChooseRole);
     }
 
     /*

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 public class DataManager
 {
@@ -23,6 +24,7 @@ public class DataManager
     private Dictionary<int, double> _DictBaseAttr = new Dictionary<int, double>(); //基础属性
     private Dictionary<int, string> _DictBaseAttrShow = new Dictionary<int, string>(); //展示面板属性
     private Dictionary<int, double> _DictTotalAttr = new Dictionary<int, double>(); //战斗属性
+    private long _ServerTime = 0; //服务器时间戳，毫秒
     private bool _AutoMonster = false;
 
     public RoleData RoleData
@@ -118,6 +120,18 @@ public class DataManager
         set
         {
             _AutoMonster = value;
+        }
+    }
+
+    public long ServerTime
+    {
+        get
+        {
+            return _ServerTime;
+        }
+        set
+        {
+            _ServerTime = value;
         }
     }
 }

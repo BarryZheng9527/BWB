@@ -4,7 +4,8 @@
 
     public const string Register = "Register"; //注册
     public const string Login = "Login"; //登陆
-    public const string CreatRole = "CreatRole"; //选择角色
+    public const string CreatRole = "CreatRole"; //创建角色
+    public const string ChooseRole = "ChooseRole"; //选择角色
     public const string Equip = "Equip"; //装备
     public const string UnEquip = "UnEquip"; //卸载装备
     public const string TotalAttr = "TotalAttr"; //总属性

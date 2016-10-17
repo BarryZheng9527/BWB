@@ -54,16 +54,16 @@ public class Login : Window
     protected override void OnShown()
     {
         base.OnShown();
-        GameEventHandler.Messenger.AddEventListener(EventConstant.Login, OnLoginResponse);
         GameEventHandler.Messenger.AddEventListener(EventConstant.Register, OnRegisterResponse);
+        GameEventHandler.Messenger.AddEventListener(EventConstant.Login, OnLoginResponse);
         InitLoginStatus();
     }
 
     protected override void OnHide()
     {
         base.OnHide();
-        GameEventHandler.Messenger.RemoveEventListener(EventConstant.Login, OnLoginResponse);
         GameEventHandler.Messenger.AddEventListener(EventConstant.Register, OnRegisterResponse);
+        GameEventHandler.Messenger.RemoveEventListener(EventConstant.Login, OnLoginResponse);
     }
 
     /*
@@ -75,7 +75,7 @@ public class Login : Window
         _szPassWord = PlayerPrefs.GetString("LastPassWord");
         if (_szName != "")
         {
-            NetManager.Instance.LoginRequest(_szName, _szPassWord);
+            NetManager.Instance.CheckLoginRequest(_szName, _szPassWord);
         }
         else
         {
@@ -116,7 +116,7 @@ public class Login : Window
         }
         else
         {
-            NetManager.Instance.LoginRequest(szName, szPassWord);
+            NetManager.Instance.CheckLoginRequest(szName, szPassWord);
         }
     }
 
@@ -189,7 +189,7 @@ public class Login : Window
     public void OnRegisterResponse(EventContext context)
     {
         RegisterResponse response = context.data as RegisterResponse;
-        NetManager.Instance.LoginRequest(response.name, response.password);
+        NetManager.Instance.CheckLoginRequest(response.name, response.password);
     }
 
     /*
