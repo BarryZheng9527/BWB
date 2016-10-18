@@ -7,6 +7,7 @@ public class RoleData
 
 public class RoleClass
 {
+    public string UniqueID; //唯一ID
     public string Name; //名
     public int Level; //等级
     public int Job; //职业(1男2女)

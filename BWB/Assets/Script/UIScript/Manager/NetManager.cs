@@ -217,17 +217,20 @@ public class NetManager
                     CurrentTimeHandler.Instance.StartTimer();
                 }
             });
-            AVQuery<AVObject> query = new AVQuery<AVObject>("Hero").WhereEqualTo("userID", AVUser.CurrentUser.ObjectId).OrderBy("job");
-            query.FindAsync().ContinueWith(t =>
+
+            for (int iIndex = 0; iIndex < 2; ++iIndex)
             {
-                if (t.IsFaulted || t.IsCanceled)
+                string szHero = "hero" + iIndex;
+                szHero = AVUser.CurrentUser.Get<string>(szHero);
+                AVQuery<AVObject> query = new AVQuery<AVObject>("Hero");
+                query.GetAsync(szHero).ContinueWith(t =>
                 {
-                }
-                else if (t.IsCompleted)
-                {
-                    IEnumerable<AVObject> roles = t.Result;
-                    foreach(AVObject role in roles)
+                    if (t.IsFaulted || t.IsCanceled)
                     {
+                    }
+                    else if (t.IsCompleted)
+                    {
+                        AVObject role = t.Result;
                         RoleClass myRole = new RoleClass();
                         myRole.Name = role.Get<string>("name");
                         myRole.Level = role.Get<int>("level");
@@ -240,8 +243,8 @@ public class NetManager
                         myRole.LastOffLineTime = role.Get<long>("lastLoginTime");
                         DataManager.Instance.RoleData.RoleList.Add(myRole);
                     }
-                }
-            });
+                });
+            }
         }
         else
         {
@@ -265,7 +268,6 @@ public class NetManager
             {"monsterIndex", 0},
             {"createTime", DataManager.Instance.ServerTime},
             {"lastLoginTime", 0},
-            {"userID", AVUser.CurrentUser.ObjectId},
         };
         hero.SaveAsync().ContinueWith(t =>
         {
@@ -278,6 +280,7 @@ public class NetManager
             else if (t.IsCompleted)
             {
                 response.role = new RoleClass();
+                response.role.UniqueID = hero.ObjectId;
                 response.role.Name = hero.Get<string>("name");
                 response.role.Level = hero.Get<int>("level");
                 response.role.Job = hero.Get<int>("job");
@@ -298,6 +301,16 @@ public class NetManager
         {
             DataManager.Instance.RoleData.RoleList.Add(response.role);
             GameEventHandler.Messenger.DispatchEvent(EventConstant.CreatRole, response);
+
+            if (response.role.Job == 1)
+            {
+                AVUser.CurrentUser["hero0"] = response.role.UniqueID;
+            }
+            else if (response.role.Job == 2)
+            {
+                AVUser.CurrentUser["hero1"] = response.role.UniqueID;
+            }
+            AVUser.CurrentUser.SaveAsync();
         }
         else
         {
