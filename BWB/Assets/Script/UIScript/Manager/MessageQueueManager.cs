@@ -62,6 +62,9 @@ public class MessageQueueManager
                 CreatRoleResponse stCreatRoleResponse = (CreatRoleResponse)stBaseResponse;
                 NetManager.Instance.CreatRoleResponse(stCreatRoleResponse);
                 break;
+            case MessageConstant.START_GAME_RESPONSE:
+                NetManager.Instance.StartGameResponse();
+                break;
             default:
                 break;
         }

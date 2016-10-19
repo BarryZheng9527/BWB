@@ -44,7 +44,7 @@
 		<item TextID="SkillDesc_2001" Text="每使用五次鬼道基式就能升级加两点敏捷，是不是很划算？初次习得，需要给我一百块"/>
 		<item TextID="MonsterName_1" Text="怪物+宝1"/>
 		<item TextID="Text_100001" Text="创建角色"/>
-		<item TextID="Text_100002" Text="进入游戏"/>
+		<item TextID="Text_100002" Text="开始游戏"/>
 		<item TextID="Text_100003" Text="战力"/>
 		<item TextID="Text_100004" Text="金币消耗"/>
 		<item TextID="Text_100005" Text="使用@param1@param2次"/>

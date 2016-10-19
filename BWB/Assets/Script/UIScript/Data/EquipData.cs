@@ -2,7 +2,7 @@
 
 public class EquipData
 {
-    public List<EquipClass> EquipList;
+    public List<EquipClass> EquipList = new List<EquipClass>();
 }
 
 public class EquipClass

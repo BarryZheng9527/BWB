@@ -51,4 +51,17 @@ public static class CommonHandler
         long t = (time.Ticks - startTime.Ticks) / 10000;
         return t;
     }
+
+    /*
+     * list和string互转
+     */
+    static public string ConvertList2String(List<string> targetList)
+    {
+        return string.Join(",", targetList.ToArray());
+    }
+
+    static public List<string> ConvertString2List(string targetString)
+    {
+        return new List<string>(targetString.Split(','));
+    }
 }

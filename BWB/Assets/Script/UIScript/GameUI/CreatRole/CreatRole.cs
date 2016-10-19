@@ -29,7 +29,7 @@ public class CreatRole : Window
     {
         base.OnShown();
         GameEventHandler.Messenger.AddEventListener(EventConstant.CreatRole, OnCreatRoleResponse);
-        GameEventHandler.Messenger.AddEventListener(EventConstant.ChooseRole, OnEnterGameResponse);
+        GameEventHandler.Messenger.AddEventListener(EventConstant.ChooseRole, OnStartGameResponse);
         _RoleData = DataManager.Instance.RoleData;
         InitRoleData();
     }
@@ -38,7 +38,7 @@ public class CreatRole : Window
     {
         base.OnHide();
         GameEventHandler.Messenger.RemoveEventListener(EventConstant.CreatRole, OnCreatRoleResponse);
-        GameEventHandler.Messenger.RemoveEventListener(EventConstant.ChooseRole, OnEnterGameResponse);
+        GameEventHandler.Messenger.RemoveEventListener(EventConstant.ChooseRole, OnStartGameResponse);
     }
 
     /*
@@ -118,7 +118,7 @@ public class CreatRole : Window
     }
 
     /*
-     * 创建角色/进入游戏
+     * 创建角色/开始游戏
      */
     private void OnSure()
     {
@@ -132,7 +132,7 @@ public class CreatRole : Window
         }
         else
         {
-            NetManager.Instance.EnterGameRequest(_CurrentRoleInfo.Name);
+            NetManager.Instance.StartGameRequest(_CurrentRoleInfo.UniqueID);
         }
     }
 
@@ -146,9 +146,9 @@ public class CreatRole : Window
     }
 
     /*
-     * 进入游戏结果
+     * 开始游戏结果
      */
-    private void OnEnterGameResponse()
+    private void OnStartGameResponse()
     {
         Hide();
         GUIManager.Instance.OpenMainUI();

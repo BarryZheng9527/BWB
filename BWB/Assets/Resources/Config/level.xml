@@ -1,6 +1,7 @@
 <!-- 被2012 () 使用XMLSpy v编辑的 (http://www.altova.com) by -->
 <Root>
 	<Levels>
+		<item Level="0" Exp="0"/>
 		<item Level="1" Exp="100"/>
 		<item Level="2" Exp="200"/>
 		<item Level="3" Exp="300"/>

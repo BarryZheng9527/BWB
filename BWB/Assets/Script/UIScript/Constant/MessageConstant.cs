@@ -7,4 +7,5 @@
     public const int CHECK_LOGIN_RESPONSE = 0x1003; //检测登陆
     public const int LOGIN_RESPONSE = 0x1004; //登陆
     public const int CREAT_ROLE_RESPONSE = 0x1005; //创角
+    public const int START_GAME_RESPONSE = 0x1006; //开始游戏
 }

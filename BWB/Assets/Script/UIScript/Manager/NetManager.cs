@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using AVOSCloud;
+using System.Threading.Tasks;
 
 public class NetManager
 {
@@ -202,7 +203,6 @@ public class NetManager
     {
         if (response.iResponseId == 0)
         {
-            GameEventHandler.Messenger.DispatchEvent(EventConstant.Login, response);
             AVCloud.GetServerDateTime().ContinueWith(t =>
             {
                 if (t.IsFaulted || t.IsCanceled)
@@ -230,6 +230,7 @@ public class NetManager
                     {
                         AVObject role = t.Result;
                         RoleClass myRole = new RoleClass();
+                        myRole.UniqueID = role.ObjectId;
                         myRole.Name = role.Get<string>("name");
                         myRole.Level = role.Get<int>("level");
                         myRole.Job = role.Get<int>("job");
@@ -246,6 +247,8 @@ public class NetManager
                     }
                 });
             }
+
+            GameEventHandler.Messenger.DispatchEvent(EventConstant.Login, response);
         }
         else
         {
@@ -326,42 +329,102 @@ public class NetManager
     }
 
     /*
-     * 选角进入游戏
+     * 选角开始游戏
      */
-    public void EnterGameRequest(string name)
+    public void StartGameRequest(string uniqueID)
     {
-        EnterGameResponse(name);
-    }
-
-    public void EnterGameResponse(string name)
-    {
-        RoleClass roleclass = new RoleClass();
+        RoleClass curRole = new RoleClass();
         for (int iIndex = 0; iIndex < DataManager.Instance.RoleData.RoleList.Count; ++iIndex)
         {
             RoleClass role = DataManager.Instance.RoleData.RoleList[iIndex];
-            if (role.Name == name)
+            if (role.UniqueID == uniqueID)
             {
-                roleclass = role;
+                curRole = role;
                 break;
             }
         }
-        EquipData equipdata = new EquipData();
-        List<EquipClass> equiplist = new List<EquipClass>();
-        EquipClass equipclass = new EquipClass();
-        equipclass.UniqueID = CommonHandler.GetUniqueID();
-        equipclass.EquipID = 100001;
-        equipclass.EquipPos = 1;
-        equipclass.Level = 1;
-        equipclass.RemouldOptionList.Add(1);
-        equiplist.Add(equipclass);
-        equipdata.EquipList = equiplist;
-        SkillData skillData = new SkillData();
-        skillData.SkillDataList = new List<SkillClass>();
 
-        DataManager.Instance.CurrentRole = roleclass;
-        DataManager.Instance.EquipData = equipdata;
-        DataManager.Instance.SkillData = skillData;
-        AttrHandler.CalculateTotalAttr();
+        List<string> equipList = CommonHandler.ConvertString2List(curRole.Equips);
+        AVQuery<AVObject> equipQuery = new AVQuery<AVObject>("Equip").WhereContainedIn("objectId", equipList);
+        equipQuery.FindAsync().ContinueWith(t =>
+        {
+            if (t.IsFaulted || t.IsCanceled)
+            {
+            }
+            else if (t.IsCompleted)
+            {
+                IEnumerable<AVObject> equips = t.Result;
+                foreach(AVObject equip in equips)
+                {
+                    EquipClass myEquip = new EquipClass();
+                    myEquip.UniqueID = equip.ObjectId;
+                    myEquip.EquipID = equip.Get<int>("equipId");
+                    myEquip.EquipPos = equip.Get<int>("equipPos");
+                    myEquip.Level = equip.Get<int>("level");
+                    myEquip.RemouldOptionList[0] = equip.Get<int>("remould0");
+                    myEquip.RemouldOptionList[1] = equip.Get<int>("remould1");
+                    myEquip.RemouldOptionList[2] = equip.Get<int>("remould2");
+                    myEquip.RemouldOptionList[3] = equip.Get<int>("remould3");
+                    myEquip.RemouldOptionList[4] = equip.Get<int>("remould4");
+                    DataManager.Instance.EquipData.EquipList.Add(myEquip);
+                }
+            }
+
+            List<string> itemList = CommonHandler.ConvertString2List(curRole.Items);
+            AVQuery<AVObject> itemQuery = new AVQuery<AVObject>("Item").WhereContainedIn("objectId", itemList);
+            return itemQuery.FindAsync();
+        }).Unwrap().ContinueWith(r =>
+        {
+            if (r.IsFaulted || r.IsCanceled)
+            {
+            }
+            else if (r.IsCompleted)
+            {
+                IEnumerable<AVObject> items = r.Result;
+                foreach (AVObject item in items)
+                {
+                    ItemClass myItem = new ItemClass();
+                    myItem.UniqueID = item.ObjectId;
+                    myItem.ItemID = item.Get<int>("itemId");
+                    myItem.Count = item.Get<int>("count");
+                    DataManager.Instance.ItemData.ItemList.Add(myItem);
+                }
+            } 
+            
+            List<string> skillList = CommonHandler.ConvertString2List(curRole.Skills);
+            AVQuery<AVObject> skillQuery = new AVQuery<AVObject>("Skill").WhereContainedIn("objectId", skillList);
+            return skillQuery.FindAsync();
+        }).Unwrap().ContinueWith(s =>
+        {
+            BaseResponse response = new BaseResponse();
+            response.ID = MessageConstant.START_GAME_RESPONSE;
+            if (s.IsFaulted || s.IsCanceled)
+            {
+            }
+            else if (s.IsCompleted)
+            {
+                IEnumerable<AVObject> skills = s.Result;
+                foreach (AVObject skill in skills)
+                {
+                    SkillClass mySkill = new SkillClass();
+                    mySkill.UniqueID = skill.ObjectId;
+                    mySkill.SkillType = skill.Get<int>("skillType");
+                    mySkill.SkillID = skill.Get<int>("skillId");
+                    mySkill.Pos = skill.Get<int>("pos");
+                    mySkill.Level = skill.Get<int>("level");
+                    mySkill.NextExp = skill.Get<int>("nextExp");
+                    DataManager.Instance.SkillData.SkillDataList.Add(mySkill);
+                }
+            }
+
+            DataManager.Instance.CurrentRole = curRole;
+            AttrHandler.CalculateTotalAttr();
+            MessageQueueManager.Instance.AddMessage(response);
+        });
+    }
+
+    public void StartGameResponse()
+    {
         GameEventHandler.Messenger.DispatchEvent(EventConstant.ChooseRole);
     }
 

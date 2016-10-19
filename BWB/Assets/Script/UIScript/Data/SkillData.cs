@@ -2,11 +2,12 @@
 
 public class SkillData
 {
-    public List<SkillClass> SkillDataList;
+    public List<SkillClass> SkillDataList = new List<SkillClass>();
 }
 
 public class SkillClass
 {
+    public string UniqueID; //技能唯一ID
     public int SkillType; //技能类型
     public int SkillID; //技能ID
     public int Pos; //技能装备位

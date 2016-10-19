@@ -38,13 +38,16 @@ public static class AttrHandler
                 //改造属性
                 for (int iIndex2 = 0; iIndex2 < equip.RemouldOptionList.Count; ++iIndex2)
                 {
-                    OptionStruct optionStruct = RemouldConfig.Instance.GetOptionStructFromID(equip.RemouldOptionList[iIndex2]);
-                    for (int iIndex3 = 0; iIndex3 < optionStruct.AttrList.Count; ++iIndex3)
+                    if (equip.RemouldOptionList[iIndex2] > 0)
                     {
-                        AttrStruct attrStruct = RemouldConfig.Instance.GetAttrStructFromID(optionStruct.AttrList[iIndex3]);
-                        if (attrStruct.Value != 0)
+                        OptionStruct optionStruct = RemouldConfig.Instance.GetOptionStructFromID(equip.RemouldOptionList[iIndex2]);
+                        for (int iIndex3 = 0; iIndex3 < optionStruct.AttrList.Count; ++iIndex3)
                         {
-                            DictBaseAttr[attrStruct.Type] += attrStruct.Value;
+                            AttrStruct attrStruct = RemouldConfig.Instance.GetAttrStructFromID(optionStruct.AttrList[iIndex3]);
+                            if (attrStruct.Value != 0)
+                            {
+                                DictBaseAttr[attrStruct.Type] += attrStruct.Value;
+                            }
                         }
                     }
                 }
