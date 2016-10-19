@@ -27,6 +27,7 @@ public class ItemCard : GComponent
 
     public ITEM_TIPS_TYPE _TipsType;
     public ITEM_TYPE _ItemType;
+    public EquipClass _CurEquipData;
     public ItemClass _CurItemData;
     public SkillStruct _CurSkillData;
 
@@ -41,9 +42,30 @@ public class ItemCard : GComponent
     }
 
     /*
-     * 装备道具
+     * 装备
      */
-    public void SetEquipData(ItemClass data, ITEM_TIPS_TYPE tipsType)
+    public void SetEquipData(EquipClass data, ITEM_TIPS_TYPE tipsType)
+    {
+        ClearShow();
+        _CurEquipData = data;
+        _TipsType = tipsType;
+        if (_CurItemData == null)
+        {
+            return;
+        }
+        _ItemType = ITEM_TYPE.EQUIP;
+        EquipStruct equipStruct = EquipConfig.Instance.GetEquipFromID(_CurEquipData.EquipID);
+        _IconLoader.url = UIPackage.GetItemURL("IconEquip", equipStruct.Icon);
+        if (_CurEquipData.Level > 0)
+        {
+            _Level.text = _CurEquipData.Level.ToString();
+        }
+    }
+
+    /*
+     * 道具
+     */
+    public void SetItemData(ItemClass data, ITEM_TIPS_TYPE tipsType)
     {
         ClearShow();
         _CurItemData = data;
@@ -52,20 +74,7 @@ public class ItemCard : GComponent
         {
             return;
         }
-        if (_CurItemData.ItemType == Constant.EQUIP)
-        {
-            _ItemType = ITEM_TYPE.EQUIP;
-            EquipStruct equipStruct = EquipConfig.Instance.GetEquipFromID(_CurItemData.EquipID);
-            _IconLoader.url = UIPackage.GetItemURL("IconEquip", equipStruct.Icon);
-            if (_CurItemData.Level > 0)
-            {
-                _Level.text = _CurItemData.Level.ToString();
-            }
-        }
-        else if (_CurItemData.ItemType == Constant.ITEM)
-        {
-            _ItemType = ITEM_TYPE.ITEM;
-        }
+        _ItemType = ITEM_TYPE.ITEM;
     }
 
     /*
@@ -99,11 +108,11 @@ public class ItemCard : GComponent
         {
             case ITEM_TYPE.EQUIP:
             {
-                if (_CurItemData == null)
+                if (_CurEquipData == null)
                 {
                     return;
                 }
-                GUIManager.Instance.OpenEquipTips(_CurItemData, ITEM_TIPS_TYPE.DEFAULT);
+                GUIManager.Instance.OpenEquipTips(_CurEquipData, _TipsType);
                 break;
             }
             case ITEM_TYPE.ITEM:

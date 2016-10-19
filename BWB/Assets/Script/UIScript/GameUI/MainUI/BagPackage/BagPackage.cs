@@ -28,17 +28,26 @@ public class BagPackage : GComponent
         GameEventHandler.Messenger.RemoveEventListener(EventConstant.ItemUpdate, OnItemUpdate);
     }
 
+    /*
+     * 更新背包显示列表
+     */
     private void UpdateItemList()
     {
         _ItemList.RemoveChildrenToPool();
-        for (int iIndex = 0; iIndex < DataManager.Instance.ItemData.ItemList.Count; ++iIndex)
+        for (int iIndex0 = 0; iIndex0 < DataManager.Instance.EquipData.EquipList.Count; ++iIndex0)
         {
-            ItemClass item = DataManager.Instance.ItemData.ItemList[iIndex];
-            if ((item.ItemType == Constant.EQUIP && item.EquipPos == 0) || item.ItemType == Constant.ITEM)
+            EquipClass equip = DataManager.Instance.EquipData.EquipList[iIndex0];
+            if (equip.EquipPos == 0)
             {
                 ItemCard itemCard = _ItemList.AddItemFromPool() as ItemCard;
-                itemCard.SetEquipData(item, ITEM_TIPS_TYPE.DEFAULT);
+                itemCard.SetEquipData(equip, ITEM_TIPS_TYPE.DEFAULT);
             }
+        }
+        for (int iIndex1 = 0; iIndex1 < DataManager.Instance.ItemData.ItemList.Count; ++iIndex1)
+        {
+            ItemClass item = DataManager.Instance.ItemData.ItemList[iIndex1];
+            ItemCard itemCard = _ItemList.AddItemFromPool() as ItemCard;
+            itemCard.SetItemData(item, ITEM_TIPS_TYPE.DEFAULT);
         }
     }
 

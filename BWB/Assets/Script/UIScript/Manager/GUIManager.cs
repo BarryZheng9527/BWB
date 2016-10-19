@@ -96,9 +96,9 @@ public class GUIManager
     /*
      * 装备tips
      */
-    public void OpenEquipTips(ItemClass data, ITEM_TIPS_TYPE tipsType)
+    public void OpenEquipTips(EquipClass equip, ITEM_TIPS_TYPE tipsType)
     {
-        equipTips.SetData(data, tipsType);
+        equipTips.SetData(equip, tipsType);
         equipTips.Show();
     }
 

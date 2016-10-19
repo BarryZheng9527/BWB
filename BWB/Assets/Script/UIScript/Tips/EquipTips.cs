@@ -14,7 +14,7 @@ public class EquipTips : Window
     private GButton _UnLoadBtn;
 
     private ITEM_TIPS_TYPE TipsType;
-    private ItemClass _CurItemData;
+    private EquipClass _CurEquipData;
 
     protected override void OnInit()
     {
@@ -51,9 +51,9 @@ public class EquipTips : Window
         Hide();
     }
 
-    public void SetData(ItemClass data, ITEM_TIPS_TYPE tipsType)
+    public void SetData(EquipClass data, ITEM_TIPS_TYPE tipsType)
     {
-        _CurItemData = data;
+        _CurEquipData = data;
         TipsType = tipsType;
     }
 
@@ -62,10 +62,10 @@ public class EquipTips : Window
      */
     private void UpdateShowInfo()
     {
-        if (_CurItemData != null)
+        if (_CurEquipData != null)
         {
-            EquipStruct equipStruct = EquipConfig.Instance.GetEquipFromID(_CurItemData.EquipID);
-            _CurItemCard.SetEquipData(_CurItemData, ITEM_TIPS_TYPE.NOTIPS);
+            EquipStruct equipStruct = EquipConfig.Instance.GetEquipFromID(_CurEquipData.EquipID);
+            _CurItemCard.SetEquipData(_CurEquipData, ITEM_TIPS_TYPE.NOTIPS);
             _Name.text = equipStruct.GetColorName();
             _Type.text = equipStruct.GetTypeDesc();
             SetBasePropStr();
@@ -75,7 +75,7 @@ public class EquipTips : Window
             _EquipBtn.visible = false;
             if (TipsType != ITEM_TIPS_TYPE.ONLYSHOW)
             {
-                if (_CurItemData.EquipPos > 0)
+                if (_CurEquipData.EquipPos > 0)
                 {
                     _UnLoadBtn.visible = true;
                 }
@@ -93,7 +93,7 @@ public class EquipTips : Window
     private void SetBasePropStr()
     {
         _Attr.text = "";
-        EquipStruct equipStruct = EquipConfig.Instance.GetEquipFromID(_CurItemData.EquipID);
+        EquipStruct equipStruct = EquipConfig.Instance.GetEquipFromID(_CurEquipData.EquipID);
         for (int iIndex = 0; iIndex < equipStruct.AttrList.Count; ++iIndex)
         {
             double Value = equipStruct.AttrList[iIndex];
@@ -126,10 +126,10 @@ public class EquipTips : Window
      */
     private void OnEquip()
     {
-        if (_CurItemData != null)
+        if (_CurEquipData != null)
         {
-            EquipStruct equipStruct = EquipConfig.Instance.GetEquipFromID(_CurItemData.EquipID);
-            NetManager.Instance.EquipRequest(_CurItemData.UniqueID, equipStruct.EquipPos);
+            EquipStruct equipStruct = EquipConfig.Instance.GetEquipFromID(_CurEquipData.EquipID);
+            NetManager.Instance.EquipRequest(_CurEquipData.UniqueID, equipStruct.EquipPos);
         }
         Hide();
     }
@@ -139,9 +139,9 @@ public class EquipTips : Window
      */
     private void OnUnLoad()
     {
-        if (_CurItemData != null)
+        if (_CurEquipData != null)
         {
-            NetManager.Instance.UnEquipRequest(_CurItemData.UniqueID);
+            NetManager.Instance.UnEquipRequest(_CurEquipData.UniqueID);
         }
         Hide();
     }

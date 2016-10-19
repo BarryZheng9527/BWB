@@ -6,7 +6,7 @@ public class Option : GComponent
     private GTextField _AttrDesc;
     private GButton _RemouldBtn;
 
-    private ItemClass _CurItemData;
+    private EquipClass _CurEquipData;
     private OptionStruct _OptionStruct;
 
     public override void ConstructFromXML(XML xml)
@@ -30,9 +30,9 @@ public class Option : GComponent
     /*
      * 改造信息
      */
-    public void SetData(ItemClass itemData, OptionStruct optionStruct)
+    public void SetData(EquipClass equipData, OptionStruct optionStruct)
     {
-        _CurItemData = itemData;
+        _CurEquipData = equipData;
         _OptionStruct = optionStruct;
         string attrString = "";
         for (int index = 0; index < _OptionStruct.AttrList.Count; ++index)
@@ -62,7 +62,7 @@ public class Option : GComponent
         }
         else
         {
-            NetManager.Instance.RemouldRequest(_CurItemData.UniqueID, _OptionStruct.Index);
+            NetManager.Instance.RemouldRequest(_CurEquipData.UniqueID, _OptionStruct.Index);
         }
     }
 }

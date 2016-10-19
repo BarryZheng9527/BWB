@@ -52,11 +52,10 @@ public class NetManager
      */
     public void EquipNotify(int iEquipID)
     {
-        ItemClass itemclass = new ItemClass();
-        itemclass.ItemType = Constant.EQUIP;
-        itemclass.UniqueID = CommonHandler.GetUniqueID();
-        itemclass.EquipID = iEquipID;
-        DataManager.Instance.ItemData.ItemList.Add(itemclass);
+        EquipClass equip = new EquipClass();
+        equip.UniqueID = CommonHandler.GetUniqueID();
+        equip.EquipID = iEquipID;
+        DataManager.Instance.EquipData.EquipList.Add(equip);
         GameEventHandler.Messenger.DispatchEvent(EventConstant.ItemUpdate);
     }
 
@@ -66,7 +65,6 @@ public class NetManager
     public void ItemNotify(int iItemID)
     {
         ItemClass itemclass = new ItemClass();
-        itemclass.ItemType = Constant.ITEM;
         itemclass.ItemID = iItemID;
         DataManager.Instance.ItemData.ItemList.Add(itemclass);
         GameEventHandler.Messenger.DispatchEvent(EventConstant.ItemUpdate);
@@ -347,22 +345,21 @@ public class NetManager
                 break;
             }
         }
-        ItemData itemdata = new ItemData();
-        List<ItemClass> itemlist = new List<ItemClass>();
-        ItemClass itemclass = new ItemClass();
-        itemclass.ItemType = Constant.EQUIP;
-        itemclass.UniqueID = CommonHandler.GetUniqueID();
-        itemclass.EquipID = 100001;
-        itemclass.EquipPos = 1;
-        itemclass.Level = 1;
-        itemclass.RemouldOptionList.Add(1);
-        itemlist.Add(itemclass);
-        itemdata.ItemList = itemlist;
+        EquipData equipdata = new EquipData();
+        List<EquipClass> equiplist = new List<EquipClass>();
+        EquipClass equipclass = new EquipClass();
+        equipclass.UniqueID = CommonHandler.GetUniqueID();
+        equipclass.EquipID = 100001;
+        equipclass.EquipPos = 1;
+        equipclass.Level = 1;
+        equipclass.RemouldOptionList.Add(1);
+        equiplist.Add(equipclass);
+        equipdata.EquipList = equiplist;
         SkillData skillData = new SkillData();
         skillData.SkillDataList = new List<SkillClass>();
 
         DataManager.Instance.CurrentRole = roleclass;
-        DataManager.Instance.ItemData = itemdata;
+        DataManager.Instance.EquipData = equipdata;
         DataManager.Instance.SkillData = skillData;
         AttrHandler.CalculateTotalAttr();
         GameEventHandler.Messenger.DispatchEvent(EventConstant.ChooseRole);
@@ -378,12 +375,12 @@ public class NetManager
 
     public void EquipResponse(string uniqueID, int equipPos)
     {
-        for (int iIndex = 0; iIndex < DataManager.Instance.ItemData.ItemList.Count; ++iIndex)
+        for (int iIndex = 0; iIndex < DataManager.Instance.EquipData.EquipList.Count; ++iIndex)
         {
-            ItemClass item = DataManager.Instance.ItemData.ItemList[iIndex];
-            if (item.ItemType == Constant.EQUIP && item.UniqueID == uniqueID)
+            EquipClass equip = DataManager.Instance.EquipData.EquipList[iIndex];
+            if (equip.UniqueID == uniqueID)
             {
-                item.EquipPos = equipPos;
+                equip.EquipPos = equipPos;
                 break;
             }
         }
@@ -401,12 +398,12 @@ public class NetManager
 
     public void UnEquipResponse(string uniqueID)
     {
-        for (int iIndex = 0; iIndex < DataManager.Instance.ItemData.ItemList.Count; ++iIndex)
+        for (int iIndex = 0; iIndex < DataManager.Instance.EquipData.EquipList.Count; ++iIndex)
         {
-            ItemClass item = DataManager.Instance.ItemData.ItemList[iIndex];
-            if (item.ItemType == Constant.EQUIP && item.UniqueID == uniqueID)
+            EquipClass equip = DataManager.Instance.EquipData.EquipList[iIndex];
+            if (equip.UniqueID == uniqueID)
             {
-                item.EquipPos = 0;
+                equip.EquipPos = 0;
                 break;
             }
         }
@@ -424,13 +421,13 @@ public class NetManager
 
     public void RemouldResponse(string uniqueID, int optionIndex)
     {
-        for (int iIndex = 0; iIndex < DataManager.Instance.ItemData.ItemList.Count; ++iIndex)
+        for (int iIndex = 0; iIndex < DataManager.Instance.EquipData.EquipList.Count; ++iIndex)
         {
-            ItemClass item = DataManager.Instance.ItemData.ItemList[iIndex];
-            if (item.ItemType == Constant.EQUIP && item.UniqueID == uniqueID)
+            EquipClass equip = DataManager.Instance.EquipData.EquipList[iIndex];
+            if (equip.UniqueID == uniqueID)
             {
-                item.Level++;
-                item.RemouldOptionList.Add(optionIndex);
+                equip.Level++;
+                equip.RemouldOptionList.Add(optionIndex);
                 break;
             }
         }

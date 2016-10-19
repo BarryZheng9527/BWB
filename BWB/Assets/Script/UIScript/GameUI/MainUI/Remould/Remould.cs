@@ -9,7 +9,7 @@ public class Remould : GComponent
     private GList _OptionList;
     private GList _EquipList;
 
-    private ItemClass _CurItemData;
+    private EquipClass _CurEquipData;
 
     public override void ConstructFromXML(XML xml)
     {
@@ -30,8 +30,8 @@ public class Remould : GComponent
         _EquipList.onClickItem.Add(OnSelectEquip);
         GameEventHandler.Messenger.AddEventListener(EventConstant.Remould, OnRemould);
         UpdateEquipList(GetController("c1").selectedIndex == 0);
-        _CurItemData = null;
-        _CurEquip.SetEquipData(_CurItemData, ITEM_TIPS_TYPE.NOTIPS);
+        _CurEquipData = null;
+        _CurEquip.SetEquipData(_CurEquipData, ITEM_TIPS_TYPE.NOTIPS);
     }
 
     private void RemovedFromStage()
@@ -47,14 +47,14 @@ public class Remould : GComponent
     private void UpdateEquipList(bool bEquip)
     {
         _EquipList.RemoveChildrenToPool();
-        for (int iIndex = 0; iIndex < DataManager.Instance.ItemData.ItemList.Count; ++iIndex)
+        for (int iIndex = 0; iIndex < DataManager.Instance.EquipData.EquipList.Count; ++iIndex)
         {
-            ItemClass item = DataManager.Instance.ItemData.ItemList[iIndex];
-            if (item.ItemType == Constant.EQUIP && ((bEquip && item.EquipPos > 0) || (!bEquip && item.EquipPos == 0)))
+            EquipClass equip = DataManager.Instance.EquipData.EquipList[iIndex];
+            if ((bEquip && equip.EquipPos > 0) || (!bEquip && equip.EquipPos == 0))
             {
-                EquipStruct equipStruct = EquipConfig.Instance.GetEquipFromID(item.EquipID);
+                EquipStruct equipStruct = EquipConfig.Instance.GetEquipFromID(equip.EquipID);
                 GButton remouldListItem = _EquipList.AddItemFromPool() as GButton;
-                (remouldListItem.GetChild("_CurItemCard") as ItemCard).SetEquipData(item, ITEM_TIPS_TYPE.NOTIPS);
+                (remouldListItem.GetChild("_CurItemCard") as ItemCard).SetEquipData(equip, ITEM_TIPS_TYPE.NOTIPS);
                 remouldListItem.GetChild("_Name").asTextField.text = equipStruct.GetColorName();
                 remouldListItem.GetChild("_Type").asTextField.text = equipStruct.GetTypeDesc();
             }
@@ -66,17 +66,17 @@ public class Remould : GComponent
      */
     private void UpdateOptionInfo()
     {
-        _CurEquip.SetEquipData(_CurItemData, ITEM_TIPS_TYPE.NOTIPS);
+        _CurEquip.SetEquipData(_CurEquipData, ITEM_TIPS_TYPE.NOTIPS);
         _OptionList.RemoveChildrenToPool();
-        EquipStruct equipStruct = EquipConfig.Instance.GetEquipFromID(_CurItemData.EquipID);
-        if (_CurItemData.Level < Constant.REMOULDNUM)
+        EquipStruct equipStruct = EquipConfig.Instance.GetEquipFromID(_CurEquipData.EquipID);
+        if (_CurEquipData.Level < Constant.REMOULDNUM)
         {
-            RemouldStruct remouldStruct = RemouldConfig.Instance.GetRemouldStructFromID(equipStruct.RemouldList[_CurItemData.Level]);
+            RemouldStruct remouldStruct = RemouldConfig.Instance.GetRemouldStructFromID(equipStruct.RemouldList[_CurEquipData.Level]);
             for (int iIndex = 0; iIndex < remouldStruct.OptionList.Count; ++iIndex)
             {
                 Option optionItem = _OptionList.AddItemFromPool() as Option;
                 OptionStruct optionStruct = RemouldConfig.Instance.GetOptionStructFromID(remouldStruct.OptionList[iIndex]);
-                optionItem.SetData(_CurItemData, optionStruct);
+                optionItem.SetData(_CurEquipData, optionStruct);
             }
         }
     }
@@ -84,7 +84,7 @@ public class Remould : GComponent
     private void OnSelectEquip(EventContext context)
     {
         GButton item = (GButton)context.data;
-        _CurItemData = (item.GetChild("_CurItemCard") as ItemCard)._CurItemData;
+        _CurEquipData = (item.GetChild("_CurItemCard") as ItemCard)._CurEquipData;
         UpdateOptionInfo();
     }
 
@@ -105,12 +105,12 @@ public class Remould : GComponent
     {
         string uniqueID = (string)context.data;
         UpdateEquipList(GetController("c1").selectedIndex == 0);
-        for (int iIndex = 0; iIndex < DataManager.Instance.ItemData.ItemList.Count; ++iIndex)
+        for (int iIndex = 0; iIndex < DataManager.Instance.EquipData.EquipList.Count; ++iIndex)
         {
-            ItemClass item = DataManager.Instance.ItemData.ItemList[iIndex];
-            if (item.ItemType == Constant.EQUIP && item.UniqueID == uniqueID)
+            EquipClass equip = DataManager.Instance.EquipData.EquipList[iIndex];
+            if (equip.UniqueID == uniqueID)
             {
-                _CurItemData = item;
+                _CurEquipData = equip;
                 break;
             }
         }

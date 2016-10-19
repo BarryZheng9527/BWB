@@ -4,8 +4,6 @@
 
     public const float WIDTH = 720; //宽度
     public const float HEIGHT = 1280; //高度
-    public const int EQUIP = 1; //装备类型
-    public const int ITEM = 2; //道具类型
     public const int BATTLESKILL = 1; //战斗技能
     public const int PASSIVESKILL = 2; //被动技能
     public const int PHYSICSSKILL = 1; //物理技能

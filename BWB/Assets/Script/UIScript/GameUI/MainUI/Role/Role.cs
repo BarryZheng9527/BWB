@@ -63,13 +63,13 @@ public class Role : GComponent
             ItemCard itemCard0 = _EquipList.GetChild("_EquipPos" + index) as ItemCard;
             itemCard0.SetEquipData(null, ITEM_TIPS_TYPE.NOTIPS);
         }
-        for (int iIndex = 0; iIndex < DataManager.Instance.ItemData.ItemList.Count; ++iIndex)
+        for (int iIndex = 0; iIndex < DataManager.Instance.EquipData.EquipList.Count; ++iIndex)
         {
-            ItemClass item = DataManager.Instance.ItemData.ItemList[iIndex];
-            if (item.ItemType == Constant.EQUIP && item.EquipPos > 0)
+            EquipClass equip = DataManager.Instance.EquipData.EquipList[iIndex];
+            if (equip.EquipPos > 0)
             {
-                ItemCard itemCard = _EquipList.GetChild("_EquipPos" + item.EquipPos) as ItemCard;
-                itemCard.SetEquipData(item, ITEM_TIPS_TYPE.DEFAULT);
+                ItemCard itemCard = _EquipList.GetChild("_EquipPos" + equip.EquipPos) as ItemCard;
+                itemCard.SetEquipData(equip, ITEM_TIPS_TYPE.DEFAULT);
             }
         }
     }

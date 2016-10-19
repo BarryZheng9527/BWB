@@ -19,6 +19,7 @@ public class DataManager
 
     private RoleData _RoleData = new RoleData(); //角色列表信息
     private RoleClass _CurrentRole = new RoleClass(); //当前选择角色
+    private EquipData _EquipData = new EquipData(); //装备信息
     private ItemData _ItemData = new ItemData(); //道具信息
     private SkillData _SkillData = new SkillData(); //拥有技能信息
     private Dictionary<int, double> _DictBaseAttr = new Dictionary<int, double>(); //基础属性
@@ -48,6 +49,18 @@ public class DataManager
         set
         {
             _CurrentRole = value;
+        }
+    }
+
+    public EquipData EquipData
+    {
+        get
+        {
+            return _EquipData;
+        }
+        set
+        {
+            _EquipData = value;
         }
     }
 

@@ -18,15 +18,15 @@ public static class AttrHandler
             DictBaseAttr.Add(iIndex + 1, 0);
             DictBaseAttrShow.Add(iIndex + 1, "");
         }
-        ItemClass lordEquip = null; //主手武器
-        ItemClass assistantEquip = null; //副手单手武器
+        EquipClass lordEquip = null; //主手武器
+        EquipClass assistantEquip = null; //副手单手武器
         //计算装备附加属性并找出主副手武器
         for (int iIndex0 = 0; iIndex0 < DataManager.Instance.ItemData.ItemList.Count; ++iIndex0)
         {
-            ItemClass item = DataManager.Instance.ItemData.ItemList[iIndex0];
-            if (item.ItemType == Constant.EQUIP && item.EquipPos > 0)
+            EquipClass equip = DataManager.Instance.EquipData.EquipList[iIndex0];
+            if (equip.EquipPos > 0)
             {
-                EquipStruct equipStruct = EquipConfig.Instance.GetEquipFromID(item.EquipID);
+                EquipStruct equipStruct = EquipConfig.Instance.GetEquipFromID(equip.EquipID);
                 for (int iIndex1 = 0; iIndex1 < Constant.ATTRNUM; ++iIndex1)
                 {
                     double Value = equipStruct.AttrList[iIndex1];
@@ -35,9 +35,10 @@ public static class AttrHandler
                         DictBaseAttr[iIndex1 + 1] += Value;
                     }
                 }
-                for (int iIndex2 = 0; iIndex2 < item.RemouldOptionList.Count; ++iIndex2)
+                //改造属性
+                for (int iIndex2 = 0; iIndex2 < equip.RemouldOptionList.Count; ++iIndex2)
                 {
-                    OptionStruct optionStruct = RemouldConfig.Instance.GetOptionStructFromID(item.RemouldOptionList[iIndex2]);
+                    OptionStruct optionStruct = RemouldConfig.Instance.GetOptionStructFromID(equip.RemouldOptionList[iIndex2]);
                     for (int iIndex3 = 0; iIndex3 < optionStruct.AttrList.Count; ++iIndex3)
                     {
                         AttrStruct attrStruct = RemouldConfig.Instance.GetAttrStructFromID(optionStruct.AttrList[iIndex3]);
@@ -47,13 +48,13 @@ public static class AttrHandler
                         }
                     }
                 }
-                if (item.EquipPos == Constant.EQUIPPOS1)
+                if (equip.EquipPos == Constant.EQUIPPOS1)
                 {
-                    lordEquip = item;
+                    lordEquip = equip;
                 }
-                if (item.EquipPos == Constant.EQUIPPOS2 && equipStruct.EquipType == Constant.ONEHANDED)
+                if (equip.EquipPos == Constant.EQUIPPOS2 && equipStruct.EquipType == Constant.ONEHANDED)
                 {
-                    assistantEquip = item;
+                    assistantEquip = equip;
                 }
             }
         }
