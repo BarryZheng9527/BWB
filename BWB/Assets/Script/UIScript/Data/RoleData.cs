@@ -15,6 +15,9 @@ public class RoleClass
     public double Gold; //金币
     public double Money; //钻石
     public int MonsterIndex; //关卡进度
+    public string Equips; //装备
+    public string Items; //道具
+    public string Skills; //技能
     public long CreateTime; //创建时间
     public long LastOffLineTime; //上次登录时间
 }

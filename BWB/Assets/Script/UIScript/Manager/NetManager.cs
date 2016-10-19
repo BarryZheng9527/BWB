@@ -218,11 +218,11 @@ public class NetManager
                 }
             });
 
+            AVQuery<AVObject> query = new AVQuery<AVObject>("Hero");
             for (int iIndex = 0; iIndex < 2; ++iIndex)
             {
                 string szHero = "hero" + iIndex;
                 szHero = AVUser.CurrentUser.Get<string>(szHero);
-                AVQuery<AVObject> query = new AVQuery<AVObject>("Hero");
                 query.GetAsync(szHero).ContinueWith(t =>
                 {
                     if (t.IsFaulted || t.IsCanceled)
@@ -239,6 +239,9 @@ public class NetManager
                         myRole.Gold = role.Get<double>("gold");
                         myRole.Money = role.Get<double>("money");
                         myRole.MonsterIndex = role.Get<int>("monsterIndex");
+                        myRole.Equips = role.Get<string>("equips");
+                        myRole.Items = role.Get<string>("items");
+                        myRole.Skills = role.Get<string>("skills");
                         myRole.CreateTime = role.Get<long>("createTime");
                         myRole.LastOffLineTime = role.Get<long>("lastLoginTime");
                         DataManager.Instance.RoleData.RoleList.Add(myRole);
@@ -266,6 +269,9 @@ public class NetManager
             {"gold", 0},
             {"money", 0},
             {"monsterIndex", 0},
+            {"equips", ""},
+            {"items", ""},
+            {"skills", ""},
             {"createTime", DataManager.Instance.ServerTime},
             {"lastLoginTime", 0},
         };
@@ -288,6 +294,9 @@ public class NetManager
                 response.role.Gold = hero.Get<double>("gold");
                 response.role.Money = hero.Get<double>("money");
                 response.role.MonsterIndex = hero.Get<int>("monsterIndex");
+                response.role.Equips = hero.Get<string>("equips");
+                response.role.Items = hero.Get<string>("items");
+                response.role.Skills = hero.Get<string>("skills");
                 response.role.CreateTime = hero.Get<long>("createTime");
                 response.role.LastOffLineTime = hero.Get<long>("lastLoginTime");
             }
