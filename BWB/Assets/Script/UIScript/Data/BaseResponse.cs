@@ -37,3 +37,9 @@ public class UnEquipResponse : BaseResponse
 {
     public string uniqueId;
 }
+
+public class RemouldEquipResponse : BaseResponse
+{
+    public string uniqueId;
+    public int optionIndex;
+}

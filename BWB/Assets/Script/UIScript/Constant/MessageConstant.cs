@@ -9,5 +9,6 @@
     public const int CREAT_ROLE_RESPONSE = 0x1005; //创角
     public const int START_GAME_RESPONSE = 0x1006; //开始游戏
     public const int EQUIP_RESPONSE = 0x1007; //装备
-    public const int UN_EQUIP_RESPONSE = 0x1008; //卸载装备
+    public const int UN_EQUIP_RESPONSE = 0x1008; //装备卸载
+    public const int REMOULD_EQUIP_RESPONSE = 0x1009; //装备改造
 }

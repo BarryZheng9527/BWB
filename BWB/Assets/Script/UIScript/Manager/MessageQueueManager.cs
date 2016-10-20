@@ -73,6 +73,10 @@ public class MessageQueueManager
                 UnEquipResponse stUnEquipResponse = (UnEquipResponse)stBaseResponse;
                 NetManager.Instance.UnEquipResponse(stUnEquipResponse);
                 break;
+            case MessageConstant.REMOULD_EQUIP_RESPONSE:
+                RemouldEquipResponse stRemouldEquipResponse = (RemouldEquipResponse)stBaseResponse;
+                NetManager.Instance.RemouldResponse(stRemouldEquipResponse);
+                break;
             default:
                 break;
         }

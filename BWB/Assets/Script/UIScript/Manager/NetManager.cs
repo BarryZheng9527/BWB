@@ -522,6 +522,7 @@ public class NetManager
         {
             if (t.IsFaulted || t.IsCanceled)
             {
+                response.iResponseId = ErrorConstant.ERROR_100001;
             }
             else if (t.IsCompleted)
             {
@@ -543,19 +544,26 @@ public class NetManager
         });
     }
 
-    public void UnEquipResponse(UnEquipResponse stUnEquipResponse)
+    public void UnEquipResponse(UnEquipResponse response)
     {
-        for (int iIndex = 0; iIndex < DataManager.Instance.EquipData.EquipList.Count; ++iIndex)
+        if (response.iResponseId == 0)
         {
-            EquipClass equip = DataManager.Instance.EquipData.EquipList[iIndex];
-            if (equip.UniqueID == stUnEquipResponse.uniqueId)
+            for (int iIndex = 0; iIndex < DataManager.Instance.EquipData.EquipList.Count; ++iIndex)
             {
-                equip.EquipPos = 0;
-                break;
+                EquipClass equip = DataManager.Instance.EquipData.EquipList[iIndex];
+                if (equip.UniqueID == response.uniqueId)
+                {
+                    equip.EquipPos = 0;
+                    break;
+                }
             }
+            AttrHandler.CalculateTotalAttr();
+            GameEventHandler.Messenger.DispatchEvent(EventConstant.UnEquip);
         }
-        AttrHandler.CalculateTotalAttr();
-        GameEventHandler.Messenger.DispatchEvent(EventConstant.UnEquip);
+        else
+        {
+            GUIManager.Instance.OpenPopMessage(LanguageConfig.Instance.GetErrorText(response.iResponseId));
+        }
     }
 
     /*
@@ -563,23 +571,61 @@ public class NetManager
      */
     public void RemouldRequest(string uniqueID, int optionIndex)
     {
-        RemouldResponse(uniqueID, optionIndex);
+        RemouldEquipResponse response = new RemouldEquipResponse();
+        response.ID = MessageConstant.REMOULD_EQUIP_RESPONSE;
+        AVQuery<AVObject> equipQuery = new AVQuery<AVObject>("Equip");
+        equipQuery.GetAsync(uniqueID).ContinueWith(t =>
+        {
+            if (t.IsFaulted || t.IsCanceled)
+            {
+                response.iResponseId = ErrorConstant.ERROR_100001;
+            }
+            else if (t.IsCompleted)
+            {
+                AVObject equip = t.Result;
+                int iLevel = equip.Get<int>("level");
+                string remouldIndex = "remould" + iLevel;
+                iLevel++;
+                equip["level"] = iLevel;
+                equip[remouldIndex] = optionIndex;
+                equip.SaveAsync().ContinueWith(s =>
+                {
+                    if (s.IsFaulted || s.IsCanceled)
+                    {
+                        response.iResponseId = ErrorConstant.ERROR_100001;
+                    }
+                    else if (s.IsCompleted)
+                    {
+                        response.uniqueId = uniqueID;
+                        response.optionIndex = optionIndex;
+                        MessageQueueManager.Instance.AddMessage(response);
+                    }
+                });
+            }
+        });
     }
 
-    public void RemouldResponse(string uniqueID, int optionIndex)
+    public void RemouldResponse(RemouldEquipResponse response)
     {
-        for (int iIndex = 0; iIndex < DataManager.Instance.EquipData.EquipList.Count; ++iIndex)
+        if (response.iResponseId == 0)
         {
-            EquipClass equip = DataManager.Instance.EquipData.EquipList[iIndex];
-            if (equip.UniqueID == uniqueID)
+            for (int iIndex = 0; iIndex < DataManager.Instance.EquipData.EquipList.Count; ++iIndex)
             {
-                equip.Level++;
-                equip.RemouldOptionList.Add(optionIndex);
-                break;
+                EquipClass equip = DataManager.Instance.EquipData.EquipList[iIndex];
+                if (equip.UniqueID == response.uniqueId)
+                {
+                    equip.RemouldOptionList[equip.Level] = response.optionIndex;
+                    equip.Level++;
+                    break;
+                }
             }
+            AttrHandler.CalculateTotalAttr();
+            GameEventHandler.Messenger.DispatchEvent(EventConstant.Remould, response.uniqueId);
         }
-        AttrHandler.CalculateTotalAttr();
-        GameEventHandler.Messenger.DispatchEvent(EventConstant.Remould, uniqueID);
+        else
+        {
+            GUIManager.Instance.OpenPopMessage(LanguageConfig.Instance.GetErrorText(response.iResponseId));
+        }
     }
 
     /*
