@@ -10,4 +10,7 @@
     public const int ERROR_100005 = 100005; //账号已被注册
     public const int ERROR_100006 = 100006; //账号不存在
     public const int ERROR_100007 = 100007; //账号或密码不正确
+    public const int ERROR_100008 = 100008; //主手装备弓时才可装备箭
+    public const int ERROR_100009 = 100009; //主手装备法杖时才可装备魔法书
+    public const int ERROR_100010 = 100010; //主手装备单手武器或空置时才可装备盾
 }

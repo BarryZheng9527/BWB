@@ -21,7 +21,7 @@ public static class AttrHandler
         EquipClass lordEquip = null; //主手武器
         EquipClass assistantEquip = null; //副手单手武器
         //计算装备附加属性并找出主副手武器
-        for (int iIndex0 = 0; iIndex0 < DataManager.Instance.ItemData.ItemList.Count; ++iIndex0)
+        for (int iIndex0 = 0; iIndex0 < DataManager.Instance.EquipData.EquipList.Count; ++iIndex0)
         {
             EquipClass equip = DataManager.Instance.EquipData.EquipList[iIndex0];
             if (equip.EquipPos > 0)

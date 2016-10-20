@@ -27,3 +27,13 @@ public class CreatRoleResponse : BaseResponse
 {
     public RoleClass role;
 }
+
+public class EquipResponse : BaseResponse
+{
+    public EquipPosStrategyStruct equipPosStrategy;
+}
+
+public class UnEquipResponse : BaseResponse
+{
+    public string uniqueId;
+}

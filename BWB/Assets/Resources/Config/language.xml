@@ -8,6 +8,9 @@
 		<item ErrorID="100005" Text="账号已被注册"/>
 		<item ErrorID="100006" Text="账号不存在"/>
 		<item ErrorID="100007" Text="账号或密码不正确"/>
+		<item ErrorID="100008" Text="主手装备弓时才可装备箭"/>
+		<item ErrorID="100009" Text="主手装备法杖时才可装备魔法书"/>
+		<item ErrorID="100010" Text="主手装备单手武器或空置时才可装备盾"/>
 	</Errors>
 	<Texts>
 		<item TextID="Name_1001" Text="黑"/>

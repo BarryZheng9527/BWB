@@ -269,7 +269,7 @@ public class NetManager
             {"exp", 0},
             {"gold", 0},
             {"money", 0},
-            {"monsterIndex", 0},
+            {"monsterIndex", 1},
             {"equips", ""},
             {"items", ""},
             {"skills", ""},
@@ -431,24 +431,83 @@ public class NetManager
     /*
      * 装备
      */
-    public void EquipRequest(string uniqueID, int equipPos)
+    public void EquipRequest(EquipPosStrategyStruct equipPosStrategy)
     {
-        EquipResponse(uniqueID, equipPos);
+        EquipResponse response = new EquipResponse();
+        response.ID = MessageConstant.EQUIP_RESPONSE;
+        AVQuery<AVObject> equipQuery = new AVQuery<AVObject>("Equip").WhereContainedIn("objectId", equipPosStrategy.UniqueIDList);
+        equipQuery.FindAsync().ContinueWith(t =>
+        {
+            Task task = Task.FromResult(0);
+            if (t.IsFaulted || t.IsCanceled)
+            {
+                response.iResponseId = ErrorConstant.ERROR_100001;
+            }
+            else if (t.IsCompleted)
+            {
+                IEnumerable<AVObject> equips = t.Result;
+                foreach (AVObject equip in equips)
+                {
+                    int iPos = -1;
+                    for(int iIndex = 0; iIndex < equipPosStrategy.UniqueIDList.Count; ++iIndex)
+                    {
+                        if (equip.ObjectId == equipPosStrategy.UniqueIDList[iIndex])
+                        {
+                            iPos = equipPosStrategy.EquipPosList[iIndex];
+                        }
+                    }
+                    if (iPos > -1)
+                    {
+                        equip["equipPos"] = iPos;
+                        task = task.ContinueWith(_ =>
+                        {
+                            return equip.SaveAsync().ContinueWith(s => 
+                            {
+                                if (s.IsFaulted || s.IsCanceled)
+                                {
+                                    response.iResponseId = ErrorConstant.ERROR_100001;
+                                }
+                            });
+                        }).Unwrap();
+                    }
+                }
+            }
+            return task;
+        }).Unwrap().ContinueWith(r =>
+        {
+            if (r.IsFaulted || r.IsCanceled)
+            {
+                response.iResponseId = ErrorConstant.ERROR_100001;
+            }
+            else if (r.IsCompleted)
+            {
+                response.equipPosStrategy = equipPosStrategy;
+                MessageQueueManager.Instance.AddMessage(response);
+            }
+        });
     }
 
-    public void EquipResponse(string uniqueID, int equipPos)
+    public void EquipResponse(EquipResponse response)
     {
-        for (int iIndex = 0; iIndex < DataManager.Instance.EquipData.EquipList.Count; ++iIndex)
+        if (response.iResponseId == 0)
         {
-            EquipClass equip = DataManager.Instance.EquipData.EquipList[iIndex];
-            if (equip.UniqueID == uniqueID)
+            foreach (EquipClass equip in DataManager.Instance.EquipData.EquipList)
             {
-                equip.EquipPos = equipPos;
-                break;
+                for (int iIndex = 0; iIndex < response.equipPosStrategy.UniqueIDList.Count; ++iIndex)
+                {
+                    if (equip.UniqueID == response.equipPosStrategy.UniqueIDList[iIndex])
+                    {
+                        equip.EquipPos = response.equipPosStrategy.EquipPosList[iIndex];
+                    }
+                }
             }
+            AttrHandler.CalculateTotalAttr();
+            GameEventHandler.Messenger.DispatchEvent(EventConstant.Equip);
         }
-        AttrHandler.CalculateTotalAttr();
-        GameEventHandler.Messenger.DispatchEvent(EventConstant.Equip);
+        else
+        {
+            GUIManager.Instance.OpenPopMessage(LanguageConfig.Instance.GetErrorText(response.iResponseId));
+        }
     }
 
     /*
@@ -456,15 +515,40 @@ public class NetManager
      */
     public void UnEquipRequest(string uniqueID)
     {
-        UnEquipResponse(uniqueID);
+        UnEquipResponse response = new UnEquipResponse();
+        response.ID = MessageConstant.UN_EQUIP_RESPONSE;
+        AVQuery<AVObject> equipQuery = new AVQuery<AVObject>("Equip");
+        equipQuery.GetAsync(uniqueID).ContinueWith(t =>
+        {
+            if (t.IsFaulted || t.IsCanceled)
+            {
+            }
+            else if (t.IsCompleted)
+            {
+                AVObject equip = t.Result;
+                equip["equipPos"] = 0;
+                equip.SaveAsync().ContinueWith(s =>
+                {
+                    if (s.IsFaulted || s.IsCanceled)
+                    {
+                        response.iResponseId = ErrorConstant.ERROR_100001;
+                    }
+                    else if (s.IsCompleted)
+                    {
+                        response.uniqueId = uniqueID;
+                        MessageQueueManager.Instance.AddMessage(response);
+                    }
+                });
+            }
+        });
     }
 
-    public void UnEquipResponse(string uniqueID)
+    public void UnEquipResponse(UnEquipResponse stUnEquipResponse)
     {
         for (int iIndex = 0; iIndex < DataManager.Instance.EquipData.EquipList.Count; ++iIndex)
         {
             EquipClass equip = DataManager.Instance.EquipData.EquipList[iIndex];
-            if (equip.UniqueID == uniqueID)
+            if (equip.UniqueID == stUnEquipResponse.uniqueId)
             {
                 equip.EquipPos = 0;
                 break;

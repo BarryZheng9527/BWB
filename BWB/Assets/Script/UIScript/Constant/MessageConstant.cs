@@ -8,4 +8,6 @@
     public const int LOGIN_RESPONSE = 0x1004; //登陆
     public const int CREAT_ROLE_RESPONSE = 0x1005; //创角
     public const int START_GAME_RESPONSE = 0x1006; //开始游戏
+    public const int EQUIP_RESPONSE = 0x1007; //装备
+    public const int UN_EQUIP_RESPONSE = 0x1008; //卸载装备
 }

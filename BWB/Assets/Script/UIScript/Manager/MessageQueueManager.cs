@@ -65,6 +65,14 @@ public class MessageQueueManager
             case MessageConstant.START_GAME_RESPONSE:
                 NetManager.Instance.StartGameResponse();
                 break;
+            case MessageConstant.EQUIP_RESPONSE:
+                EquipResponse stEquipResponse = (EquipResponse)stBaseResponse;
+                NetManager.Instance.EquipResponse(stEquipResponse);
+                break;
+            case MessageConstant.UN_EQUIP_RESPONSE:
+                UnEquipResponse stUnEquipResponse = (UnEquipResponse)stBaseResponse;
+                NetManager.Instance.UnEquipResponse(stUnEquipResponse);
+                break;
             default:
                 break;
         }

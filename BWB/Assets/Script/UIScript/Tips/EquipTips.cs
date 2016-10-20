@@ -128,8 +128,15 @@ public class EquipTips : Window
     {
         if (_CurEquipData != null)
         {
-            EquipStruct equipStruct = EquipConfig.Instance.GetEquipFromID(_CurEquipData.EquipID);
-            NetManager.Instance.EquipRequest(_CurEquipData.UniqueID, equipStruct.EquipPos);
+            EquipPosStrategyStruct equipPosStrategy = EquipHandler.GetEquipPosStrategy(_CurEquipData);
+            if (equipPosStrategy.iErrorID > 0)
+            {
+                GUIManager.Instance.OpenPopMessage(LanguageConfig.Instance.GetErrorText(equipPosStrategy.iErrorID));
+            }
+            else
+            {
+                NetManager.Instance.EquipRequest(equipPosStrategy);
+            }
         }
         Hide();
     }
