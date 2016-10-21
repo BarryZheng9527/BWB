@@ -89,6 +89,10 @@ public class MessageQueueManager
                 SkillEquipResponse stSkillEquipResponse = (SkillEquipResponse)stBaseResponse;
                 NetManager.Instance.SkillEquipResponse(stSkillEquipResponse);
                 break;
+            case MessageConstant.MONSTER_INDEX_RESPONSE:
+                MonsterIndexResponse stMonsterIndexResponse = (MonsterIndexResponse)stBaseResponse;
+                NetManager.Instance.MonsterIndexResponse(stMonsterIndexResponse);
+                break;
             default:
                 break;
         }

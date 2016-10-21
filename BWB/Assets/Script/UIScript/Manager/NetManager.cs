@@ -883,52 +883,68 @@ public class NetManager
      */
     public void MonsterIndexRequest(int iMonsterIndex, bool bWin = false)
     {
-        MonsterIndexResponse(iMonsterIndex, bWin);
-    }
-
-    public void MonsterIndexResponse(int iMonsterIndex, bool bWin = false)
-    {
         if (bWin)
         {
             MonsterStruct curMonster = MonsterConfig.Instance.GetMonster(iMonsterIndex);
             MonsterStruct nextMonster = MonsterConfig.Instance.GetMonster(iMonsterIndex + 1);
             if (nextMonster.Index > 0 && DataManager.Instance.AutoMonster)
             {
-                DataManager.Instance.CurrentRole.MonsterIndex = nextMonster.Index;
-            }
-            else
-            {
-                DataManager.Instance.CurrentRole.MonsterIndex = iMonsterIndex;
-            }
-            double addGold = curMonster.Gold;
-            if (addGold > 0)
-            {
-                GoldNotify(addGold);
-            }
-            double addExp = curMonster.Exp;
-            if (addExp > 0)
-            {
-                ExpNotify(addExp);
-            }
-            double dRate0 = UnityEngine.Random.Range(1, 101);
-            double dRate1 = UnityEngine.Random.Range(1, 101);
-            if (dRate0 < (100 * curMonster.EquipRate))
-            {
-                EquipNotify(curMonster.EquipID);
-            }
-            if (dRate1 < (100 * curMonster.ItemRate))
-            {
-                ItemNotify(curMonster.ItemID);
+                AVQuery<AVObject> heroQuery = new AVQuery<AVObject>("Hero");
+                heroQuery.GetAsync(DataManager.Instance.CurrentRole.UniqueID).ContinueWith(t =>
+                {
+                    MonsterIndexResponse response = new MonsterIndexResponse();
+                    response.ID = MessageConstant.MONSTER_INDEX_RESPONSE;
+                    if (t.IsFaulted || t.IsCanceled)
+                    {
+                        response.iResponseId = ErrorConstant.ERROR_100001;
+                    }
+                    else if (t.IsCompleted)
+                    {
+                        AVObject hero = t.Result;
+                        hero["monsterIndex"] = nextMonster.Index;
+                        hero.SaveAsync().ContinueWith(s =>
+                        {
+                            if (s.IsFaulted || s.IsCanceled)
+                            {
+                                response.iResponseId = ErrorConstant.ERROR_100001;
+                            }
+                            else if (s.IsCompleted)
+                            {
+                                response.curMonsterIndex = iMonsterIndex;
+                                response.nextMonsterIndex = nextMonster.Index;
+                                MessageQueueManager.Instance.AddMessage(response);
+                            }
+                        });
+                    }
+                });
             }
         }
-        else
+        else if (DataManager.Instance.AutoMonster)
         {
-            DataManager.Instance.CurrentRole.MonsterIndex = iMonsterIndex;
-            if (DataManager.Instance.AutoMonster)
-            {
-                DataManager.Instance.AutoMonster = false;
-            }
+            DataManager.Instance.AutoMonster = false;
         }
+    }
+
+    public void MonsterIndexResponse(MonsterIndexResponse response)
+    {
+        DataManager.Instance.CurrentRole.MonsterIndex = response.nextMonsterIndex;
+
+        MonsterStruct curMonster = MonsterConfig.Instance.GetMonster(response.curMonsterIndex);
+        double addGold = curMonster.Gold;
+        GoldNotify(addGold);
+        double addExp = curMonster.Exp;
+        ExpNotify(addExp);
+        double dRate0 = UnityEngine.Random.Range(1, 101);
+        double dRate1 = UnityEngine.Random.Range(1, 101);
+        if (dRate0 < (100 * curMonster.EquipRate))
+        {
+            EquipNotify(curMonster.EquipID);
+        }
+        if (dRate1 < (100 * curMonster.ItemRate))
+        {
+            ItemNotify(curMonster.ItemID);
+        }
+
         BattleManager.Instance.BattleManagerStart();
     }
 }

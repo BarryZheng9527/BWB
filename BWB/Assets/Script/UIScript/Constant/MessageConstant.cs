@@ -14,4 +14,5 @@
     public const int SKILL_GET_RESPONSE = 0x1010; //技能获取
     public const int SKILL_LEVEL_UP_RESPONSE = 0x1011; //技能升级
     public const int SKILL_EQUIP_RESPONSE = 0x1012; //技能装载
+    public const int MONSTER_INDEX_RESPONSE = 0x1013; //更新关卡
 }

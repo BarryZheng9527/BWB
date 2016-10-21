@@ -60,3 +60,9 @@ public class SkillEquipResponse : BaseResponse
     public int iPos;
     public string unEquipUniqueId;
 }
+
+public class MonsterIndexResponse : BaseResponse
+{
+    public int curMonsterIndex;
+    public int nextMonsterIndex;
+}
