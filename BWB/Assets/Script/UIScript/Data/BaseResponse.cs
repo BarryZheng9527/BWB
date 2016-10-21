@@ -43,3 +43,20 @@ public class RemouldEquipResponse : BaseResponse
     public string uniqueId;
     public int optionIndex;
 }
+
+public class SkillGetResponse : BaseResponse
+{
+    public SkillClass skill;
+}
+
+public class SkillLevelUpResponse : BaseResponse
+{
+    public string uniqueId;
+}
+
+public class SkillEquipResponse : BaseResponse
+{
+    public string equipUniqueId;
+    public int iPos;
+    public string unEquipUniqueId;
+}

@@ -408,7 +408,6 @@ public class NetManager
                 {
                     SkillClass mySkill = new SkillClass();
                     mySkill.UniqueID = skill.ObjectId;
-                    mySkill.SkillType = skill.Get<int>("skillType");
                     mySkill.SkillID = skill.Get<int>("skillId");
                     mySkill.Pos = skill.Get<int>("pos");
                     mySkill.Level = skill.Get<int>("level");
@@ -515,11 +514,11 @@ public class NetManager
      */
     public void UnEquipRequest(string uniqueID)
     {
-        UnEquipResponse response = new UnEquipResponse();
-        response.ID = MessageConstant.UN_EQUIP_RESPONSE;
         AVQuery<AVObject> equipQuery = new AVQuery<AVObject>("Equip");
         equipQuery.GetAsync(uniqueID).ContinueWith(t =>
         {
+            UnEquipResponse response = new UnEquipResponse();
+            response.ID = MessageConstant.UN_EQUIP_RESPONSE;
             if (t.IsFaulted || t.IsCanceled)
             {
                 response.iResponseId = ErrorConstant.ERROR_100001;
@@ -616,6 +615,9 @@ public class NetManager
                 {
                     equip.RemouldOptionList[equip.Level] = response.optionIndex;
                     equip.Level++;
+                    OptionStruct optionStruct = RemouldConfig.Instance.GetOptionStructFromID(response.optionIndex);
+                    double addGold = 0 - optionStruct.Cost;
+                    GoldNotify(addGold);
                     break;
                 }
             }
@@ -631,84 +633,203 @@ public class NetManager
     /*
      * 技能获取
      */
-    public void SkillGetRequest(int iSkillID, int iType)
+    public void SkillGetRequest(int iSkillID)
     {
-        SkillGetResponse(iSkillID, iType);
+        AVObject skill = new AVObject("Skill")
+        {
+            {"skillId", iSkillID},
+            {"pos", 0},
+            {"level", 0},
+            {"nextExp", 0},
+        };
+        skill.SaveAsync().ContinueWith(t =>
+        {
+            SkillGetResponse response = new SkillGetResponse();
+            response.ID = MessageConstant.SKILL_GET_RESPONSE;
+            if (t.IsFaulted || t.IsCanceled)
+            {
+                response.iResponseId = ErrorConstant.ERROR_100001;
+            }
+            else if (t.IsCompleted)
+            {
+                response.skill = new SkillClass();
+                response.skill.UniqueID = skill.ObjectId;
+                response.skill.SkillID = skill.Get<int>("skillId");
+                response.skill.Pos = skill.Get<int>("pos");
+                response.skill.Level = skill.Get<int>("level");
+                response.skill.NextExp = skill.Get<int>("nextExp");
+            }
+            MessageQueueManager.Instance.AddMessage(response);
+        });
     }
 
-    public void SkillGetResponse(int iSkillID, int iType)
+    public void SkillGetResponse(SkillGetResponse response)
     {
-        SkillClass skillClass = new SkillClass();
-        skillClass.SkillType = iType;
-        skillClass.SkillID = iSkillID;
-        skillClass.Pos = 0;
-        skillClass.Level = 0;
-        skillClass.NextExp = 0;
-        DataManager.Instance.SkillData.SkillDataList.Add(skillClass);
-        SkillStruct skillStruct = SkillConfig.Instance.GetSkill(iSkillID);
-        double addGold = 0 - skillStruct.Gold;
-        GoldNotify(addGold);
+        if (response.iResponseId == 0)
+        {
+            DataManager.Instance.SkillData.SkillDataList.Add(response.skill);
 
-        AttrHandler.CalculateTotalAttr();
-        GameEventHandler.Messenger.DispatchEvent(EventConstant.SkillUpdate);
+            SkillStruct skillStruct = SkillConfig.Instance.GetSkill(response.skill.SkillID);
+            double addGold = 0 - skillStruct.Gold;
+            GoldNotify(addGold);
+
+            AttrHandler.CalculateTotalAttr();
+            GameEventHandler.Messenger.DispatchEvent(EventConstant.SkillUpdate);
+        }
+        else
+        {
+            GUIManager.Instance.OpenPopMessage(LanguageConfig.Instance.GetErrorText(response.iResponseId));
+        }
     }
 
     /*
      * 技能升级
      */
-    public void SkillLevelUpRequest(int iSkillID)
+    public void SkillLevelUpRequest(string uniqueID)
     {
-        SkillLevelUpResponse(iSkillID);
+        AVQuery<AVObject> skillQuery = new AVQuery<AVObject>("Skill");
+        skillQuery.GetAsync(uniqueID).ContinueWith(t =>
+        {
+            SkillLevelUpResponse response = new SkillLevelUpResponse();
+            response.ID = MessageConstant.SKILL_LEVEL_UP_RESPONSE;
+            if (t.IsFaulted || t.IsCanceled)
+            {
+                response.iResponseId = ErrorConstant.ERROR_100001;
+            }
+            else if (t.IsCompleted)
+            {
+                AVObject skill = t.Result;
+                int iLevel = skill.Get<int>("level");
+                iLevel++;
+                skill["level"] = iLevel;
+                skill["nextExp"] = 0;
+                skill.SaveAsync().ContinueWith(s =>
+                {
+                    if (s.IsFaulted || s.IsCanceled)
+                    {
+                        response.iResponseId = ErrorConstant.ERROR_100001;
+                    }
+                    else if (s.IsCompleted)
+                    {
+                        response.uniqueId = uniqueID;
+                        MessageQueueManager.Instance.AddMessage(response);
+                    }
+                });
+            }
+        });
     }
 
-    public void SkillLevelUpResponse(int iSkillID)
+    public void SkillLevelUpResponse(SkillLevelUpResponse response)
     {
-        foreach (SkillClass skillClassData in DataManager.Instance.SkillData.SkillDataList)
+        if (response.iResponseId == 0)
         {
-            if (iSkillID == skillClassData.SkillID)
+            foreach (SkillClass skill in DataManager.Instance.SkillData.SkillDataList)
             {
-                skillClassData.Level++;
+                if (skill.UniqueID == response.uniqueId)
+                {
+                    skill.Level++;
+                    skill.NextExp = 0;
+                    break;
+                }
             }
+            AttrHandler.CalculateTotalAttr();
+            GameEventHandler.Messenger.DispatchEvent(EventConstant.SkillUpdate);
         }
-
-        AttrHandler.CalculateTotalAttr();
-        GameEventHandler.Messenger.DispatchEvent(EventConstant.SkillUpdate);
+        else
+        {
+            GUIManager.Instance.OpenPopMessage(LanguageConfig.Instance.GetErrorText(response.iResponseId));
+        }
     }
 
     /*
      * 技能装载
      */
-    public void SkillEquipRequest(int iSkillID, int iPos)
+    public void SkillEquipRequest(string equipSkillUniqueId, int iPos, string unEquipSkillUniqueId)
     {
-        SkillEquipResponse(iSkillID, iPos);
+        string [] uniqueIdList = {equipSkillUniqueId};
+        if (unEquipSkillUniqueId != "")
+        {
+            uniqueIdList[1] = unEquipSkillUniqueId;
+        }
+        SkillEquipResponse response = new SkillEquipResponse();
+        response.ID = MessageConstant.SKILL_EQUIP_RESPONSE;
+        AVQuery<AVObject> skillQuery = new AVQuery<AVObject>("Skill").WhereContainedIn("objectId", uniqueIdList);
+        skillQuery.FindAsync().ContinueWith(t =>
+        {
+            Task task = Task.FromResult(0);
+            if (t.IsFaulted || t.IsCanceled)
+            {
+                response.iResponseId = ErrorConstant.ERROR_100001;
+            }
+            else if (t.IsCompleted)
+            {
+                IEnumerable<AVObject> skills = t.Result;
+                foreach (AVObject skill in skills)
+                {
+                    if (equipSkillUniqueId == skill.ObjectId)
+                    {
+                        skill["pos"] = iPos;
+                    }
+                    else if (unEquipSkillUniqueId != "" && unEquipSkillUniqueId == skill.ObjectId)
+                    {
+                        skill["pos"] = 0;
+                    }
+                    task = task.ContinueWith(_ =>
+                    {
+                        return skill.SaveAsync().ContinueWith(s =>
+                        {
+                            if (s.IsFaulted || s.IsCanceled)
+                            {
+                                response.iResponseId = ErrorConstant.ERROR_100001;
+                            }
+                        });
+                    }).Unwrap();
+                }
+            }
+            return task;
+        }).Unwrap().ContinueWith(r =>
+        {
+            if (r.IsFaulted || r.IsCanceled)
+            {
+                response.iResponseId = ErrorConstant.ERROR_100001;
+            }
+            else if (r.IsCompleted)
+            {
+                response.equipUniqueId = equipSkillUniqueId;
+                response.iPos = iPos;
+                response.unEquipUniqueId = unEquipSkillUniqueId;
+                MessageQueueManager.Instance.AddMessage(response);
+            }
+        });
     }
 
-    public void SkillEquipResponse(int iSkillID, int iPos)
+    public void SkillEquipResponse(SkillEquipResponse response)
     {
-        foreach (SkillClass skillClass in DataManager.Instance.SkillData.SkillDataList)
+        if (response.iResponseId == 0)
         {
-            if (iSkillID == skillClass.SkillID)
+            foreach (SkillClass skillClass in DataManager.Instance.SkillData.SkillDataList)
             {
-                skillClass.Pos = iPos;
+                if (skillClass.UniqueID == response.equipUniqueId)
+                {
+                    skillClass.Pos = response.iPos;
+                }
+                if (response.unEquipUniqueId != "" && skillClass.UniqueID == response.unEquipUniqueId)
+                {
+                    skillClass.Pos = 0;
+                }
             }
-            else if (iPos == skillClass.Pos)
-            {
-                skillClass.Pos = 0;
-            }
+            GameEventHandler.Messenger.DispatchEvent(EventConstant.SkillEquipUpdate);
         }
-
-        GameEventHandler.Messenger.DispatchEvent(EventConstant.SkillEquipUpdate);
+        else
+        {
+            GUIManager.Instance.OpenPopMessage(LanguageConfig.Instance.GetErrorText(response.iResponseId));
+        }
     }
 
     /*
      * 技能经验增加
      */
-    public void SkillExpRequest(int iSkillID)
-    {
-        SkillExpResponse(iSkillID);
-    }
-
-    public void SkillExpResponse(int iSkillID)
+    public void SkillExpAdd(int iSkillID)
     {
         foreach (SkillClass skillClass in DataManager.Instance.SkillData.SkillDataList)
         {
@@ -719,8 +840,42 @@ public class NetManager
                 skillClass.NextExp++;
             }
         }
-
         GameEventHandler.Messenger.DispatchEvent(EventConstant.SkillUpdate);
+    }
+
+    public void SkillExpSave()
+    {
+        List<string> uniqueIdList = new List<string>();
+        foreach (SkillClass skillClass in DataManager.Instance.SkillData.SkillDataList)
+        {
+            if (skillClass.NextExp > 0)
+            {
+                uniqueIdList.Add(skillClass.UniqueID);
+            }
+        }
+        AVQuery<AVObject> equipQuery = new AVQuery<AVObject>("Skill").WhereContainedIn("objectId", uniqueIdList);
+        equipQuery.FindAsync().ContinueWith(t =>
+        {
+            if (t.IsFaulted || t.IsCanceled)
+            {
+            }
+            else if (t.IsCompleted)
+            {
+                IEnumerable<AVObject> skills = t.Result;
+                foreach (AVObject skill in skills)
+                {
+                    foreach (SkillClass skillClass0 in DataManager.Instance.SkillData.SkillDataList)
+                    {
+                        if (skillClass0.UniqueID == skill.ObjectId)
+                        {
+                            skill["nextExp"] = skillClass0.NextExp;
+                            skill.SaveAsync();
+                            break;
+                        }
+                    }
+                }
+            }
+        });
     }
 
     /*

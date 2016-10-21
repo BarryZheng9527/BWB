@@ -94,6 +94,7 @@ public class ItemCard : GComponent
         _IconLoader.url = "";
         _Level.text = "";
         _Num.text = "";
+        _CurEquipData = null;
         _CurItemData = null;
         _CurSkillData = new SkillStruct();
     }

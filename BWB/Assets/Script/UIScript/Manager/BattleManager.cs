@@ -151,7 +151,7 @@ public class BattleManager
         else if (iCurStatus == Constant.BATTLESTATUS2)
         {
             //使用次数
-            NetManager.Instance.SkillExpRequest(_CurSkill.SkillID);
+            NetManager.Instance.SkillExpAdd(_CurSkill.SkillID);
             //buff
             if (_CurSkillStruct.BuffAttrType1 > 0 && _CurSkillLevelStruct.BuffAttrValue1 > 0)
             {

@@ -185,12 +185,12 @@ public class SkillListItem : GComponent
         //解锁
         if (_SkillClass == null)
         {
-            NetManager.Instance.SkillGetRequest(_SkillStruct.ID, _SkillStruct.Type);
+            NetManager.Instance.SkillGetRequest(_SkillStruct.ID);
         }
         //升级
         else
         {
-            NetManager.Instance.SkillLevelUpRequest(_SkillClass.SkillID);
+            NetManager.Instance.SkillLevelUpRequest(_SkillClass.UniqueID);
         }
     }
 }

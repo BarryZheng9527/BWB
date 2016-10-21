@@ -169,7 +169,24 @@ public class Role : GComponent
 	{
 		ItemCard item = (ItemCard)context.data;
 		_MySkillList.visible = false;
-		NetManager.Instance.SkillEquipRequest (item._CurSkillData.ID, _iPos);
+
+        string equipSkillUniqueId = "";
+        string unEquipSkillUniqueId = "";
+        foreach (SkillClass skillClass in DataManager.Instance.SkillData.SkillDataList)
+        {
+            if (skillClass.SkillID == item._CurSkillData.ID)
+            {
+                equipSkillUniqueId = skillClass.UniqueID;
+            }
+            if (skillClass.Pos == _iPos)
+            {
+                unEquipSkillUniqueId = skillClass.UniqueID;
+            }
+        }
+        if (equipSkillUniqueId != "" && equipSkillUniqueId != unEquipSkillUniqueId)
+        {
+            NetManager.Instance.SkillEquipRequest(equipSkillUniqueId, _iPos, unEquipSkillUniqueId);
+        }
 	}
 
     /*

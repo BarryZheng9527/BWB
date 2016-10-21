@@ -77,6 +77,18 @@ public class MessageQueueManager
                 RemouldEquipResponse stRemouldEquipResponse = (RemouldEquipResponse)stBaseResponse;
                 NetManager.Instance.RemouldResponse(stRemouldEquipResponse);
                 break;
+            case MessageConstant.SKILL_GET_RESPONSE:
+                SkillGetResponse stSkillGetResponse = (SkillGetResponse)stBaseResponse;
+                NetManager.Instance.SkillGetResponse(stSkillGetResponse);
+                break;
+            case MessageConstant.SKILL_LEVEL_UP_RESPONSE:
+                SkillLevelUpResponse stSkillLevelUpResponse = (SkillLevelUpResponse)stBaseResponse;
+                NetManager.Instance.SkillLevelUpResponse(stSkillLevelUpResponse);
+                break;
+            case MessageConstant.SKILL_EQUIP_RESPONSE:
+                SkillEquipResponse stSkillEquipResponse = (SkillEquipResponse)stBaseResponse;
+                NetManager.Instance.SkillEquipResponse(stSkillEquipResponse);
+                break;
             default:
                 break;
         }
