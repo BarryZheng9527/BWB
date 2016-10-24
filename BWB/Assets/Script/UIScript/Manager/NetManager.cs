@@ -28,8 +28,48 @@ public class NetManager
      */
     public void GoldNotify(double dGold)
     {
-        DataManager.Instance.CurrentRole.Gold += dGold;
-        GameEventHandler.Messenger.DispatchEvent(EventConstant.GoldUpdate);
+        AVQuery<AVObject> heroQuery = new AVQuery<AVObject>("Hero");
+        heroQuery.GetAsync(DataManager.Instance.CurrentRole.UniqueID).ContinueWith(t =>
+        {
+            GoldNotify response = new GoldNotify();
+            response.ID = MessageConstant.GOLD_NOTIFY;
+            if (t.IsFaulted || t.IsCanceled)
+            {
+                response.iResponseId = ErrorConstant.ERROR_100001;
+            }
+            else if (t.IsCompleted)
+            {
+                AVObject hero = t.Result;
+                double gold = hero.Get<double>("gold");
+                gold += dGold;
+                hero["gold"] = gold;
+                hero.SaveAsync().ContinueWith(s =>
+                {
+                    if (s.IsFaulted || s.IsCanceled)
+                    {
+                        response.iResponseId = ErrorConstant.ERROR_100001;
+                    }
+                    else if (s.IsCompleted)
+                    {
+                        response.addGold = dGold;
+                        MessageQueueManager.Instance.AddMessage(response);
+                    }
+                });
+            }
+        });
+    }
+
+    public void GoldNotifyResponse(GoldNotify response)
+    {
+        if (response.iResponseId == 0)
+        {
+            DataManager.Instance.CurrentRole.Gold += response.addGold;
+            GameEventHandler.Messenger.DispatchEvent(EventConstant.GoldUpdate);
+        }
+        else
+        {
+            GUIManager.Instance.OpenPopMessage(LanguageConfig.Instance.GetErrorText(response.iResponseId));
+        }
     }
 
     /*
@@ -37,14 +77,60 @@ public class NetManager
      */
     public void ExpNotify(double dExp)
     {
-        DataManager.Instance.CurrentRole.Exp += dExp;
-        GameEventHandler.Messenger.DispatchEvent(EventConstant.ExpUpdate);
-        int iMyLevel = LevelConfig.Instance.GetLevelFromExp(DataManager.Instance.CurrentRole.Exp);
-        if (iMyLevel > DataManager.Instance.CurrentRole.Level)
+        AVQuery<AVObject> heroQuery = new AVQuery<AVObject>("Hero");
+        heroQuery.GetAsync(DataManager.Instance.CurrentRole.UniqueID).ContinueWith(t =>
         {
-            DataManager.Instance.CurrentRole.Level = iMyLevel;
-            GameEventHandler.Messenger.DispatchEvent(EventConstant.LevelUpdate);
-            AttrHandler.CalculateTotalAttr();
+            ExpNotify response = new ExpNotify();
+            response.ID = MessageConstant.EXP_NOTIFY;
+            if (t.IsFaulted || t.IsCanceled)
+            {
+                response.iResponseId = ErrorConstant.ERROR_100001;
+            }
+            else if (t.IsCompleted)
+            {
+                AVObject hero = t.Result;
+                double exp = hero.Get<double>("exp");
+                int level = hero.Get<int>("level");
+                exp += dExp;
+                hero["exp"] = exp;
+                int iNewLevel = LevelConfig.Instance.GetLevelFromExp(exp);
+                if (iNewLevel > level)
+                {
+                    hero["level"] = iNewLevel;
+                }
+                hero.SaveAsync().ContinueWith(s =>
+                {
+                    if (s.IsFaulted || s.IsCanceled)
+                    {
+                        response.iResponseId = ErrorConstant.ERROR_100001;
+                    }
+                    else if (s.IsCompleted)
+                    {
+                        response.addExp = dExp;
+                        response.level = hero.Get<int>("level");
+                        MessageQueueManager.Instance.AddMessage(response);
+                    }
+                });
+            }
+        });
+    }
+
+    public void ExpNotifyResponse(ExpNotify response)
+    {
+        if (response.iResponseId == 0)
+        {
+            DataManager.Instance.CurrentRole.Exp += response.addExp;
+            GameEventHandler.Messenger.DispatchEvent(EventConstant.ExpUpdate);
+            if (response.level > DataManager.Instance.CurrentRole.Level)
+            {
+                DataManager.Instance.CurrentRole.Level = response.level;
+                GameEventHandler.Messenger.DispatchEvent(EventConstant.LevelUpdate);
+                AttrHandler.CalculateTotalAttr();
+            }
+        }
+        else
+        {
+            GUIManager.Instance.OpenPopMessage(LanguageConfig.Instance.GetErrorText(response.iResponseId));
         }
     }
 
@@ -53,22 +139,211 @@ public class NetManager
      */
     public void EquipNotify(int iEquipID)
     {
-        EquipClass equip = new EquipClass();
-        equip.UniqueID = CommonHandler.GetUniqueID();
-        equip.EquipID = iEquipID;
-        DataManager.Instance.EquipData.EquipList.Add(equip);
-        GameEventHandler.Messenger.DispatchEvent(EventConstant.ItemUpdate);
+        EquipNotify response = new EquipNotify();
+        response.ID = MessageConstant.EQUIP_NOTIFY;
+        AVObject equip = new AVObject("Equip")
+        {
+            {"equipId", iEquipID},
+            {"equipPos", 0},
+            {"level", 0},
+            {"remould0", 0},
+            {"remould1", 0},
+            {"remould2", 0},
+            {"remould3", 0},
+            {"remould4", 0},
+        };
+        equip.SaveAsync().ContinueWith(t =>
+        {
+            if (t.IsFaulted || t.IsCanceled)
+            {
+                response.iResponseId = ErrorConstant.ERROR_100001;
+            }
+            else if (t.IsCompleted)
+            {
+                response.equip = new EquipClass();
+                response.equip.UniqueID = equip.ObjectId;
+                response.equip.EquipID = equip.Get<int>("equipId");
+                response.equip.EquipPos = equip.Get<int>("equipPos");
+                response.equip.Level = equip.Get<int>("level");
+                response.equip.RemouldOptionList[0] = equip.Get<int>("remould0");
+                response.equip.RemouldOptionList[1] = equip.Get<int>("remould1");
+                response.equip.RemouldOptionList[2] = equip.Get<int>("remould2");
+                response.equip.RemouldOptionList[3] = equip.Get<int>("remould3");
+                response.equip.RemouldOptionList[4] = equip.Get<int>("remould4");
+            }
+
+            AVQuery<AVObject> heroQuery = new AVQuery<AVObject>("Hero");
+            return heroQuery.GetAsync(DataManager.Instance.CurrentRole.UniqueID);
+        }).Unwrap().ContinueWith(s =>
+        {
+            if (s.IsFaulted || s.IsCanceled)
+            {
+                response.iResponseId = ErrorConstant.ERROR_100001;
+            }
+            else if (s.IsCompleted)
+            {
+                AVObject hero = s.Result;
+                string curEquips = hero.Get<string>("equips");
+                List<string> equipList = CommonHandler.ConvertString2List(curEquips);
+                equipList.Add(response.equip.UniqueID);
+                string newEquips = CommonHandler.ConvertList2String(equipList);
+                hero["equips"] = newEquips;
+                hero.SaveAsync().ContinueWith(r =>
+                {
+                    if (r.IsFaulted || r.IsCanceled)
+                    {
+                        response.iResponseId = ErrorConstant.ERROR_100001;
+                    }
+                    else if (r.IsCompleted)
+                    {
+                        MessageQueueManager.Instance.AddMessage(response);
+                    }
+                });
+            }
+        });
+    }
+
+    public void EquipNotifyResponse(EquipNotify response)
+    {
+        if (response.iResponseId == 0)
+        {
+            DataManager.Instance.EquipData.EquipList.Add(response.equip);
+            GameEventHandler.Messenger.DispatchEvent(EventConstant.ItemUpdate);
+        }
+        else
+        {
+            GUIManager.Instance.OpenPopMessage(LanguageConfig.Instance.GetErrorText(response.iResponseId));
+        }
     }
 
     /*
-     * 新增道具
+     * 下发道具
      */
-    public void ItemNotify(int iItemID)
+    public void ItemNotify(int iItemID, int iCount = 1)
     {
-        ItemClass itemclass = new ItemClass();
-        itemclass.ItemID = iItemID;
-        DataManager.Instance.ItemData.ItemList.Add(itemclass);
-        GameEventHandler.Messenger.DispatchEvent(EventConstant.ItemUpdate);
+        bool hadItem = false;
+        string uniqueId = "";
+        foreach(ItemClass item in DataManager.Instance.ItemData.ItemList)
+        {
+            if (item.ItemID == iItemID)
+            {
+                hadItem = true;
+                uniqueId = item.UniqueID;
+                break;
+            }
+        }
+        ItemNotify response = new ItemNotify();
+        response.ID = MessageConstant.ITEM_NOTIFY;
+        if (hadItem)
+        {
+            AVQuery<AVObject> itemQuery = new AVQuery<AVObject>("Item");
+            itemQuery.GetAsync(uniqueId).ContinueWith(t =>
+            {
+                if (t.IsFaulted || t.IsCanceled)
+                {
+                    response.iResponseId = ErrorConstant.ERROR_100001;
+                }
+                else if (t.IsCompleted)
+                {
+                    AVObject item = t.Result;
+                    int count = item.Get<int>("count");
+                    count += iCount;
+                    item["count"] = count;
+                    item.SaveAsync().ContinueWith(s =>
+                    {
+                        if (s.IsFaulted || s.IsCanceled)
+                        {
+                            response.iResponseId = ErrorConstant.ERROR_100001;
+                        }
+                        else if (s.IsCompleted)
+                        {
+                            response.item = new ItemClass();
+                            response.item.UniqueID = item.ObjectId;
+                            response.item.ItemID = item.Get<int>("itemId");
+                            response.item.Count = item.Get<int>("count");
+                            MessageQueueManager.Instance.AddMessage(response);
+                        }
+                    });
+                }
+            });
+        }
+        else
+        {
+            AVObject addItem = new AVObject("Item")
+            {
+                {"itemId", iItemID},
+                {"count", iCount},
+            };
+            addItem.SaveAsync().ContinueWith(r =>
+            {
+                if (r.IsFaulted || r.IsCanceled)
+                {
+                    response.iResponseId = ErrorConstant.ERROR_100001;
+                }
+                else if (r.IsCompleted)
+                {
+                    response.item = new ItemClass();
+                    response.item.UniqueID = addItem.ObjectId;
+                    response.item.ItemID = addItem.Get<int>("itemId");
+                    response.item.Count = addItem.Get<int>("count");
+                }
+
+                AVQuery<AVObject> heroQuery = new AVQuery<AVObject>("Hero");
+                return heroQuery.GetAsync(DataManager.Instance.CurrentRole.UniqueID);
+            }).Unwrap().ContinueWith(q =>
+            {
+                if (q.IsFaulted || q.IsCanceled)
+                {
+                    response.iResponseId = ErrorConstant.ERROR_100001;
+                }
+                else if (q.IsCompleted)
+                {
+                    AVObject hero = q.Result;
+                    string curItems = hero.Get<string>("items");
+                    List<string> itemList = CommonHandler.ConvertString2List(curItems);
+                    itemList.Add(response.item.UniqueID);
+                    string newItems = CommonHandler.ConvertList2String(itemList);
+                    hero["items"] = newItems;
+                    hero.SaveAsync().ContinueWith(p =>
+                    {
+                        if (p.IsFaulted || p.IsCanceled)
+                        {
+                            response.iResponseId = ErrorConstant.ERROR_100001;
+                        }
+                        else if (p.IsCompleted)
+                        {
+                            MessageQueueManager.Instance.AddMessage(response);
+                        }
+                    });
+                }
+            });
+        }
+    }
+
+    public void ItemNotifyResponse(ItemNotify response)
+    {
+        if (response.iResponseId == 0)
+        {
+            bool newItem = true;
+            foreach (ItemClass item in DataManager.Instance.ItemData.ItemList)
+            {
+                if (item.UniqueID == response.item.UniqueID)
+                {
+                    newItem = false;
+                    item.Count = response.item.Count;
+                    break;
+                }
+            }
+            if (newItem)
+            {
+                DataManager.Instance.ItemData.ItemList.Add(response.item);
+            }
+            GameEventHandler.Messenger.DispatchEvent(EventConstant.ItemUpdate);
+        }
+        else
+        {
+            GUIManager.Instance.OpenPopMessage(LanguageConfig.Instance.GetErrorText(response.iResponseId));
+        }
     }
 
     /*
@@ -389,8 +664,8 @@ public class NetManager
                     myItem.Count = item.Get<int>("count");
                     DataManager.Instance.ItemData.ItemList.Add(myItem);
                 }
-            } 
-            
+            }
+
             List<string> skillList = CommonHandler.ConvertString2List(curRole.Skills);
             AVQuery<AVObject> skillQuery = new AVQuery<AVObject>("Skill").WhereContainedIn("objectId", skillList);
             return skillQuery.FindAsync();

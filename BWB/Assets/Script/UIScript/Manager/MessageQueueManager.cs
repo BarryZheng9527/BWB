@@ -93,6 +93,22 @@ public class MessageQueueManager
                 MonsterIndexResponse stMonsterIndexResponse = (MonsterIndexResponse)stBaseResponse;
                 NetManager.Instance.MonsterIndexResponse(stMonsterIndexResponse);
                 break;
+            case MessageConstant.EQUIP_NOTIFY:
+                EquipNotify stEquipNotify = (EquipNotify)stBaseResponse;
+                NetManager.Instance.EquipNotifyResponse(stEquipNotify);
+                break;
+            case MessageConstant.ITEM_NOTIFY:
+                ItemNotify stItemNotify = (ItemNotify)stBaseResponse;
+                NetManager.Instance.ItemNotifyResponse(stItemNotify);
+                break;
+            case MessageConstant.GOLD_NOTIFY:
+                GoldNotify stGoldNotify = (GoldNotify)stBaseResponse;
+                NetManager.Instance.GoldNotifyResponse(stGoldNotify);
+                break;
+            case MessageConstant.EXP_NOTIFY:
+                ExpNotify stExpNotify = (ExpNotify)stBaseResponse;
+                NetManager.Instance.ExpNotifyResponse(stExpNotify);
+                break;
             default:
                 break;
         }

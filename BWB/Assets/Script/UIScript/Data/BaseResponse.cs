@@ -44,6 +44,16 @@ public class RemouldEquipResponse : BaseResponse
     public int optionIndex;
 }
 
+public class EquipNotify : BaseResponse
+{
+    public EquipClass equip;
+}
+
+public class ItemNotify : BaseResponse
+{
+    public ItemClass item;
+}
+
 public class SkillGetResponse : BaseResponse
 {
     public SkillClass skill;
@@ -65,4 +75,15 @@ public class MonsterIndexResponse : BaseResponse
 {
     public int curMonsterIndex;
     public int nextMonsterIndex;
+}
+
+public class GoldNotify : BaseResponse
+{
+    public double addGold;
+}
+
+public class ExpNotify : BaseResponse
+{
+    public double addExp;
+    public int level;
 }
