@@ -31,6 +31,9 @@ public class CurrentTimeHandler
         Timers.inst.Remove(CountDown);
     }
 
+    /*
+     * 每分钟存储一次客户端的技能经验变化
+     */
     private void CountDown(object param)
     {
         long iServerTime = DataManager.Instance.ServerTime;

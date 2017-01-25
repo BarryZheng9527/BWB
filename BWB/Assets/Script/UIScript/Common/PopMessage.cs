@@ -44,6 +44,9 @@ class PopMessage : Window
         }
     }
 
+    /*
+     * 设置弹出框文字
+     */
     public void setText(string text, int iPosX = 0, int iPosY = 0)
     {
         _Message = text;

@@ -3,7 +3,6 @@
   <resources>
     <image id="b4lp0" name="Skill_1001" folder="" qualityOption="source" file="b4lp0.png" size="80,80" exported="true"/>
     <image id="b4lp1" name="Skill_1002" folder="" qualityOption="source" file="b4lp1.png" size="80,80" exported="true"/>
-    <image id="b4lp2" name="Skill_2001" folder="" qualityOption="source" file="b4lp2.png" size="80,80" exported="true"/>
   </resources>
   <publish name="IconSkill" extractAlpha="true"/>
 </packageDescription>

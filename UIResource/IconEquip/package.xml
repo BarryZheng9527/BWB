@@ -2,6 +2,13 @@
 <packageDescription id="mybs8ey8" jpegQuality="80" compressPNG="true">
   <resources>
     <image id="rsma0" name="Equip_100001" folder="" qualityOption="source" file="rsma0.png" size="80,80" exported="true"/>
+    <image id="md2x1" name="Equip_100002" folder="" qualityOption="source" file="md2x1.png" size="80,80" exported="true"/>
+    <image id="md2x2" name="Equip_100003" folder="" qualityOption="source" file="md2x2.png" size="80,80" exported="true"/>
+    <image id="md2x3" name="Equip_100004" folder="" qualityOption="source" file="md2x3.png" size="80,80" exported="true"/>
+    <image id="md2x4" name="Equip_100005" folder="" qualityOption="source" file="md2x4.png" size="80,80" exported="true"/>
+    <image id="md2x5" name="Equip_100006" folder="" qualityOption="source" file="md2x5.png" size="80,80" exported="true"/>
+    <image id="md2x6" name="Equip_100007" folder="" qualityOption="source" file="md2x6.png" size="80,80" exported="true"/>
+    <image id="md2x7" name="Equip_100008" folder="" qualityOption="source" file="md2x7.png" size="80,80" exported="true"/>
   </resources>
   <publish name="IconEquip" extractAlpha="true"/>
 </packageDescription>
