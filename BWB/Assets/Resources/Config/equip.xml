@@ -1,8 +1,8 @@
 <!-- 被2012 () 使用XMLSpy v编辑的 (http://www.altova.com) by -->
 <Root>
-<!--
-	ID装备ID
-	EquipType装备类型
+	<!--
+	ID 装备ID
+	EquipType 装备类型
 	1，弓
 	2，法杖
 	3，双手武器
@@ -17,7 +17,7 @@
 	12，鞋子
 	13，戒指
 	14，项链
-	EquipPos装备位置
+	EquipPos 装备位置
 	1，主手
 	2，副手
 	3，头盔
@@ -28,34 +28,34 @@
 	8，戒指
 	9，项链
 	基础属性类型（目前仅支持武器配置这些属性）
-	MinAttack最小攻击
-	MaxAttack最大攻击
-	Matk魔法攻击
-	Firerate基础攻速
-	Balance平衡
+	MinAttack 最小攻击
+	MaxAttack 最大攻击
+	Matk 魔法攻击
+	Firerate 基础攻速
+	Balance 平衡
 	附加属性类型
-	Attr1力量
-	Attr2敏捷
-	Attr3智力
-	Attr4幸运
-	Attr5防御
-	Attr6保护
-	Attr7HP
-	Attr8MP
-	Attr9最小攻击
-	Attr10最大攻击
-	Attr11魔法攻击
-	Attr12暴击率
-	Attr13暴击伤害
-	Attr14平衡
-	Attr15攻速
-	Attr16吟唱速度
-	Attr17减伤
-	Name装备名称索引
-	TypeDesc装备类型描述
-	Desc装备描述
-	Icon装备ICON编号
-	Quality装备品质
+	Attr1 力量
+	Attr2 敏捷
+	Attr3 智力
+	Attr4 幸运
+	Attr5 防御
+	Attr6 保护
+	Attr7 HP
+	Attr8 MP
+	Attr9 最小攻击
+	Attr10 最大攻击
+	Attr11 魔法攻击
+	Attr12 暴击率
+	Attr13 暴击伤害
+	Attr14 平衡
+	Attr15 攻速
+	Attr16 吟唱速度
+	Attr17 减伤
+	Name 装备名称索引
+	TypeDesc 装备类型描述
+	Desc 装备描述
+	Icon 装备ICON编号
+	Quality 装备品质
 	改造类型
 	Remould1
 	Remould2
@@ -64,6 +64,13 @@
 	Remould5
 -->
 	<Equips>
-		<item ID="100001" EquipType="1" EquipPos="1" Name="EquipName_100001" TypeDesc="EquipType1" Desc="EquipDesc_100001" Icon="Equip_100001" Quality="1" MinAttack="10" MaxAttack="20" Matk="0" Firerate="2" Balance="0.85" Attr1="0" Attr2="0" Attr3="0" Attr4="0" Attr5="0" Attr6="0" Attr7="100" Attr8="0" Attr9="0" Attr10="0" Attr11="0" Attr12="0" Attr13="0" Attr14="0" Attr15="0" Attr16="0" Attr17="0" Remould1="1" Remould2="2" Remould3="3" Remould4="4" Remould5="5"/>
+		<item ID="100001" EquipType="1" EquipPos="1" Name="EquipName_100001" TypeDesc="EquipType1" Desc="EquipDesc_100001" Icon="Equip_100001" Quality="2" MinAttack="10" MaxAttack="100" Matk="0" Firerate="2" Balance="0.3" Attr1="0" Attr2="50" Attr3="0" Attr4="0" Attr5="0" Attr6="0" Attr7="0" Attr8="0" Attr9="0" Attr10="0" Attr11="0" Attr12="0.3" Attr13="0" Attr14="0" Attr15="0" Attr16="0" Attr17="0" Remould1="1" Remould2="2" Remould3="3" Remould4="4" Remould5="5"/>
+		<item ID="100002" EquipType="8" EquipPos="3" Name="EquipName_100002" TypeDesc="EquipType2" Desc="EquipDesc_100002" Icon="Equip_100002" Quality="1" MinAttack="0" MaxAttack="0" Matk="0" Firerate="0" Balance="0" Attr1="0" Attr2="0" Attr3="0" Attr4="0" Attr5="1" Attr6="1" Attr7="10" Attr8="0" Attr9="0" Attr10="0" Attr11="0" Attr12="0" Attr13="0" Attr14="0" Attr15="0" Attr16="0" Attr17="0" Remould1="1" Remould2="2" Remould3="3" Remould4="4" Remould5="5"/>
+		<item ID="100003" EquipType="9" EquipPos="4" Name="EquipName_100003" TypeDesc="EquipType3" Desc="EquipDesc_100003" Icon="Equip_100003" Quality="1" MinAttack="0" MaxAttack="0" Matk="0" Firerate="0" Balance="0" Attr1="0" Attr2="0" Attr3="0" Attr4="0" Attr5="2" Attr6="2" Attr7="10" Attr8="0" Attr9="0" Attr10="0" Attr11="0" Attr12="0" Attr13="0" Attr14="0" Attr15="0" Attr16="0" Attr17="0" Remould1="1" Remould2="2" Remould3="3" Remould4="4" Remould5="5"/>
+		<item ID="100004" EquipType="10" EquipPos="5" Name="EquipName_100004" TypeDesc="EquipType4" Desc="EquipDesc_100004" Icon="Equip_100004" Quality="1" MinAttack="0" MaxAttack="0" Matk="0" Firerate="0" Balance="0" Attr1="0" Attr2="0" Attr3="0" Attr4="0" Attr5="2" Attr6="1" Attr7="10" Attr8="0" Attr9="0" Attr10="0" Attr11="0" Attr12="0" Attr13="0" Attr14="0" Attr15="0" Attr16="0" Attr17="0" Remould1="1" Remould2="2" Remould3="3" Remould4="4" Remould5="5"/>
+		<item ID="100005" EquipType="11" EquipPos="6" Name="EquipName_100005" TypeDesc="EquipType5" Desc="EquipDesc_100005" Icon="Equip_100005" Quality="1" MinAttack="0" MaxAttack="0" Matk="0" Firerate="0" Balance="0" Attr1="0" Attr2="0" Attr3="0" Attr4="0" Attr5="1" Attr6="1" Attr7="10" Attr8="0" Attr9="0" Attr10="0" Attr11="0" Attr12="0" Attr13="0" Attr14="0" Attr15="0" Attr16="0" Attr17="0" Remould1="1" Remould2="2" Remould3="3" Remould4="4" Remould5="5"/>
+		<item ID="100006" EquipType="12" EquipPos="7" Name="EquipName_100006" TypeDesc="EquipType6" Desc="EquipDesc_100006" Icon="Equip_100006" Quality="1" MinAttack="0" MaxAttack="0" Matk="0" Firerate="0" Balance="0" Attr1="0" Attr2="0" Attr3="0" Attr4="0" Attr5="1" Attr6="1" Attr7="10" Attr8="0" Attr9="0" Attr10="0" Attr11="0" Attr12="0" Attr13="0" Attr14="0" Attr15="0" Attr16="0" Attr17="0" Remould1="1" Remould2="2" Remould3="3" Remould4="4" Remould5="5"/>
+		<item ID="100007" EquipType="13" EquipPos="8" Name="EquipName_100007" TypeDesc="EquipType7" Desc="EquipDesc_100007" Icon="Equip_100007" Quality="1" MinAttack="0" MaxAttack="0" Matk="0" Firerate="0" Balance="0" Attr1="0" Attr2="0" Attr3="0" Attr4="0" Attr5="0" Attr6="0" Attr7="10" Attr8="0" Attr9="0" Attr10="0" Attr11="0" Attr12="0" Attr13="0" Attr14="0" Attr15="0" Attr16="0" Attr17="0" Remould1="1" Remould2="2" Remould3="3" Remould4="4" Remould5="5"/>
+		<item ID="100008" EquipType="14" EquipPos="9" Name="EquipName_100008" TypeDesc="EquipType8" Desc="EquipDesc_100008" Icon="Equip_100008" Quality="1" MinAttack="0" MaxAttack="0" Matk="0" Firerate="0" Balance="0" Attr1="0" Attr2="0" Attr3="0" Attr4="0" Attr5="0" Attr6="0" Attr7="10" Attr8="0" Attr9="0" Attr10="0" Attr11="0" Attr12="0" Attr13="0" Attr14="0" Attr15="0" Attr16="0" Attr17="0" Remould1="1" Remould2="2" Remould3="3" Remould4="4" Remould5="5"/>
 	</Equips>
 </Root>

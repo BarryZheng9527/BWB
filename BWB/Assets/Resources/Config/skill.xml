@@ -1,51 +1,72 @@
 <Root>
 	<!--
-	ID技能ID
-	Type类型（1战斗，2被动）
-	AttackType攻击类型（1物理，2魔法）
-	Name技能名
-	Desc技能描述
-	Icon技能Icon
-	Gold开启需求金币
-	CustomID开启需要通过的关卡
-	SkillID前置技能ID
-	SkillLevel前置技能等级
-	AttrType1增加属性类型
+	ID 技能ID
+	Type 类型（1战斗，2被动）
+	AttackType 攻击类型（1物理，2魔法）
+	Name 技能名
+	Desc 技能描述
+	Icon 技能Icon
+	Gold 开启需求金币
+	CustomID 开启需要通过的关卡
+	SkillID 前置技能ID
+	SkillLevel 前置技能等级
+	AttrType1 增加属性类型
 	AttrType2
 	AttrType3
-	BuffAttrType1增加Buff类型
+	BuffAttrType1 增加Buff类型
 	BuffAttrType2
 	BuffAttrType3
 
-	Level等级
-	SkillID升到下一级需求技能ID
-	Exp升到下一级需求技能使用次数
-	CD当前等级技能CD
-	Sing当前等级吟唱时间
-	MPCost当前等级消耗的MP
-	Attack当前等级增加物理攻击百分比
-	MATK当前等级增加魔法攻击
-	HoldBuffTime定身时间
-	AttrValue1当前等级增加到的属性值
+	Level 等级
+	SkillID 升到下一级需求技能ID
+	Exp 升到下一级需求技能使用次数
+	CD 当前等级技能CD
+	Sing 当前等级吟唱时间
+	MPCost 当前等级消耗的MP
+	Attack 当前等级增加物理攻击百分比
+	MATK 当前等级增加魔法攻击
+	HoldBuffTime 定身时间
+	AttrValue1 当前等级增加到的属性值
 	AttrValue2
 	AttrValue3
-	BuffAttrValue1增加相应Buff属性的值
+	BuffAttrValue1 增加相应Buff属性的值
 	BuffAttrValue2
 	BuffAttrValue3
 -->
 	<Skill>
-		<item ID="1001" Type="1" AttackType="1" Name="SkillName_1001" Desc="SkillDesc_1001" Icon="Skill_1001" Gold="100" CustomID="0" SkillID="0" SkillLevel="0" AttrType1="1" AttrType2="2" AttrType3="3" BuffAttrType1="0" BuffAttrType2="0" BuffAttrType3="0">
-			<level Level="0" SkillID="1001" Exp="5" CD="3" Sing="2" MPCost="0" Attack="1" MATK="0" HoldBuffTime="0" AttrValue1="1" AttrValue2="2" AttrValue3="0" BuffAttrValue1="0" BuffAttrValue2="0" BuffAttrValue3="0"/>
-			<level Level="1" SkillID="1001" Exp="10" CD="5" Sing="2" MPCost="0" Attack="1.5" MATK="0" HoldBuffTime="0" AttrValue1="3" AttrValue2="6" AttrValue3="0" BuffAttrValue1="0" BuffAttrValue2="0" BuffAttrValue3="0"/>
+		<item ID="1001" Type="1" AttackType="1" Name="SkillName_1001" Desc="SkillDesc_1001" Icon="Skill_1001" Gold="100" CustomID="0" SkillID="0" SkillLevel="0" AttrType1="1" AttrType2="0" AttrType3="0" BuffAttrType1="0" BuffAttrType2="0" BuffAttrType3="0">
+			<level Level="1" SkillID="1001" Exp="5" CD="5" Sing="1" MPCost="5" Attack="1" MATK="0" HoldBuffTime="0" AttrValue1="1" AttrValue2="0" AttrValue3="0" BuffAttrValue1="0" BuffAttrValue2="0" BuffAttrValue3="0"/>
+			<level Level="2" SkillID="1001" Exp="10" CD="5" Sing="1" MPCost="6" Attack="1.1" MATK="0" HoldBuffTime="0" AttrValue1="1" AttrValue2="0" AttrValue3="0" BuffAttrValue1="0" BuffAttrValue2="0" BuffAttrValue3="0"/>
+			<level Level="3" SkillID="1001" Exp="20" CD="5" Sing="1" MPCost="7" Attack="1.2" MATK="0" HoldBuffTime="0" AttrValue1="1" AttrValue2="0" AttrValue3="0" BuffAttrValue1="0" BuffAttrValue2="0" BuffAttrValue3="0"/>
+			<level Level="4" SkillID="1001" Exp="50" CD="5" Sing="1" MPCost="8" Attack="1.3" MATK="0" HoldBuffTime="0" AttrValue1="1" AttrValue2="0" AttrValue3="0" BuffAttrValue1="0" BuffAttrValue2="0" BuffAttrValue3="0"/>
+			<level Level="5" SkillID="1001" Exp="100" CD="5" Sing="1" MPCost="9" Attack="1.4" MATK="0" HoldBuffTime="0" AttrValue1="1" AttrValue2="0" AttrValue3="0" BuffAttrValue1="0" BuffAttrValue2="0" BuffAttrValue3="0"/>
+			<level Level="6" SkillID="1001" Exp="150" CD="5" Sing="1" MPCost="10" Attack="1.5" MATK="0" HoldBuffTime="0" AttrValue1="1" AttrValue2="0" AttrValue3="0" BuffAttrValue1="0" BuffAttrValue2="0" BuffAttrValue3="0"/>
+			<level Level="7" SkillID="1001" Exp="200" CD="5" Sing="1" MPCost="11" Attack="1.6" MATK="0" HoldBuffTime="0" AttrValue1="5" AttrValue2="0" AttrValue3="0" BuffAttrValue1="0" BuffAttrValue2="0" BuffAttrValue3="0"/>
+			<level Level="8" SkillID="1001" Exp="300" CD="5" Sing="1" MPCost="12" Attack="1.7" MATK="0" HoldBuffTime="0" AttrValue1="2" AttrValue2="0" AttrValue3="0" BuffAttrValue1="0" BuffAttrValue2="0" BuffAttrValue3="0"/>
+			<level Level="9" SkillID="1001" Exp="500" CD="5" Sing="1" MPCost="13" Attack="1.8" MATK="0" HoldBuffTime="0" AttrValue1="2" AttrValue2="0" AttrValue3="0" BuffAttrValue1="0" BuffAttrValue2="0" BuffAttrValue3="0"/>
+			<level Level="10" SkillID="1001" Exp="1000" CD="5" Sing="1" MPCost="14" Attack="1.9" MATK="0" HoldBuffTime="0" AttrValue1="2" AttrValue2="0" AttrValue3="0" BuffAttrValue1="0" BuffAttrValue2="0" BuffAttrValue3="0"/>
+			<level Level="11" SkillID="1001" Exp="1500" CD="5" Sing="1" MPCost="15" Attack="2" MATK="0" HoldBuffTime="0" AttrValue1="5" AttrValue2="0" AttrValue3="0" BuffAttrValue1="0" BuffAttrValue2="0" BuffAttrValue3="0"/>
+			<level Level="12" SkillID="1001" Exp="2000" CD="5" Sing="1" MPCost="16" Attack="2.5" MATK="0" HoldBuffTime="0" AttrValue1="2" AttrValue2="0" AttrValue3="0" BuffAttrValue1="0" BuffAttrValue2="0" BuffAttrValue3="0"/>
+			<level Level="13" SkillID="1001" Exp="3000" CD="5" Sing="1" MPCost="17" Attack="3" MATK="0" HoldBuffTime="0" AttrValue1="2" AttrValue2="0" AttrValue3="0" BuffAttrValue1="0" BuffAttrValue2="0" BuffAttrValue3="0"/>
+			<level Level="14" SkillID="1001" Exp="5000" CD="5" Sing="1" MPCost="18" Attack="3.5" MATK="0" HoldBuffTime="0" AttrValue1="2" AttrValue2="0" AttrValue3="0" BuffAttrValue1="0" BuffAttrValue2="0" BuffAttrValue3="0"/>
+			<level Level="15" SkillID="1001" Exp="8000" CD="5" Sing="1" MPCost="19" Attack="4" MATK="0" HoldBuffTime="0" AttrValue1="5" AttrValue2="0" AttrValue3="0" BuffAttrValue1="0" BuffAttrValue2="0" BuffAttrValue3="0"/>
 		</item>
-		<item ID="1002" Type="1" AttackType="1" Name="SkillName_1002" Desc="SkillDesc_1002" Icon="Skill_1002" Gold="500" CustomID="0" SkillID="1001" SkillLevel="0" AttrType1="2" AttrType2="10" AttrType3="13" BuffAttrType1="12" BuffAttrType2="0" BuffAttrType3="0">
-			<level Level="0" SkillID="1002" Exp="10" CD="8" Sing="3" MPCost="2" Attack="1.5" MATK="0" HoldBuffTime="0" AttrValue1="10" AttrValue2="20" AttrValue3="0.2" BuffAttrValue1="0.1" BuffAttrValue2="0" BuffAttrValue3="0"/>
-			<level Level="1" SkillID="1002" Exp="20" CD="7" Sing="2" MPCost="5" Attack="1.8" MATK="0" HoldBuffTime="3" AttrValue1="20" AttrValue2="30" AttrValue3="0.3" BuffAttrValue1="0.2" BuffAttrValue2="0" BuffAttrValue3="0"/>
-		</item>
-		<item ID="2001" Type="2" AttackType="0" Name="SkillName_2001" Desc="SkillDesc_2001" Icon="Skill_2001" Gold="100" CustomID="0" SkillID="0" SkillLevel="0" AttrType1="2" AttrType2="0" AttrType3="0" BuffAttrType1="0" BuffAttrType2="0" BuffAttrType3="0">
-			<level Level="0" SkillID="1002" Exp="5" CD="0" Sing="0" MPCost="0" Attack="0" MATK="0" HoldBuffTime="0" AttrValue1="2" AttrValue2="0" AttrValue3="0" BuffAttrValue1="0" BuffAttrValue2="0" BuffAttrValue3="0"/>
-			<level Level="1" SkillID="1002" Exp="10" CD="0" Sing="0" MPCost="0" Attack="0" MATK="0" HoldBuffTime="0" AttrValue1="2" AttrValue2="0" AttrValue3="0" BuffAttrValue1="0" BuffAttrValue2="0" BuffAttrValue3="0"/>
-			<level Level="2" SkillID="1002" Exp="15" CD="0" Sing="0" MPCost="0" Attack="0" MATK="0" HoldBuffTime="0" AttrValue1="2" AttrValue2="0" AttrValue3="0" BuffAttrValue1="0" BuffAttrValue2="0" BuffAttrValue3="0"/>
+		<item ID="1002" Type="2" AttackType="1" Name="SkillName_1002" Desc="SkillDesc_1002" Icon="Skill_1002" Gold="100" CustomID="0" SkillID="0" SkillLevel="0" AttrType1="1" AttrType2="10" AttrType3="14" BuffAttrType1="0" BuffAttrType2="0" BuffAttrType3="0">
+			<level Level="1" SkillID="1002" Exp="0" CD="0" Sing="0" MPCost="0" Attack="0" MATK="0" HoldBuffTime="0" AttrValue1="2" AttrValue2="1" AttrValue3="1" BuffAttrValue1="0" BuffAttrValue2="0" BuffAttrValue3="0"/>
+			<level Level="2" SkillID="1002" Exp="0" CD="0" Sing="0" MPCost="0" Attack="0" MATK="0" HoldBuffTime="0" AttrValue1="2" AttrValue2="1" AttrValue3="1" BuffAttrValue1="0" BuffAttrValue2="0" BuffAttrValue3="0"/>
+			<level Level="3" SkillID="1002" Exp="0" CD="0" Sing="0" MPCost="0" Attack="0" MATK="0" HoldBuffTime="0" AttrValue1="2" AttrValue2="1" AttrValue3="1" BuffAttrValue1="0" BuffAttrValue2="0" BuffAttrValue3="0"/>
+			<level Level="4" SkillID="1002" Exp="0" CD="0" Sing="0" MPCost="0" Attack="0" MATK="0" HoldBuffTime="0" AttrValue1="2" AttrValue2="1" AttrValue3="1" BuffAttrValue1="0" BuffAttrValue2="0" BuffAttrValue3="0"/>
+			<level Level="5" SkillID="1002" Exp="0" CD="0" Sing="0" MPCost="0" Attack="0" MATK="0" HoldBuffTime="0" AttrValue1="2" AttrValue2="1" AttrValue3="1" BuffAttrValue1="0" BuffAttrValue2="0" BuffAttrValue3="0"/>
+			<level Level="6" SkillID="1002" Exp="0" CD="0" Sing="0" MPCost="0" Attack="0" MATK="0" HoldBuffTime="0" AttrValue1="2" AttrValue2="1" AttrValue3="1" BuffAttrValue1="0" BuffAttrValue2="0" BuffAttrValue3="0"/>
+			<level Level="7" SkillID="1002" Exp="0" CD="0" Sing="0" MPCost="0" Attack="0" MATK="0" HoldBuffTime="0" AttrValue1="5" AttrValue2="5" AttrValue3="1" BuffAttrValue1="0" BuffAttrValue2="0" BuffAttrValue3="0"/>
+			<level Level="8" SkillID="1002" Exp="0" CD="0" Sing="0" MPCost="0" Attack="0" MATK="0" HoldBuffTime="0" AttrValue1="2" AttrValue2="1" AttrValue3="1" BuffAttrValue1="0" BuffAttrValue2="0" BuffAttrValue3="0"/>
+			<level Level="9" SkillID="1002" Exp="0" CD="0" Sing="0" MPCost="0" Attack="0" MATK="0" HoldBuffTime="0" AttrValue1="2" AttrValue2="1" AttrValue3="1" BuffAttrValue1="0" BuffAttrValue2="0" BuffAttrValue3="0"/>
+			<level Level="10" SkillID="1002" Exp="0" CD="0" Sing="0" MPCost="0" Attack="0" MATK="0" HoldBuffTime="0" AttrValue1="2" AttrValue2="1" AttrValue3="1" BuffAttrValue1="0" BuffAttrValue2="0" BuffAttrValue3="0"/>
+			<level Level="11" SkillID="1002" Exp="0" CD="0" Sing="0" MPCost="0" Attack="0" MATK="0" HoldBuffTime="0" AttrValue1="5" AttrValue2="5" AttrValue3="1" BuffAttrValue1="0" BuffAttrValue2="0" BuffAttrValue3="0"/>
+			<level Level="12" SkillID="1002" Exp="0" CD="0" Sing="0" MPCost="0" Attack="0" MATK="0" HoldBuffTime="0" AttrValue1="3" AttrValue2="1" AttrValue3="1" BuffAttrValue1="0" BuffAttrValue2="0" BuffAttrValue3="0"/>
+			<level Level="13" SkillID="1002" Exp="0" CD="0" Sing="0" MPCost="0" Attack="0" MATK="0" HoldBuffTime="0" AttrValue1="3" AttrValue2="1" AttrValue3="1" BuffAttrValue1="0" BuffAttrValue2="0" BuffAttrValue3="0"/>
+			<level Level="14" SkillID="1002" Exp="0" CD="0" Sing="0" MPCost="0" Attack="0" MATK="0" HoldBuffTime="0" AttrValue1="3" AttrValue2="1" AttrValue3="1" BuffAttrValue1="0" BuffAttrValue2="0" BuffAttrValue3="0"/>
+			<level Level="15" SkillID="1002" Exp="0" CD="0" Sing="0" MPCost="0" Attack="0" MATK="0" HoldBuffTime="0" AttrValue1="10" AttrValue2="5" AttrValue3="1" BuffAttrValue1="0" BuffAttrValue2="0" BuffAttrValue3="0"/>
 		</item>
 	</Skill>
 </Root>
